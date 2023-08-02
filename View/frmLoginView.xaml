@@ -62,7 +62,7 @@
                                 <Setter Property="Background" Value="#414142"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#930001"/>
+                                        <Setter Property="Background" Value="#930001"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -73,26 +73,69 @@
                                         CornerRadius="10"
                                         Background="{TemplateBinding Background}">
                                     <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/> 
+                                                      HorizontalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
                     <Button x:Name="btnClose"
-                            Background="#414142"
                             BorderThickness="0"
-                            Content="x"
+                            Content="X"
                             Foreground="White"
                             FontSize="16"
                             FontFamily="Montserrat"
                             Cursor="Hand"
                             Grid.Column="2"
                             Click="btnClose_Click">
-
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#414142"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#930001"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="25" Height="25"
+                                        CornerRadius="10"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
                     </Button>
                 </Grid>
+
+                <StackPanel Width="250"
+                            Grid.Row="2"
+                            Orientation="Vertical"
+                            Margin="0,35,0,0">
+                    <Image Source="/Images/LOGO-FUNDASEN-CABECERA-3.png"
+                           Width="200" Height="150">
+                    </Image>
+                    <TextBlock Text="SIRHU"
+                               Foreground="#414242"
+                               FontSize="25"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               HorizontalAlignment="Center">
+                    </TextBlock>
+                    <TextBlock Text="Sistema Integrado de Recursos Humanos"
+                               Foreground="#414242"
+                               FontSize="12"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               >
+                               
+                    </TextBlock>
+                </StackPanel>
             </Grid>
-                
         </Border>
     </Border>
 </Window>

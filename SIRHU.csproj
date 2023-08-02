@@ -109,5 +109,9 @@
   <ItemGroup>
     <Resource Include="Images\Recurso 2.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LOGO-FUNDASEN-CABECERA-3.png" />
+    <Resource Include="Images\LOGOFUNDASEN.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
