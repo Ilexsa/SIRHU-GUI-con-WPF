@@ -113,5 +113,20 @@
     <Resource Include="Images\LOGO-FUNDASEN-CABECERA-3.png" />
     <Resource Include="Images\LOGOFUNDASEN.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\User-Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UsuarioIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IconUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Iconcontraseña.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\IconContraseña1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

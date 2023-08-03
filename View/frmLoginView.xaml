@@ -124,16 +124,70 @@
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center">
                     </TextBlock>
-                    <TextBlock Text="Sistema Integrado de Recursos Humanos"
+                    <TextBlock Text="Sistema   Integrado   de   Recursos   Humanos"
                                Foreground="#414242"
-                               FontSize="12"
+                               FontSize="13"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
                                TextWrapping="Wrap"
                                TextAlignment="Center"
+                               Margin="0,2,0,0"
                                >
-                               
                     </TextBlock>
+                    <TextBlock Text="Usuario :"
+                               Foreground="#414242"
+                               FontSize="13"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Margin="0,35,0,0"
+                               />
+                    <TextBox x:Name="txtUser"
+                             FontSize="14"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"
+                             Margin="0,5,0,0"
+                             Foreground="#414242"
+                             CaretBrush="LightGray"
+                             BorderBrush="#930001"
+                             BorderThickness="0,0,0,2"
+                             Height="22"
+                             VerticalAlignment="Center"
+                             Padding="20,0,0,0"
+                             >
+                        <TextBox.Background>
+                            <ImageBrush ImageSource="/Images/IconUser.png"
+                                        Stretch="None"
+                                        AlignmentX="Left">
+                            </ImageBrush>
+                        </TextBox.Background>
+                    </TextBox>
+                    <TextBlock Text="Contraseña :"
+                               Foreground="#414242"
+                               FontSize="13"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Margin="0,10,0,0"
+                               />
+                    <PasswordBox x:Name="txtPass"
+                             FontSize="14"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"
+                             Margin="0,5,0,0"
+                             Foreground="#414242"
+                             CaretBrush="LightGray"
+                             BorderBrush="#930001"
+                             BorderThickness="0,0,0,2"
+                             Height="22"
+                             VerticalAlignment="Center"
+                             Padding="20,0,0,0"
+                             >
+                        <PasswordBox.Background>
+                            <ImageBrush ImageSource="/Images/IconContraseña1.png"
+                                        Stretch="None"
+                                        AlignmentX="Left">
+                            </ImageBrush>
+                        </PasswordBox.Background>
+                    </PasswordBox>
                 </StackPanel>
             </Grid>
         </Border>
