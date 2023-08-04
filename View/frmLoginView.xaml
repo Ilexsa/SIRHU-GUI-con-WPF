@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIRHU.View"
+        xmlns:viewModel="clr-namespace:SIRHU.ViewModel"
         mc:Ignorable="d"
         Title="frmLoginView" Height="550" Width="800"
         WindowStyle="None"
@@ -12,6 +13,21 @@
         MouseDown="Window_MouseDown"
         Background="Transparent"
         AllowsTransparency="True">
+
+    <Window.DataContext>
+        <viewModel:LoginViewModel>
+            
+        </viewModel:LoginViewModel>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
+
+    <!--<Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>-->
+
     <Border CornerRadius="12">
         <Border.Background>
             <ImageBrush ImageSource="/Images/Recurso 2.png"
@@ -188,6 +204,58 @@
                             </ImageBrush>
                         </PasswordBox.Background>
                     </PasswordBox>
+                    <Button x:Name="btnLogin"
+                            BorderThickness="0"
+                            Content="Log in"
+                            Foreground="White"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Margin="0,50,0,0"
+                            Grid.Column="2"
+                            Click="btnLogin_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#414142"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#930001"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="150" Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="0,15,0,0">
+                    <TextBlock Text="¿Haz olvidado tu contraseña?"
+                               Foreground="#414242"
+                               FontSize="13"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               TextAlignment="Center"
+                               />
+
+                        <TextBlock Text="Recuperar"
+                               Foreground="#000080"
+                               FontSize="13"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Cursor="Hand"
+                               TextAlignment="Center"
+                               Margin="8,0,0,0"
+                               />
+                    </StackPanel>
                 </StackPanel>
             </Grid>
         </Border>
