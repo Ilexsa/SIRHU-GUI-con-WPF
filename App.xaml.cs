@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using SIRHU.View;
 
 namespace SIRHU
 {
@@ -13,5 +14,19 @@ namespace SIRHU
     /// </summary>
     public partial class App : Application
     {
+        protected void ApplicationStart(object sender, StartupEventArgs e)
+        {
+            var frmLoginView=new frmLoginView();
+            frmLoginView.Show();
+            frmLoginView.IsVisibleChanged += (s, ev) =>
+            {
+                if (frmLoginView.IsVisible == false && frmLoginView.IsLoaded)
+                {
+                    var mainView = new MainView();
+                    mainView.Show();
+                    frmLoginView.Close();
+                }
+            };
+        }
     }
 }

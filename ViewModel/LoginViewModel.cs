@@ -1,9 +1,15 @@
-﻿using System;
+﻿using SIRHU.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using SIRHU.Repositories;
+using System.Net;
+using System.Threading;
+using System.Security.Principal;
 
 namespace SIRHU.ViewModel
 {
@@ -11,9 +17,11 @@ namespace SIRHU.ViewModel
     {
         //Fields
         private string _username;
-        private string _password;
+        private SecureString _password;
         private string _errorMessage;
-        private bool _isViewVisible=true;
+        private bool _isViewVisible = true;
+
+        private IUserRepository userRepository;
 
         //Properties
         public string Username
@@ -29,7 +37,7 @@ namespace SIRHU.ViewModel
             }
         }
 
-        public string Password
+        public SecureString Password
         {
             get
             {
@@ -56,17 +64,18 @@ namespace SIRHU.ViewModel
 
         public bool IsViewVisible
         {
-            get 
-            { 
-                return IsViewVisible; 
+            get
+            {
+                return _isViewVisible;
             }
-            set 
-            { 
-                IsViewVisible = value; 
+
+            set
+            {
+                _isViewVisible = value;
                 OnPropertyChanged(nameof(IsViewVisible));
             }
         }
-        
+
         // -> Commands
 
         public ICommand LoginCommand { get; }
@@ -78,6 +87,7 @@ namespace SIRHU.ViewModel
 
         public LoginViewModel()
         {
+            userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("",""));
         }
@@ -97,7 +107,17 @@ namespace SIRHU.ViewModel
 
         private void ExecuteLoginCommand(object obj)
         {
-            throw new NotImplementedException();
+            var isValidUser = userRepository.AuthentificateUser(new NetworkCredential(Username,Password));
+            if (isValidUser)
+            {
+                Thread.CurrentPrincipal = new GenericPrincipal(
+                    new GenericIdentity(Username),null);
+                IsViewVisible = false;
+            }
+            else
+            {
+                ErrorMessage = "* Nombre de usuario o contraseña invalida";
+            }
         }
 
         private void ExecuteRecoverPassCommand(string username, string email)

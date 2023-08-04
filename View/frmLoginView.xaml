@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SIRHU.View"
-        xmlns:viewModel="clr-namespace:SIRHU.ViewModel"
+        xmlns:viewModel="clr-namespace:SIRHU.ViewModel" xmlns:customcontrols="clr-namespace:SIRHU.CustomControls"
         mc:Ignorable="d"
         Title="frmLoginView" Height="550" Width="800"
         WindowStyle="None"
@@ -13,20 +13,17 @@
         MouseDown="Window_MouseDown"
         Background="Transparent"
         AllowsTransparency="True">
-
     <Window.DataContext>
-        <viewModel:LoginViewModel>
-            
-        </viewModel:LoginViewModel>
+        <viewModel:LoginViewModel/>
     </Window.DataContext>
 
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
 
-    <!--<Window.Visibility>
+    <Window.Visibility>
         <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
-    </Window.Visibility>-->
+    </Window.Visibility>
 
     <Border CornerRadius="12">
         <Border.Background>
@@ -158,6 +155,7 @@
                                Margin="0,35,0,0"
                                />
                     <TextBox x:Name="txtUser"
+                             Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="14"
                              FontWeight="Medium"
                              FontFamily="Montserrat"
@@ -184,36 +182,31 @@
                                FontFamily="Montserrat"
                                Margin="0,10,0,0"
                                />
-                    <PasswordBox x:Name="txtPass"
-                             FontSize="14"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"
-                             Margin="0,5,0,0"
-                             Foreground="#414242"
-                             CaretBrush="LightGray"
-                             BorderBrush="#930001"
-                             BorderThickness="0,0,0,2"
-                             Height="22"
-                             VerticalAlignment="Center"
-                             Padding="20,0,0,0"
-                             >
-                        <PasswordBox.Background>
-                            <ImageBrush ImageSource="/Images/IconContraseña1.png"
-                                        Stretch="None"
-                                        AlignmentX="Left">
-                            </ImageBrush>
-                        </PasswordBox.Background>
-                    </PasswordBox>
+                    <customcontrols:BindablePasswordBox Password="{Binding Password,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Margin="0,5,0,0"
+                                                        Height="22">
+                    </customcontrols:BindablePasswordBox>
+
+                    <TextBlock Text="{Binding ErrorMessage}"
+                               Foreground="#D7596D"
+                               FontSize="10"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Margin="0,8,0,0"
+                               TextWrapping="Wrap"
+                               />
+
                     <Button x:Name="btnLogin"
+                            Command="{Binding LoginCommand}"
                             BorderThickness="0"
-                            Content="Log in"
+                            Content="LOG IN"
                             Foreground="White"
                             FontSize="16"
                             FontFamily="Montserrat"
                             Cursor="Hand"
-                            Margin="0,50,0,0"
+                            Margin="0,30,0,0"
                             Grid.Column="2"
-                            Click="btnLogin_Click">
+                            >
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#414142"/>
@@ -238,7 +231,7 @@
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
-                    <TextBlock Text="¿Haz olvidado tu contraseña?"
+                        <TextBlock Text="¿Haz olvidado tu contraseña?"
                                Foreground="#414242"
                                FontSize="13"
                                FontWeight="Medium"
