@@ -35,8 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FontAwesome.Sharp, Version=6.3.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
+      <HintPath>packages\FontAwesome.Sharp.6.3.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -81,6 +85,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\ButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\UIColors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,6 +120,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -120,7 +129,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\logoBN.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Recurso 2.png" />
   </ItemGroup>
@@ -142,6 +153,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\IconContraseña1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ICONO f  16.png" />
+    <Resource Include="Images\ICONO f 32.png" />
+    <Resource Include="Images\ICONO f 64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BACKGROUND 1920X1080-04.jpg" />
+    <Resource Include="Images\BACKGROUND 1920X1080-05.jpg" />
+    <Resource Include="Images\BACKGROUND 1920X1080-06.jpg" />
+    <Resource Include="Images\BACKGROUND 1920X1080-07.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

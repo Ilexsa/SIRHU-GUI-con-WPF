@@ -16,17 +16,19 @@ namespace SIRHU
     {
         protected void ApplicationStart(object sender, StartupEventArgs e)
         {
-            var frmLoginView=new frmLoginView();
-            frmLoginView.Show();
-            frmLoginView.IsVisibleChanged += (s, ev) =>
-            {
-                if (frmLoginView.IsVisible == false && frmLoginView.IsLoaded)
-                {
-                    var mainView = new MainView();
-                    mainView.Show();
-                    frmLoginView.Close();
-                }
-            };
+            //var frmLoginView =new frmLoginView();
+            //frmLoginView.Show();
+            var MainView = new MainView();
+            MainView.Show();
+            //frmLoginView.IsVisibleChanged += (s, ev) =>
+            //{
+            //    if (frmLoginView.IsVisible == false && frmLoginView.IsLoaded)
+            //    {
+            //        var mainView = new MainView();
+            //        mainView.Show();
+            //        frmLoginView.Close();
+            //    }
+            //};
         }
     }
 }
