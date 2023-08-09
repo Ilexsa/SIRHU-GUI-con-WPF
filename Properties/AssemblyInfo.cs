@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyTitle("SIRHU")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Fundasen")]
 [assembly: AssemblyProduct("SIRHU")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
