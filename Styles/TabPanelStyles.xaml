@@ -7,14 +7,63 @@
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="TabStripPlacement" Value="Top"/>
-        <Setter Property="Template">    
+        <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TabControl">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderThickness="4,0,0,0"
-                            BorderBrush="{TemplateBinding BorderBrush}">
-                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Encabezado de las pestañas -->
+                        <TabPanel Grid.Row="0" 
+                                  Panel.ZIndex="1" 
+                                  Background="Transparent" 
+                                  IsItemsHost="True"/>
+
+                        <!-- Contenido de las pestañas -->
+                        <Border Grid.Row="1" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter ContentSource="SelectedContent"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+       
+    </Style>
+
+    
+    <!--tab itemstyle-->
+    <Style x:Key="TabItemStyle" TargetType="TabItem">
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="{StaticResource color10}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Border Name="Border" 
+                            Background="Transparent" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="1,1,1,0" 
+                            CornerRadius="4,4,0,0">
+                        <ContentPresenter x:Name="ContentSite" 
+                                          VerticalAlignment="Center" 
+                                          HorizontalAlignment="Center" 
+                                          ContentSource="Header" 
+                                          Margin="10,2"/>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#434302"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -35,7 +84,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+
     <!--Icon style for tabs-->
     <Style x:Key="tabItemIcon" TargetType="fa:IconImage">
         <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=TabItem}}"/>
