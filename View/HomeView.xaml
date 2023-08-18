@@ -27,21 +27,20 @@
             <!--Content Section-->
             <Grid Grid.Row="0">
                 <TabControl Style="{StaticResource tabControlSections}"
-                            Margin="0,0,0,0">
+                            >
                     <TabItem Header="Dato1" Style="{StaticResource TabItemStyle}"
                              FontFamily="Montserrat"
                              FontSize="10"
                              VerticalAlignment="Center">
-                        <Border BorderBrush="Gray" Margin="0,0,0,-423">
-                        <Grid Margin="0,0,0,-418">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="400"/>
-                                <ColumnDefinition Width="400"/>
-                            </Grid.ColumnDefinitions>
+                        <Grid>
+                            <TextBlock Text="Hola Mundo"
+                                       FontSize="20"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Foreground="{StaticResource color10}"/>
                         </Grid>
-                        </Border>
                     </TabItem>
-                    <TabItem>
+                    <TabItem Header="Hola mundo">
                     </TabItem>
                 </TabControl>
             </Grid>

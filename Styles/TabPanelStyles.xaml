@@ -2,10 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
     <Style x:Key="tabControlSections" TargetType="TabControl">
-        <Setter Property="Height" Value="20"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Height" Value="450"/>
+        <Setter Property="Width" Value="900"/>
+        <Setter Property="Background" Value="Black"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Padding" Value="30"/>
         <Setter Property="TabStripPlacement" Value="Top"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -42,6 +43,8 @@
         <Setter Property="Padding" Value="10"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Background" Value="{StaticResource color10}"/>
+        <Setter Property="Margin" Value="0 0 5 0"/>
+        <Setter Property="Width" Value="100"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TabItem">
@@ -57,32 +60,38 @@
                                           Margin="10,2"/>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="White"/>
-                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border" Property="Background" Value="#434302"/>
+                            <Setter TargetName="Border" Property="Background" Value="#901528"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#D19EA5"/>
+                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="#626262"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <!--<Style.Triggers>
+            <Trigger Property="IsSelected" Value="False">
+                <Setter Property="Background" Value="{StaticResource color10}"/>
+            </Trigger>
+        </Style.Triggers>-->
         <!--Mouse over back color-->
 
-        <Style.Triggers>
+        <!--<Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Margin" Value="0,0,5,0"/>
                 <Setter Property="Background" Value="{StaticResource panelOverColor}"/>
                 <Setter Property="Foreground" Value="{StaticResource titleColor1}"/>
                 <Setter Property="BorderBrush" Value="{Binding Path= Tag, RelativeSource={RelativeSource self}}"/>
             </Trigger>
-            <!--is tab activate color-->
-            <Trigger Property="IsTabStop" Value="True">
+            --><!--is tab activate color--><!--
+            <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="{StaticResource panelOverColor}"/>
                 <Setter Property="Foreground" Value="{Binding Path= Tag, RelativeSource={RelativeSource self}}"/>
                 <Setter Property="BorderBrush" Value="{Binding Path= Tag, RelativeSource={RelativeSource self}}"/>
             </Trigger>
-        </Style.Triggers>
+        </Style.Triggers>-->
     </Style>
 
     <!--Icon style for tabs-->
