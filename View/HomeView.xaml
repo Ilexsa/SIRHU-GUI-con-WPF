@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SIRHU.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="806" d:DesignWidth="1023">
     <Border CornerRadius="10"
                 BorderThickness="5">
         <Border.BorderBrush>
@@ -13,40 +13,29 @@
                 <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
-        <Grid>
-            <Grid.RowDefinitions>
-                <!--Tab Page Section-->
-                <RowDefinition Height="20"/>
-            </Grid.RowDefinitions>
-            
-            <!--Tab Page Section-->
-            <Grid Grid.Row="0">
-                
-            </Grid>
+
             
             <!--Content Section-->
-            <Grid Grid.Row="0">
+            <Grid>
                 <TabControl Style="{StaticResource tabControlSections}"
                             >
                     <TabItem Header="Dato1" Style="{StaticResource TabItemStyle}"
                              FontFamily="Montserrat"
                              FontSize="10"
-                             VerticalAlignment="Center">
+                             VerticalAlignment="Center"
+                             >
                         <Grid>
-                            <TextBlock Text="Hola Mundo"
-                                       FontSize="20"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center"
-                                       Foreground="{StaticResource color10}"/>
+                            <Label Content="Hola Mundo" Height="196" Width="306"
+                                 Foreground="CadetBlue"
+                                 Background="Wheat"/>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Hola mundo">
+                    <TabItem Header="Hola mundo" Style="{StaticResource TabItemStyle}">
                     </TabItem>
                 </TabControl>
             </Grid>
             <!--<StackPanel Grid.Column="0">
 
             </StackPanel>-->
-        </Grid>
     </Border>
 </UserControl>

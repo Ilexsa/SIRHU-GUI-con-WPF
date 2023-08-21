@@ -2,9 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
     <Style x:Key="tabControlSections" TargetType="TabControl">
-        <Setter Property="Height" Value="450"/>
-        <Setter Property="Width" Value="900"/>
-        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Height" Value="806"/>
+        <Setter Property="Width" Value="1022"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="30"/>
         <Setter Property="TabStripPlacement" Value="Top"/>
@@ -17,13 +17,13 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <!-- Encabezado de las pestañas -->
+                         <!--Encabezado de las pestañas--> 
                         <TabPanel Grid.Row="0" 
                                   Panel.ZIndex="1" 
                                   Background="Transparent" 
                                   IsItemsHost="True"/>
 
-                        <!-- Contenido de las pestañas -->
+                         <!--Contenido de las pestañas--> 
                         <Border Grid.Row="1" 
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
