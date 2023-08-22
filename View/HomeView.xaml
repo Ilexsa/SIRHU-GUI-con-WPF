@@ -25,10 +25,27 @@
                              VerticalAlignment="Center"
                              >
                         <Grid>
-                            <Label Content="Hola Mundo" Height="196" Width="306"
-                                 Foreground="CadetBlue"
-                                 Background="Wheat"/>
-                        </Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="511.5"/>
+                            <ColumnDefinition Width="511.5"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"/>
+                                </Grid.RowDefinitions>
+                            <TextBlock Text="Cédula :"
+                                       FontSize="12"
+                                       Foreground="{StaticResource panelColor}"
+                                       FontFamily="Montserrat"
+                                       FontWeight="Medium"
+                                       Grid.Row="0"/>
+                            <TextBox Margin="100,0,0,0">
+                                
+                            </TextBox>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
                     </TabItem>
                     <TabItem Header="Hola mundo" Style="{StaticResource TabItemStyle}">
                     </TabItem>
