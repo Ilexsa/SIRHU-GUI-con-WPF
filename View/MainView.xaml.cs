@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Runtime;
 using System.Windows.Interop;
+using SIRHU.ViewModel;
+using MaterialDesignThemes.Wpf;
 
 namespace SIRHU.View
 {
@@ -25,6 +27,39 @@ namespace SIRHU.View
         public MainView()
         {
             InitializeComponent();
+            //Primer Submenu e Items
+            var menuManteGeneral = new List<SubItem>();
+            menuManteGeneral.Add(new SubItem("Empresa, establecimientos y sucursales"));
+            menuManteGeneral.Add(new SubItem("Usuarios"));
+            menuManteGeneral.Add(new SubItem("Perfiles"));
+            menuManteGeneral.Add(new SubItem("Asignar perfiles"));
+            var item0 = new ItemMenu("Matenimiento General", menuManteGeneral, PackIconKind.Tools);
+            //segundo
+
+            var menuManteLaboral = new List<SubItem>();
+            menuManteLaboral.Add(new SubItem("Tipo de contrato"));
+            menuManteLaboral.Add(new SubItem("Cargo"));
+            menuManteLaboral.Add(new SubItem("Sectorial iess"));
+            var item1 = new ItemMenu("Matenimiento Laboral", menuManteLaboral, PackIconKind.FileSign);
+
+            //tercero
+
+            var menuRegistroTrabajador = new List<SubItem>();
+            menuRegistroTrabajador.Add(new SubItem("Datos"));
+            menuRegistroTrabajador.Add(new SubItem("Cargas familiares"));
+            menuRegistroTrabajador.Add(new SubItem("Documentos adjuntos"));
+            var item2 = new ItemMenu("Registro Trabajador", menuRegistroTrabajador, PackIconKind.CardAccountDetails);
+            //cuarto 
+
+            var menuNovedadesTrabajador = new List<SubItem>();
+            menuNovedadesTrabajador.Add(new SubItem("Novedades de ingreso"));
+            menuNovedadesTrabajador.Add(new SubItem("Novedades de egreso"));
+            var item3 = new ItemMenu("Novedades del Trabajador", menuNovedadesTrabajador, PackIconKind.ClipboardTextMultiple);
+
+            MenusButtons.Children.Add(new UserControlMenuItem(item0));
+            MenusButtons.Children.Add(new UserControlMenuItem(item1));
+            MenusButtons.Children.Add(new UserControlMenuItem(item2));
+            MenusButtons.Children.Add(new UserControlMenuItem(item3));
         }
 
         [DllImport("user32.dll")]
@@ -66,5 +101,6 @@ namespace SIRHU.View
                 WindowState = WindowState.Normal;
             }
         }
+
     }
 }
