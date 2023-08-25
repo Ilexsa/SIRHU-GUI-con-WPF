@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="PlaceholderStyle" TargetType="TextBox">
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform X="0" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Storyboard x:Key="BarridoIzquierda">
+        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="0" To="-20" Duration="0:0:0.2" />
+    </Storyboard>
+
+    <Storyboard x:Key="BarridoDerecha">
+        <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"
+                         From="-20" To="0" Duration="0:0:0.2" />
+    </Storyboard>
+
+    <Style x:Key="TextBoxWithPlaceholderStyle" TargetType="TextBox">
+        <Style.Resources>
+            <Style TargetType="TextBox" BasedOn="{StaticResource PlaceholderStyle}" />
+        </Style.Resources>
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="GotFocus">
+                <BeginStoryboard Storyboard="{StaticResource BarridoIzquierda}" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="LostFocus">
+                <BeginStoryboard Storyboard="{StaticResource BarridoDerecha}" />
+            </EventTrigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
