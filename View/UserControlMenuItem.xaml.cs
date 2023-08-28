@@ -21,9 +21,13 @@ namespace SIRHU.View
     /// </summary>
     public partial class UserControlMenuItem : UserControl
     {
-        public UserControlMenuItem(ItemMenu itemMenu)
+        MainView _context;
+
+        public UserControlMenuItem(ItemMenu itemMenu, MainView context)
         {
             InitializeComponent();
+
+            _context = context;
 
             ExpanderMenu.Visibility = itemMenu.SubItems == null ? Visibility.Collapsed : Visibility.Visible;
             ListViewItemMenu.Visibility = itemMenu.SubItems == null? Visibility.Visible : Visibility.Collapsed;

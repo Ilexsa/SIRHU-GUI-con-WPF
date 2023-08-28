@@ -24,12 +24,16 @@ namespace SIRHU.View
     /// </summary>
     public partial class MainView : Window
     {
+        public ICommand SwitchScreenCommand { get; private set; }
+
         public MainView()
         {
+            var mainViewModel = new MainViewModel();
             InitializeComponent();
+
             //Primer Submenu e Items
             var menuManteGeneral = new List<SubItem>();
-            menuManteGeneral.Add(new SubItem("Empresa, establecimientos y sucursales"));
+            menuManteGeneral.Add(new SubItem("Empresa, establecimientos y sucursales", mainViewModel.ShowWorkersCommand));
             menuManteGeneral.Add(new SubItem("Usuarios"));
             menuManteGeneral.Add(new SubItem("Perfiles"));
             menuManteGeneral.Add(new SubItem("Asignar perfiles"));
@@ -56,10 +60,10 @@ namespace SIRHU.View
             menuNovedadesTrabajador.Add(new SubItem("Novedades de egreso"));
             var item3 = new ItemMenu("Novedades del Trabajador", menuNovedadesTrabajador, PackIconKind.ClipboardTextMultiple);
 
-            MenusButtons.Children.Add(new UserControlMenuItem(item0));
-            MenusButtons.Children.Add(new UserControlMenuItem(item1));
-            MenusButtons.Children.Add(new UserControlMenuItem(item2));
-            MenusButtons.Children.Add(new UserControlMenuItem(item3));
+            MenusButtons.Children.Add(new UserControlMenuItem(item0, this));
+            MenusButtons.Children.Add(new UserControlMenuItem(item1, this));
+            MenusButtons.Children.Add(new UserControlMenuItem(item2, this));
+            MenusButtons.Children.Add(new UserControlMenuItem(item3, this));
         }
 
         [DllImport("user32.dll")]

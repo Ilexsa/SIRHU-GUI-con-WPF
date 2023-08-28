@@ -17,12 +17,13 @@
             
             <!--Content Section-->
             <Grid>
-                <TabControl Style="{StaticResource tabControlSections}"
+                <TabControl Style="{StaticResource MaterialDesignTabControl}"
                             >
-                    <TabItem Header="Dato1" Style="{StaticResource TabItemStyle}"
-                             FontFamily="Montserrat"
+                    <TabItem Header="Dato1" 
+                             Style="{StaticResource MaterialDesignTabItem}"
                              FontSize="10"
-                             VerticalAlignment="Center"
+                             FontFamily="Montserrat"
+                             
                              >
                         <Grid>
                         <Grid.ColumnDefinitions>
@@ -236,7 +237,8 @@
                         </StackPanel>
                     </Grid>
                     </TabItem>
-                    <TabItem Header="Hola mundo" Style="{StaticResource TabItemStyle}">
+                    <TabItem Header="Hola mundo" Style="{StaticResource MaterialDesignTabItem}"
+                             FontFamily="montserrat">
                     </TabItem>
                 </TabControl>
             </Grid>

@@ -4,18 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SIRHU.ViewModel
 {
     public class SubItem
     {
-        public SubItem(string name, UserControl screen = null)
+        public SubItem(string name, ICommand command = null)
         {
             Name = name;
-            Screen = screen;
+            Command = command;
+
         }
 
         public string Name { get; private set; }
-        public UserControl Screen { get; private set;}
+        public ICommand Command { get; private set;}
     }
 }
