@@ -8,5 +8,6 @@ namespace SIRHU.ViewModel
 {
     public class WorkersViewModel : ViewModelBase
     {
+
     }
 }
