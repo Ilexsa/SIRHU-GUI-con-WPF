@@ -16,6 +16,5 @@ namespace SIRHU.Models
         WorkerModel GetByName(string name);
 
         IEnumerable<WorkerModel> GetByAll();
-
     }
 }
