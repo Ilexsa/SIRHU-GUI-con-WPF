@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:SIRHU.View"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewModel="clr-namespace:SIRHU.ViewModel"
+             xmlns:mapGoogle="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
              mc:Ignorable="d" 
              d:DesignHeight="806" d:DesignWidth="1023">
 
@@ -60,7 +61,7 @@
                                 <materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="0"/>
                                 <TextBox x:Name="txtCedula"
                                          Margin="30,11,320,20"
-                                         Text="Cédula"
+                                         Text="{Binding Cedula, UpdateSourceTrigger=PropertyChanged}"
                                          Height="23"
                                          FontFamily="Montserrat"
                                          FontSize="12"
@@ -83,7 +84,7 @@
                                 <materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="1"/>
                                 <TextBox x:Name="txtNombre" 
                                          Margin="30,11,190,20"
-                                         Text="Apellidos y Nombres"
+                                         Text="{Binding Nombres, UpdateSourceTrigger=Default}"
                                          Height="23"
                                          FontFamily="Montserrat"
                                          FontSize="12"
@@ -100,6 +101,7 @@
                                             Foreground="{StaticResource color3}"
                                             Height="23"
                                             Margin="30,11,320,20"
+                                            Text="{Binding FechaIngreso, UpdateSourceTrigger=PropertyChanged}"
                                             >
                                 </DatePicker>
 
@@ -120,14 +122,16 @@
                                 <materialDesign:PackIcon Kind="Earth" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="3"/>
                                 <ComboBox Grid.Row="3"
                                           Margin="30,11,320,20"
-                                          DataContext="Nacionalidad">
+                                          DataContext="Nacionalidad"
+                                          
+                                          >
                                 </ComboBox>
 
                                 <materialDesign:PackIcon Kind="Cellphone" Width="20" Margin="201 14" Foreground="{StaticResource color3}" Grid.Row="3"/>
                                 <TextBox x:Name="txtCelular"
                                          Style="{StaticResource MaterialDesignTextBox}"
                                          Margin="225,11,140,20"
-                                         Text="Célular"
+                                         Text="{Binding NumCelula, UpdateSourceTrigger=PropertyChanged}"
                                          Height="23"
                                          FontFamily="Montserrat"
                                          FontSize="12"
@@ -142,7 +146,7 @@
                                          Style="{StaticResource MaterialDesignTextBox}"
                                          Margin="30 11 190 20"
                                          Grid.Row="4"
-                                         Text="Telefono"
+                                         Text="{Binding TelefonoConvencional, UpdateSourceTrigger=PropertyChanged}"
                                          Height="23"
                                          FontFamily="Montserrat"
                                          FontSize="12"
@@ -156,7 +160,7 @@
                                          Style="{StaticResource MaterialDesignTextBox}"
                                          Margin="30 11 190 20"
                                          Grid.Row="5"
-                                         Text="Correo"
+                                         Text="{Binding Correo, UpdateSourceTrigger=PropertyChanged}"
                                          Height="23"
                                          FontFamily="Montserrat"
                                          FontSize="12"
@@ -239,6 +243,24 @@
                                          CaretBrush="{StaticResource color1}">
                                 </TextBox>
 
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="200"/>
+                                </Grid.RowDefinitions>
+                                <Border CornerRadius="12"
+                                        BorderThickness="7"
+                                        BorderBrush="{StaticResource color1}"
+                                        Margin="20 25">
+                                    
+                                <mapGoogle:GMapControl x:Name="mapView" Loaded="mapView_Loaded"
+                                                       Grid.Row="0"
+                                                       >
+                                </mapGoogle:GMapControl>
+                                    
+                                </Border>
                             </Grid>
                         </StackPanel>
                     </Grid>
