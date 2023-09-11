@@ -26,7 +26,7 @@
             <Grid>
                 <TabControl Style="{StaticResource MaterialDesignTabControl}"
                             >
-                    <TabItem Header="Dato1" 
+                    <TabItem Header="Datos iniciales" 
                              Style="{StaticResource MaterialDesignTabItem}"
                              FontSize="10"
                              FontFamily="Montserrat"
@@ -84,7 +84,7 @@
                                 <materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="1"/>
                                 <TextBox x:Name="txtNombre" 
                                          Margin="30,11,190,20"
-                                         Text="{Binding Nombres, UpdateSourceTrigger=Default}"
+                                         Text="{Binding Nombres, UpdateSourceTrigger=PropertyChanged}"
                                          Height="23"
                                          FontFamily="Montserrat"
                                          FontSize="12"
@@ -101,7 +101,7 @@
                                             Foreground="{StaticResource color3}"
                                             Height="23"
                                             Margin="30,11,320,20"
-                                            Text="{Binding FechaIngreso, UpdateSourceTrigger=PropertyChanged}"
+                                            
                                             >
                                 </DatePicker>
 
@@ -249,6 +249,15 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="200"/>
+                                    <RowDefinition Height="53.73"/>
+                                    <RowDefinition Height="53.73"/>
+                                    <RowDefinition Height="53.73"/>
+                                    <RowDefinition Height="53.73"/>
+                                    <RowDefinition Height="53.73"/>
+                                    <RowDefinition Height="53.73"/>
+                                    <RowDefinition Height="53.73"/>
+                                    <RowDefinition Height="53.73"/>
+                                    
                                 </Grid.RowDefinitions>
                                 <Border CornerRadius="12"
                                         BorderThickness="7"
@@ -265,7 +274,7 @@
                         </StackPanel>
                     </Grid>
                     </TabItem>
-                    <TabItem Header="Hola mundo" Style="{StaticResource MaterialDesignTabItem}"
+                    <TabItem Header="--" Style="{StaticResource MaterialDesignTabItem}"
                              FontFamily="montserrat">
                     </TabItem>
                 </TabControl>
