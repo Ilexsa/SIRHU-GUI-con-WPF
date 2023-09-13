@@ -26,21 +26,21 @@ namespace SIRHU.View
             InitializeComponent();
         }
 
-        private void txtCedula_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtCedula.Text == "Cédula")
-            {
-                txtCedula.Text = "";
-            }
-        }
+        //private void txtCedula_GotFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (txtCedula.Text == "Cédula")
+        //    {
+        //        txtCedula.Text = "";
+        //    }
+        //}
 
-        private void txtCedula_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtCedula.Text == "")
-            {
-                txtCedula.Text = "Cédula";
-            }
-        }
+        //private void txtCedula_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    if (txtCedula.Text == "")
+        //    {
+        //        txtCedula.Text = "Cédula";
+        //    }
+        //}
 
         private void txtNombre_GotFocus(object sender, RoutedEventArgs e)
         {

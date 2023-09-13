@@ -13,12 +13,14 @@
         <Grid Margin="100, 25"
               Background="Transparent"
               >
+            <StackPanel>
             <materialDesign:PackIcon Kind="Domain" Margin="0,10,0,0" Height="50" Width="67" HorizontalAlignment="Center"/>
             <TextBlock Text="Empresa :"
                        FontFamily="montserrat"
                        FontSize="25"
                        Style="{StaticResource MaterialDesignBody2TextBlock}"
                        Margin="60,70,419,290"/>
+            </StackPanel>
         </Grid>
     </Border>
 

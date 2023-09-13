@@ -6,6 +6,7 @@
              Startup="ApplicationStart">
     <!--Startup="ApplicationStart"-->  
     <Application.Resources>
+        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Inherit"
@@ -16,6 +17,7 @@
                 <ResourceDictionary Source="/Styles/TabPanelStyles.xaml"/>
                 <ResourceDictionary Source="/Styles/AnimationsStyles.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="/Styles/TexBoxStyles"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
