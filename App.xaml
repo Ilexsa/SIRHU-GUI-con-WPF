@@ -12,12 +12,12 @@
                 <materialDesign:BundledTheme BaseTheme="Inherit"
                                              PrimaryColor="Red"
                                              SecondaryColor="Red"/>
+                <ResourceDictionary Source="/Styles/TextBoxStyles.xaml"/>
                 <ResourceDictionary Source="/Styles/UIColors.xaml"/>
                 <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="/Styles/TabPanelStyles.xaml"/>
                 <ResourceDictionary Source="/Styles/AnimationsStyles.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="/Styles/TexBoxStyles"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

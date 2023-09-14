@@ -21,6 +21,7 @@ namespace SIRHU.CustomControls
         public string Hint
         {
             get { return (string)GetValue(HintProperty); }
+            set { SetValue(HintProperty, value); }
         }
 
         public static readonly DependencyProperty HintProperty =
@@ -29,6 +30,7 @@ namespace SIRHU.CustomControls
         public string Caption
         {
             get { return (string)GetValue(CaptionProperty); }
+            set { SetValue(CaptionProperty, value); }
         }
 
         public static readonly DependencyProperty CaptionProperty =

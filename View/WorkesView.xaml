@@ -40,12 +40,12 @@
                         <StackPanel Grid.Column="0">
                             <Grid Margin="0,3,0,0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
+                                    <RowDefinition Height="80"/>
+                                    <RowDefinition Height="80"/>
+                                    <RowDefinition Height="80"/>
+                                    <RowDefinition Height="80"/>
+                                    <RowDefinition Height="80"/>
+                                    <RowDefinition Height="80"/>
                                     <RowDefinition Height="53.73"/>
                                     <RowDefinition Height="53.73"/>
                                     <RowDefinition Height="53.73"/>
@@ -58,7 +58,7 @@
 
                                 </Grid.RowDefinitions>
                                 <!--Boton con su icono-->
-                                <materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="0"/>
+                                <!--<materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="0"/>-->
                                 <!--<TextBox x:Name="txtCedula"
                                          Margin="30,11,320,20"
                                          Text="{Binding Cedula, UpdateSourceTrigger=PropertyChanged}"
@@ -71,9 +71,9 @@
                                          Foreground="{StaticResource color3}"
                                          >
                                 </TextBox>-->
-                                <customControls:CustomTextBox Grid.Row="0" Margin="10 " />
+                                <customControls:CustomTextBox Grid.Row="0" Grid.Column="0" Caption="Nombre del trabajador" Hint="Introduzca el nombre del trabajador" />
                                 <CheckBox x:Name="chkPasaporte"
-                                          Margin="196,11,159,20"
+                                          Margin="345,-9,10,40"
                                           Content="¿Pasaporte?"
                                           Foreground="{StaticResource color3}"
                                           Background="{StaticResource color1}"
