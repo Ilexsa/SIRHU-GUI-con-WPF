@@ -30,31 +30,23 @@
                              Style="{StaticResource MaterialDesignTabItem}"
                              FontSize="10"
                              FontFamily="Montserrat"
-                             
+                             Margin="10"
                              >
                         <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="450"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <Grid Margin="0,3,0,0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
-                                    <RowDefinition Height="53.73"/>
+                                    <RowDefinition Height="53.7"/>
+                                    <RowDefinition Height="53.7"/>
+                                    <RowDefinition Height="53.7"/>
+                                    <RowDefinition Height="53.7"/>
+                                    <RowDefinition Height="53.7"/>
+                                    <RowDefinition Height="53.7"/>
+                                    <RowDefinition Height="53.7"/>
 
                                 </Grid.RowDefinitions>
                                 <!--Boton con su icono-->
@@ -71,7 +63,14 @@
                                          Foreground="{StaticResource color3}"
                                          >
                                 </TextBox>-->
-                                <customControls:CustomTextBox Grid.Row="0" Grid.Column="0" Caption="Nombre del trabajador" Hint="Introduzca el nombre del trabajador" />
+                                <customControls:CustomTextBox Grid.Row="0" Grid.Column="0" Caption="Nombre del trabajador" Hint="Introduzca el nombre del trabajador"/>
+                                <customControls:CustomTextBox Grid.Row="1" Grid.Column="0" Caption="Cedula del trabajador" Hint="Introduzca la cedula del trabajador" />
+                                <customControls:CustomTextBox Grid.Row="2" Grid.Column="0" Caption="Direccion Domiciliar" Hint="Introduzca la dirección del tranjador" />
+                                <customControls:CustomTextBox Grid.Row="3" Grid.Column="0" Caption="Telefono Convencional" Hint="Introduzca el telefono" />
+                                <customControls:CustomTextBox Grid.Row="4" Grid.Column="0" Caption="Número de celular" Hint="Introduzca el numero de celular" />
+                                <customControls:CustomTextBox Grid.Row="5" Grid.Column="0" Caption="Correo principal" Hint="Introduzca el correo principal" />
+                                <customControls:CustomTextBox Grid.Row="6" Grid.Column="0" Caption="Correo alterno" Hint="Introduzca el correo alterno"/>
+                                
                                 <CheckBox x:Name="chkPasaporte"
                                           Margin="345,-9,10,40"
                                           Content="¿Pasaporte?"
@@ -82,7 +81,7 @@
                                     
                                 </CheckBox>
                                 <!--Boton con icono2-->
-                                <materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="1"/>
+                                <!--<materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="1"/>
                                 <TextBox x:Name="txtNombre" 
                                          Margin="30,11,190,20"
                                          Text="{Binding Nombres, UpdateSourceTrigger=PropertyChanged}"
@@ -94,9 +93,9 @@
                                          Grid.Row="1"
                                          Foreground="{StaticResource color3}"
                                          >
-                                </TextBox>
+                                </TextBox>-->
                                 <!--Fecha y Edad-->
-                                <DatePicker Grid.Row="2"
+                                <!--<DatePicker Grid.Row="2"
                                             FontFamily="Montserrat"
                                             FontSize="12"
                                             Foreground="{StaticResource color3}"
@@ -104,9 +103,9 @@
                                             Margin="30,11,320,20"
                                             
                                             >
-                                </DatePicker>
+                                </DatePicker>-->
 
-                                <materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="201 14" Foreground="{StaticResource color3}" Grid.Row="2"/>
+                                <!--<materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="201 14" Foreground="{StaticResource color3}" Grid.Row="2"/>
                                 <TextBox x:Name="txtEdad"
                                          Style="{StaticResource MaterialDesignTextBox}"
                                          Margin="225,11,140,20"
@@ -117,18 +116,18 @@
                                          Grid.Row="2"
                                          Foreground="{StaticResource color3}"
                                          CaretBrush="{StaticResource color1}"
-                                         >
-                                </TextBox>
+                                         >--><!--
+                                </TextBox>-->
                                 <!--Celular y Combo nacionalidades-->
-                                <materialDesign:PackIcon Kind="Earth" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="3"/>
+                                <!--<materialDesign:PackIcon Kind="Earth" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="3"/>
                                 <ComboBox Grid.Row="3"
                                           Margin="30,11,320,20"
                                           DataContext="Nacionalidad"
                                           
                                           >
-                                </ComboBox>
+                                </ComboBox>-->
 
-                                <materialDesign:PackIcon Kind="Cellphone" Width="20" Margin="201 14" Foreground="{StaticResource color3}" Grid.Row="3"/>
+                                <!--<materialDesign:PackIcon Kind="Cellphone" Width="20" Margin="201 14" Foreground="{StaticResource color3}" Grid.Row="3"/>
                                 <TextBox x:Name="txtCelular"
                                          Style="{StaticResource MaterialDesignTextBox}"
                                          Margin="225,11,140,20"
@@ -140,9 +139,9 @@
                                          Foreground="{StaticResource color3}"
                                          CaretBrush="{StaticResource color1}"
                                          >
-                                </TextBox>
+                                </TextBox>-->
                                 <!--telefono-->
-                                <materialDesign:PackIcon Kind="Phone" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="4"/>
+                                <!--<materialDesign:PackIcon Kind="Phone" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="4"/>
                                 <TextBox x:Name="txtTelefono"
                                          Style="{StaticResource MaterialDesignTextBox}"
                                          Margin="30 11 190 20"
@@ -154,9 +153,9 @@
                                          Foreground="{StaticResource color3}"
                                          CaretBrush="{StaticResource color1}">
                                     
-                                </TextBox>
+                                </TextBox>-->
                                 <!--correos en dos rowsdiferentes-->
-                                <materialDesign:PackIcon Kind="Mailbox" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="5"/>
+                                <!--<materialDesign:PackIcon Kind="Mailbox" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="5"/>
                                 <TextBox x:Name="txtCorreo1"
                                          Style="{StaticResource MaterialDesignTextBox}"
                                          Margin="30 11 190 20"
@@ -180,9 +179,9 @@
                                          FontSize="12"
                                          Foreground="{StaticResource color3}"
                                          CaretBrush="{StaticResource color1}">
-                                </TextBox>
+                                </TextBox>-->
                                 <!--Direccion y referencias-->
-                                <materialDesign:PackIcon Kind="Home" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="7"/>
+                                <!--<materialDesign:PackIcon Kind="Home" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="7"/>
                                 <TextBox x:Name="txtDireccion"
                                          Style="{StaticResource MaterialDesignTextBox}"
                                          Margin="30 11 190 20"
@@ -205,8 +204,8 @@
                                          FontSize="12"
                                          Foreground="{StaticResource color3}"
                                          CaretBrush="{StaticResource color1}">
-                                </TextBox>
-                                <!--combos estado civil y contrato 1 row-->
+                                </TextBox>-->
+                                <!--combos estado civil y contrato 1 row--><!--
                                 <materialDesign:PackIcon Kind="HumanMaleFemale" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="9"/>
                                 <ComboBox Grid.Row="9"
                                           Margin="30,11,320,20"
@@ -217,7 +216,7 @@
                                           Margin="225,11,140,20"
                                           DataContext="Nacionalidad">
                                 </ComboBox>
-                                <!--Codigo sectorial y tipo de contrato-->
+                                --><!--Codigo sectorial y tipo de contrato--><!--
                                 <materialDesign:PackIcon Kind="Sign" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="10"/>
                                 <TextBox x:Name="txtSectorial"
                                          Style="{StaticResource MaterialDesignTextBox}"
@@ -242,7 +241,7 @@
                                          FontSize="12"
                                          Foreground="{StaticResource color3}"
                                          CaretBrush="{StaticResource color1}">
-                                </TextBox>
+                                </TextBox>-->
 
                             </Grid>
                         </StackPanel>
@@ -260,7 +259,7 @@
                                     <RowDefinition Height="53.73"/>
                                     
                                 </Grid.RowDefinitions>
-                                <Border CornerRadius="12"
+                                <!--<Border CornerRadius="12"
                                         BorderThickness="7"
                                         BorderBrush="{StaticResource color1}"
                                         Margin="20 25">
@@ -270,7 +269,7 @@
                                                        >
                                 </mapGoogle:GMapControl>
                                     
-                                </Border>
+                                </Border>-->
                             </Grid>
                         </StackPanel>
                     </Grid>

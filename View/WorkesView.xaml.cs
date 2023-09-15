@@ -26,53 +26,23 @@ namespace SIRHU.View
             InitializeComponent();
         }
 
-        //private void txtCedula_GotFocus(object sender, RoutedEventArgs e)
+
+        //private void mapView_Loaded(object sender, RoutedEventArgs e)
         //{
-        //    if (txtCedula.Text == "Cédula")
-        //    {
-        //        txtCedula.Text = "";
-        //    }
+        //    GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
+        //    // choose your provider here
+        //    mapView.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+        //    mapView.MinZoom = 2;
+        //    mapView.MaxZoom = 17;
+        //    mapView.Position = new GMap.NET.PointLatLng(-2.138212840521418, -79.899110000004884);
+        //    // whole world zoom
+        //    mapView.Zoom = 50;
+        //    // lets the map use the mousewheel to zoom
+        //    mapView.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+        //    // lets the user drag the map
+        //    mapView.CanDragMap = true;
+        //    // lets the user drag the map with the left mouse button
+        //    mapView.DragButton = MouseButton.Left;
         //}
-
-        //private void txtCedula_LostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    if (txtCedula.Text == "")
-        //    {
-        //        txtCedula.Text = "Cédula";
-        //    }
-        //}
-
-        private void txtNombre_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtNombre.Text == "Apellidos y Nombres")
-            {
-                txtNombre.Text = "";
-            }
-        }
-
-        private void txtNombre_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (txtNombre.Text == "")
-            {
-                txtNombre.Text = "Apellidos y Nombres";
-            }
-        }
-        private void mapView_Loaded(object sender, RoutedEventArgs e)
-        {
-            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
-            // choose your provider here
-            mapView.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
-            mapView.MinZoom = 2;
-            mapView.MaxZoom = 17;
-            mapView.Position = new GMap.NET.PointLatLng(-2.138212840521418, -79.899110000004884);
-            // whole world zoom
-            mapView.Zoom = 50;
-            // lets the map use the mousewheel to zoom
-            mapView.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            // lets the user drag the map
-            mapView.CanDragMap = true;
-            // lets the user drag the map with the left mouse button
-            mapView.DragButton = MouseButton.Left;
-        }
     }
 }
