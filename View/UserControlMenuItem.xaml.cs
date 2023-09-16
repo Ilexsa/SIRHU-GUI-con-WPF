@@ -34,5 +34,10 @@ namespace SIRHU.View
 
             this.DataContext = itemMenu;
         }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _context.SwitchScreen(((SubItem)((ListView)sender).SelectedItem).Screen);
+        }
     }
 }

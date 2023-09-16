@@ -11,7 +11,7 @@
         <materialDesign:PackIcon Kind="{Binding Path=Icon}" Width="15" Height="15" Margin="10 16" Foreground="{StaticResource color10}"/>
         <ListBoxItem x:Name="ListViewItemMenu" Content="{Binding Path=Header}" Padding="37 14" FontSize="15" Foreground="{StaticResource color10}" />
             <Expander x:Name="ExpanderMenu" Header="{Binding Path=Header}" IsExpanded="False" Width="260" HorizontalAlignment="Right" Background="{x:Null}" Foreground="{StaticResource color10}">
-            <ListView x:Name="ListViewMenu"  Width="260" ItemsSource="{Binding Path=SubItems}" Foreground="WhiteSmoke" ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+            <ListView x:Name="ListViewMenu"  Width="260" ItemsSource="{Binding Path=SubItems}" Foreground="WhiteSmoke" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="ListViewMenu_SelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                         <TextBlock Text="{Binding Path=Name}" Padding="20 5" >

@@ -33,7 +33,7 @@ namespace SIRHU.View
 
             //Primer Submenu e Items
             var menuManteGeneral = new List<SubItem>();
-            menuManteGeneral.Add(new SubItem("Empresa, establecimientos y sucursales", mainViewModel.ShowWorkersCommand));
+            menuManteGeneral.Add(new SubItem("Empresa, establecimientos y sucursales", new CompanyView()));
             menuManteGeneral.Add(new SubItem("Usuarios"));
             menuManteGeneral.Add(new SubItem("Perfiles"));
             menuManteGeneral.Add(new SubItem("Asignar perfiles"));
@@ -49,7 +49,7 @@ namespace SIRHU.View
             //tercero
 
             var menuRegistroTrabajador = new List<SubItem>();
-            menuRegistroTrabajador.Add(new SubItem("Datos"));
+            menuRegistroTrabajador.Add(new SubItem("Datos", new HomeView()));
             menuRegistroTrabajador.Add(new SubItem("Cargas familiares"));
             menuRegistroTrabajador.Add(new SubItem("Documentos adjuntos"));
             var item2 = new ItemMenu("Registro Trabajador", menuRegistroTrabajador, PackIconKind.CardAccountDetails);
@@ -64,6 +64,17 @@ namespace SIRHU.View
             MenusButtons.Children.Add(new UserControlMenuItem(item1, this));
             MenusButtons.Children.Add(new UserControlMenuItem(item2, this));
             MenusButtons.Children.Add(new UserControlMenuItem(item3, this));
+        }
+
+        internal void SwitchScreen(object sender)
+        {
+            var screen = ((UserControl)sender);
+
+            if (screen != null)
+            {
+                ContentStackPanel.Children.Clear();
+                ContentStackPanel.Children.Add(screen);
+            }
         }
 
         [DllImport("user32.dll")]
