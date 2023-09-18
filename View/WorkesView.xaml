@@ -8,11 +8,75 @@
              xmlns:mapGoogle="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1023">
-
     <UserControl.DataContext>
         <viewModel:WorkersViewModel/>
     </UserControl.DataContext>
-
+    <UserControl.Resources>
+        <Style x:Key="textBoxStylesNuevo" TargetType="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{StaticResource color1}"/>
+            <Setter Property="Padding" Value="7 4"/>
+            <Setter Property="Cursor" Value="IBeam"/>
+            <Setter Property="FontFamily" Value="montserrat"/>
+            <Setter Property="FontWeight" Value="UltraBlack"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="AllowDrop" Value="True"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="txtBorder"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True">
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Margin="-2 2"/>
+                                <Label x:Name="WaterMarkerLabel"
+                                   Content="{TemplateBinding Tag}"
+                                   FontWeight="{TemplateBinding FontWeight}"
+                                   VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                   Visibility="Collapsed"
+                                   FontFamily="{TemplateBinding FontFamily}"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   Padding="{TemplateBinding Padding}"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="txtBorder" Value="#a87b05"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" TargetName="txtBorder" Value="#a87b05"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility"
+                                    TargetName="WaterMarkerLabel"
+                                    Value="Visible"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Border CornerRadius="10"
                 BorderThickness="5">
         <Border.BorderBrush>
@@ -62,25 +126,24 @@
                                 </Grid.RowDefinitions>
                                 <!--Boton con su icono-->
                                 <!--<materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="0"/>-->
-                                <!--<TextBox x:Name="txtCedula"
-                                         Margin="30,11,320,20"
+                                <TextBox x:Name="txtCedula"
+                                         Tag="Full Name"
                                          Text="{Binding Cedula, UpdateSourceTrigger=PropertyChanged}"
-                                         Height="23"
-                                         FontFamily="Montserrat"
-                                         FontSize="12"
-                                         GotFocus="txtCedula_GotFocus"
-                                         LostFocus="txtCedula_LostFocus"
+                                         HorizontalAlignment="Left"
+                                         VerticalAlignment="Top"
+                                         Style="{DynamicResource textBoxStylesNuevo}"
                                          Grid.Row="0"
-                                         Foreground="{StaticResource color3}"
+                                         Margin=" 20 20 0 0"
                                          >
-                                </TextBox>-->
-                                <customControls:CustomTextBox Grid.Row="0" Grid.Column="0" Caption="Nombre del trabajador" Hint="Introduzca el nombre del trabajador"/>
+                                </TextBox>
+                                <!--<customControls:CustomTextBox Grid.Row="0" Grid.Column="0" Caption="Nombre del trabajador" Hint="Introduzca el nombre del trabajador"/>
                                 <customControls:CustomTextBox Grid.Row="1" Grid.Column="0" Caption="Cedula del trabajador" Hint="Introduzca la cedula del trabajador" />
                                 <customControls:CustomTextBox Grid.Row="2" Grid.Column="0" Caption="Direccion Domiciliar" Hint="Introduzca la dirección del tranjador" />
                                 <customControls:CustomTextBox Grid.Row="3" Grid.Column="0" Caption="Telefono Convencional" Hint="Introduzca el telefono" />
                                 <customControls:CustomTextBox Grid.Row="4" Grid.Column="0" Caption="Número de celular" Hint="Introduzca el numero de celular" />
                                 <customControls:CustomTextBox Grid.Row="5" Grid.Column="0" Caption="Correo principal" Hint="Introduzca el correo principal" />
-                                <customControls:CustomTextBox Grid.Row="6" Grid.Column="0" Caption="Correo alterno" Hint="Introduzca el correo alterno"/>
+                                <customControls:CustomTextBox Grid.Row="6" Grid.Column="0" Caption="Correo alterno" Hint="Introduzca el correo alterno"/>-->
+                                
 
                                 <CheckBox x:Name="chkPasaporte"
                                           Margin="345,-9,10,40"
@@ -280,7 +343,6 @@
                                 <StackPanel Grid.Column="1"
                                 Grid.Row="0"
                                 Margin="250,0,0,0">
-                                    <customControls:CustomTextBox Caption="Edad" Hint="Edad Calculada"/>
                                 </StackPanel>
                                 <ComboBox Grid.Row="1"
                                  Grid.Column="1"
