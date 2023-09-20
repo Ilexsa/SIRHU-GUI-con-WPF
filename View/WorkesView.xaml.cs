@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using SIRHU.CustomControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SIRHU.Validations;
 
 namespace SIRHU.View
 {
@@ -21,11 +24,30 @@ namespace SIRHU.View
     /// </summary>
     public partial class HomeView : UserControl
     {
+
         public HomeView()
         {
             InitializeComponent();
         }
+        public static readonly DependencyProperty IconProperty =
+            DependencyProperty.Register("Icon", typeof(string), typeof(TextBox), new PropertyMetadata(string.Empty));
 
+        public string Icon
+        {
+            get { return (string)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
+
+        private void cmbEstadoCivil_KeyDown(object sender, KeyEventArgs e)
+        {
+            var utilidad = new Validations.ComboBoxUtility();
+            utilidad.abrirCMB(cmbEstadoCivil, e);
+        }
+
+        private void cmbNacionalidad_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
 
         //private void mapView_Loaded(object sender, RoutedEventArgs e)
         //{

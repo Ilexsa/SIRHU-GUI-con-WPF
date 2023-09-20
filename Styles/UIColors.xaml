@@ -13,7 +13,7 @@
     <SolidColorBrush x:Key="color1" Color="#8d0002"/>
     <SolidColorBrush x:Key="color2" Color="#ad0020"/>
     <SolidColorBrush x:Key="color3" Color="#414142"/>
-    <SolidColorBrush x:Key="color4" Color="#FDE5E5"/>
+    <SolidColorBrush x:Key="color4" Color="#2196F3"/>
     <SolidColorBrush x:Key="color5" Color="#ff435c"/>
     <SolidColorBrush x:Key="color6" Color="#FFC047"/>
     <SolidColorBrush x:Key="color7" Color="#EF6C96"/>

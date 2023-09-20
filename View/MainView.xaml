@@ -30,8 +30,8 @@
             BorderThickness="6">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="{StaticResource winBorderColor3}" Offset="0.0"/>
-                <GradientStop Color="{StaticResource winBorderColor3}" Offset="0.75"/>
+                <GradientStop Color="{StaticResource winBorderColor3}" Offset="0.1"/>
+                <GradientStop Color="{StaticResource winBorderColor1}" Offset="0.85"/>
                 <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.90"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
@@ -77,11 +77,8 @@
             </Border>
             <!--main section-->
             <Border CornerRadius="0,10,10,0"
-                    Grid.Column="1">
-                <Border.Background>
-                    <ImageBrush ImageSource="/Images/BACKGROUND 1920X1080-04.JPG"
-                        Stretch="Fill"/>
-                </Border.Background>
+                    Grid.Column="1"
+                    Background="#434343">
                 <Grid>
                     <Grid.RowDefinitions>
                         <!--Control Bar-->

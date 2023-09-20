@@ -126,6 +126,7 @@
     <Compile Include="CustomControls\CustomTextBox.xaml.cs">
       <DependentUpon>CustomTextBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomProperties\TextBoxProperties.cs" />
     <Compile Include="Models\IUserRepository.cs" />
     <Compile Include="Models\IWorkerRepository.cs" />
     <Compile Include="Models\UserAccountModel.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\WorkerRepository.cs" />
+    <Compile Include="Validations\ComboBoxUtility.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\ItemMenu.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
@@ -293,6 +295,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Trabajador icono.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FondoGris.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />
