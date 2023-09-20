@@ -13,22 +13,22 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <Style x:Key="textBoxStylesNuevo" TargetType="TextBox">
-            <Setter Property="Background" Value="White"/>
+            <Setter Property="Background" Value="#1E5887"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="BorderBrush" Value="{StaticResource color1}"/>
-            <Setter Property="Padding" Value="7 4"/>
+            <Setter Property="BorderBrush" Value="{StaticResource color3}"/>
+            <Setter Property="Padding" Value="8 4"/>
             <Setter Property="Cursor" Value="IBeam"/>
             <Setter Property="FontFamily" Value="montserrat"/>
-            <Setter Property="FontWeight" Value="UltraBlack"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Width" Value="300"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Width" Value="290"/>
             <Setter Property="AllowDrop" Value="True"/>
             <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
             <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Height" Value="50"/>
+            <Setter Property="Height" Value="33"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
@@ -115,27 +115,84 @@
                         <StackPanel Grid.Column="0">
                             <Grid Margin="0,3,0,0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
-                                    <RowDefinition Height="80"/>
+                                    <RowDefinition Height="150"/>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="60"/>
+
 
                                 </Grid.RowDefinitions>
                                 <!--Boton con su icono-->
                                 <!--<materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="0"/>-->
-                                <TextBox x:Name="txtCedula"
-                                         Tag="Full Name"
-                                         Text="{Binding Cedula, UpdateSourceTrigger=PropertyChanged}"
+                                <TextBox x:Name="txtNombres"
+                                         Tag="Nombres"
+                                         Text="{Binding Nombres, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
                                          Style="{DynamicResource textBoxStylesNuevo}"
                                          Grid.Row="0"
-                                         Margin=" 20 20 0 0"
+                                         Margin=" 10 20 0 0"
                                          >
                                 </TextBox>
+                                <TextBox x:Name="txtApellidos"
+                                         Tag="Apellidos"
+                                         Text=""
+                                         HorizontalAlignment="Left"
+                                         VerticalAlignment="Top"
+                                         Style="{DynamicResource textBoxStylesNuevo}"
+                                         Grid.Row="0"
+                                         Margin=" 10 60 0 0"
+                                         >
+                                </TextBox>
+                                <TextBox x:Name="txtCedula" Tag="Cedula" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="0" HorizontalAlignment="Left"
+                                         VerticalAlignment="Top"
+                                         Margin="10 100 0 0"/>
+
+                                <StackPanel Grid.Row="0" Grid.Column="0"
+                                            Margin="300,0,0 , 0">
+                                    <Border BorderBrush="#1E5887"
+                                        BorderThickness="3" Height="145"
+                                            CornerRadius="30"
+                                            Width="170">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="/Images/Messi.jpg"/>
+                                        </Border.Background>
+                                        <Button x:Name="btnUploadImage"
+                                            Style="{StaticResource MaterialDesignFlatButton}"
+                                            Background="#1E5887"
+                                            Content="Subir Foto"
+                                            Foreground="White"
+                                            Grid.Row="0"
+                                            FontSize="10"
+                                            Width="90"
+                                            BorderBrush="{StaticResource color3}"
+                                            VerticalAlignment="Center"
+                                            Margin="0,0,0,0"
+                                            BorderThickness="1">
+                                    </Button>
+                                    </Border>
+                                </StackPanel>
+                                <DatePicker Grid.Row="1"
+                                            FontFamily="Montserrat"
+                                            FontSize="12"
+                                            Foreground="{StaticResource color3}"
+                                            Height="22"
+                                            Width="170"
+                                            Margin="10,0,326,0"
+                                            BorderBrush="#005192">
+
+                                </DatePicker>
+                                <TextBox x:Name="txtEdad" Tag="Edad" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="1"
+                                         Width="170" Margin="270,13,56,13"/>
+                                <ComboBox Grid.Row="2"
+                                          FontFamily="montserrat"
+                                          FontSize="12"
+                                          Height="23"
+                                          Width="180"
+                                          Margin="10,15,316,0"
+                                          BorderBrush="#005192" VerticalAlignment="Top">
+
+                                </ComboBox>
                                 <!--<customControls:CustomTextBox Grid.Row="0" Grid.Column="0" Caption="Nombre del trabajador" Hint="Introduzca el nombre del trabajador"/>
                                 <customControls:CustomTextBox Grid.Row="1" Grid.Column="0" Caption="Cedula del trabajador" Hint="Introduzca la cedula del trabajador" />
                                 <customControls:CustomTextBox Grid.Row="2" Grid.Column="0" Caption="Direccion Domiciliar" Hint="Introduzca la dirección del tranjador" />
@@ -143,17 +200,17 @@
                                 <customControls:CustomTextBox Grid.Row="4" Grid.Column="0" Caption="Número de celular" Hint="Introduzca el numero de celular" />
                                 <customControls:CustomTextBox Grid.Row="5" Grid.Column="0" Caption="Correo principal" Hint="Introduzca el correo principal" />
                                 <customControls:CustomTextBox Grid.Row="6" Grid.Column="0" Caption="Correo alterno" Hint="Introduzca el correo alterno"/>-->
-                                
 
-                                <CheckBox x:Name="chkPasaporte"
-                                          Margin="345,-9,10,40"
+
+                                <!--<CheckBox x:Name="chkPasaporte"
+                                          Margin="382,20,10,226"
                                           Content="¿Pasaporte?"
                                           Foreground="{StaticResource color3}"
                                           Background="{StaticResource color1}"
                                           FontFamily="Montserrat"
                                           FontSize="12">
 
-                                </CheckBox>
+                                </CheckBox>-->
                                 <!--Boton con icono2-->
                                 <!--<materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="1"/>
                                 <TextBox x:Name="txtNombre" 
@@ -362,30 +419,6 @@
                                 </mapGoogle:GMapControl>
                                     
                                 </Border>-->
-                                <StackPanel Grid.Row="3" Grid.Column="1"
-                                            Margin="260,0,40,0">
-                                    <Ellipse Height="250" Width="160"
-                                       Stroke="{StaticResource color3}"
-                                       StrokeThickness="2"
-                                       Margin="10,0,10,0">
-                                        <Ellipse.Fill>
-                                            <ImageBrush ImageSource="/Images/Messi.jpg"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <Button x:Name="btnUploadImage"
-                                        Style="{StaticResource MaterialDesignFlatButton}"
-                                        Background="{StaticResource color3}"
-                                        Content="Subir Foto"
-                                        Foreground="{StaticResource color1}"
-                                        Grid.Row="0"
-                                        FontSize="10"
-                                        Width="90"
-                                        BorderBrush="{StaticResource color1}"
-                                        VerticalAlignment="Center"
-                                            Margin="10,5,0,0"
-                                            BorderThickness="1">
-                                    </Button>
-                                </StackPanel>
                             </Grid>
                         </StackPanel>
                     </Grid>
