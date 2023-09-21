@@ -13,6 +13,7 @@
                                              PrimaryColor="Blue"
                                              SecondaryColor="Red"/>
                 <ResourceDictionary Source="/Styles/TextBoxStyles.xaml"/>
+                <ResourceDictionary Source="/Styles/ToggleButtonStyles.xaml"/>
                 <ResourceDictionary Source="/Styles/UIColors.xaml"/>
                 <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="/Styles/TabPanelStyles.xaml"/>

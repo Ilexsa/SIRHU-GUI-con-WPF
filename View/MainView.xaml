@@ -32,7 +32,7 @@
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource winBorderColor3}" Offset="0.1"/>
                 <GradientStop Color="{StaticResource winBorderColor1}" Offset="0.85"/>
-                <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.90"/>
+                <GradientStop Color="{StaticResource winBorderColor1}" Offset="0.90"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
 
@@ -78,7 +78,7 @@
             <!--main section-->
             <Border CornerRadius="0,10,10,0"
                     Grid.Column="1"
-                    Background="#434343">
+                    Background="#FFE8CD">
                 <Grid>
                     <Grid.RowDefinitions>
                         <!--Control Bar-->

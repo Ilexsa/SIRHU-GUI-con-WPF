@@ -49,6 +49,62 @@ namespace SIRHU.View
 
         }
 
+        private void chkDiscpacidad_Checked(object sender, RoutedEventArgs e)
+        {
+            AnimateControlMargin(contentGrid, new Thickness(0, 0, 0, 0));
+            // Ocultar los controles gradualmente
+            DoubleAnimation fadeIn = new DoubleAnimation(1, TimeSpan.FromSeconds(0.5));
+            txtPorcentajeDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+            cmbDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+            IconDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+
+            // Cambiar la visibilidad a Visible cuando la animación haya terminado
+            fadeIn.Completed += (s, _) =>
+            {
+                txtPorcentajeDiscapacidad.Visibility = Visibility.Visible;
+                cmbDiscapacidad.Visibility = Visibility.Visible;
+                IconDiscapacidad.Visibility = Visibility.Visible;
+                txtPorcentajeDiscapacidad.IsEnabled = true;
+                cmbDiscapacidad.IsEnabled = true;
+                IconDiscapacidad.IsEnabled = true;
+            };
+
+        }
+
+        private void chkDiscpacidad_Unchecked(object sender, RoutedEventArgs e)
+        {
+            AnimateControlMargin(contentGrid, new Thickness(250, 0, 0, 0));
+            DoubleAnimation fadeOut = new DoubleAnimation(0, TimeSpan.FromSeconds(0.5));
+            txtPorcentajeDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeOut);
+            cmbDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeOut);
+            IconDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeOut);
+
+            // Cambiar la visibilidad a Hidden cuando la animación haya terminado
+            fadeOut.Completed += (s, _) =>
+            {
+                txtPorcentajeDiscapacidad.Visibility = Visibility.Hidden;
+                cmbDiscapacidad.Visibility = Visibility.Hidden;
+                IconDiscapacidad.Visibility = Visibility.Hidden;
+                txtPorcentajeDiscapacidad.IsEnabled = false;
+                cmbDiscapacidad.IsEnabled = false;
+                IconDiscapacidad.IsEnabled = false;
+            };
+        }
+        private void AnimateControlMargin(Grid grid, Thickness targetMargin)
+        {
+            // Crea una animación para cambiar gradualmente la propiedad Margin
+            var animation = new ThicknessAnimation
+            {
+                To = targetMargin,
+                Duration = TimeSpan.FromSeconds(0.5), // Duración de la animación (ajusta según tu preferencia)
+                FillBehavior = FillBehavior.HoldEnd
+            };
+
+            // Asigna la animación a la propiedad Margin del Grid
+            grid.BeginAnimation(Grid.MarginProperty, animation);
+        }
+        
+        
         //private void mapView_Loaded(object sender, RoutedEventArgs e)
         //{
         //    GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;

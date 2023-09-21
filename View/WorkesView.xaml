@@ -14,19 +14,19 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <Style x:Key="textBoxStylesNuevo" TargetType="TextBox">
-            <Setter Property="Background" Value="#1E5887"/>
+            <Setter Property="Background" Value="#4CA1F5"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="BorderBrush" Value="{StaticResource color3}"/>
             <Setter Property="Padding" Value="8 4"/>
             <Setter Property="Cursor" Value="IBeam"/>
-            <Setter Property="FontFamily" Value="montserrat"/>
+            <Setter Property="FontFamily" Value="Montserrat"/>
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Width" Value="330"/>
             <Setter Property="AllowDrop" Value="True"/>
             <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
             <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Foreground" Value="#131313"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Height" Value="35"/>
@@ -79,12 +79,74 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="ToggleButtomStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Background" Value="#FFFFFC"/>
+            <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="MaxHeight" Value="20"/>
+            <Setter Property="MaxWidth" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid>
+                            
+                            <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="7"
+                            Height="14"
+                            Width="35"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                            <Ellipse x:Name="Ellipse"
+                             Height="20"
+                             Width="20"
+                             HorizontalAlignment="Left"
+                             VerticalAlignment="Center"
+                             Fill="White"
+                             Stroke="{TemplateBinding BorderBrush}"
+                             StrokeThickness="3"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!--EventTrigger Checked-->
+                            <EventTrigger RoutedEvent="Checked">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                To="#2196F3" Duration="0:0:0.2"/>
+                                        <ThicknessAnimation Storyboard.TargetName="Ellipse"
+                                                    Storyboard.TargetProperty="Margin"
+                                                    To="15 0 0 0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <!--EventTrigger UnChecked-->
+                            <EventTrigger RoutedEvent="Unchecked">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border"
+                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                         To="#FFFFFC" Duration="0:0:0.2"/>
+                                        <ThicknessAnimation Storyboard.TargetName="Ellipse"
+                             Storyboard.TargetProperty="Margin"
+                             To="0 0 0 0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
     </UserControl.Resources>
     <Border CornerRadius="10"
                 BorderThickness="5">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="{StaticResource MaterialDesignShadow}" Offset="0"/>
+                <GradientStop Color="Transparent" Offset="0"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
 
@@ -99,13 +161,15 @@
                              FontFamily="Montserrat"
                              Margin="10"
                              >
-                    <Grid VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                    <Grid x:Name="contentGrid" VerticalAlignment="Top" Margin="250 0 0 0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="495"/>
+                            <ColumnDefinition Width="495"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <Grid Margin="0,3,0,0">
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="25"/>
                                     <RowDefinition Height="125"/>
                                     <RowDefinition Height="40"/>
                                     <RowDefinition Height="40"/>
@@ -113,10 +177,24 @@
                                     <RowDefinition Height="40"/>
                                     <RowDefinition Height="40"/>
                                     <RowDefinition Height="40"/>
-                                    <RowDefinition Height="100"/>
-                                    <RowDefinition Height="60"/>
+                                    <RowDefinition Height="180"/>
 
                                 </Grid.RowDefinitions>
+                                <CheckBox x:Name="chkDiscpacidad"
+                                      Style="{DynamicResource ToggleButtomStyle}"
+                                      Margin="440 0 0 0"
+                                      VerticalAlignment="Center"
+                                      Grid.Row="0"
+                                      Checked="chkDiscpacidad_Checked"
+                                      Unchecked="chkDiscpacidad_Unchecked"
+                                      >
+                                </CheckBox>
+                                <Label Content="¿Personal posee alguna discapacidad?"
+                                       Margin="215 0 50 0"
+                                       Foreground="#131313"
+                                       FontFamily="Montserrat"
+                                       FontSize="13"
+                                       VerticalAlignment="Center"/>
                                 <!--Boton con su icono-->
                                 <!--<materialDesign:PackIcon Kind="CardAccountDetails" Width="20" Margin="10 14" Foreground="{StaticResource color3}" Grid.Row="0"/>-->
                                 <TextBox x:Name="txtNombres"
@@ -126,12 +204,12 @@
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
                                          Style="{DynamicResource textBoxStylesNuevo}"
-                                         Grid.Row="0"
+                                         Grid.Row="1"
                                          Margin=" 10 5 0 0"
                                          Width="330"
                                          >
                                 </TextBox>
-                                <materialDesign:PackIcon Kind="Account" Margin="315 13 0 0" Foreground="white"/>
+                                <materialDesign:PackIcon Kind="Account" Margin="315 13 0 0" Foreground="white" Grid.Row="1"/>
                                 <TextBox x:Name="txtApellidos"
                                          Tag="Apellidos"
                                          properties:TextBoxProperties.Icon="account"
@@ -139,17 +217,17 @@
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
                                          Style="{DynamicResource textBoxStylesNuevo}"
-                                         Grid.Row="0"
+                                         Grid.Row="1"
                                          Margin=" 10 45 0 0"
                                          Width="330"
                                          >
                                 </TextBox>
-                                <materialDesign:PackIcon Kind="Account" Margin="315 53 0 0" Foreground="white"/>
-                                <TextBox x:Name="txtCedula" Tag="Cedula" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="0" HorizontalAlignment="Left"
-                                         VerticalAlignment="Top" Width="330" Margin="10 85 0 0" properties:TextBoxProperties.Icon="cardaccountdetails"/>
-                                <materialDesign:PackIcon Kind="Account" Margin="315 93 0 0" Foreground="white"/>
+                                <materialDesign:PackIcon Kind="Account" Margin="315 53 0 0" Foreground="white" Grid.Row="1"/>
+                                <TextBox x:Name="txtCedula" Tag="Cedula" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="1" HorizontalAlignment="Left"
+                                         VerticalAlignment="Top" Width="330" Margin="10 85 0 0"/>
+                                <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 93 0 0" Foreground="white" Grid.Row="1"/>
 
-                                <StackPanel Grid.Row="0" Grid.Column="0"
+                                <StackPanel Grid.Row="1" Grid.Column="0"
                                             Margin="350 , 3 , 0 , 0">
                                     <Border BorderBrush="{StaticResource color3}"
                                         BorderThickness="3" Height="120"
@@ -173,7 +251,7 @@
                                         </Button>
                                     </Border>
                                 </StackPanel>
-                                <DatePicker Grid.Row="1"
+                                <DatePicker Grid.Row="2"
                                             FontFamily="Montserrat"
                                             FontSize="12"
                                             Foreground="{StaticResource color1}"
@@ -181,14 +259,15 @@
                                             Width="190"
                                             Margin="0,0,270,0"
                                             BorderBrush="{StaticResource color4}"
+                                            Style="{StaticResource MaterialDesignDatePicker}"
                                             >
 
                                 </DatePicker>
-                                <TextBox x:Name="txtEdad" Tag="Edad" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="1"
+                                <TextBox x:Name="txtEdad" Tag="Edad" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="2"
                                          Width="230" Margin="240,0 ,0,0" IsEnabled="False"/>
-                                <materialDesign:PackIcon Kind="Account" Margin="451 12 0 0" Foreground="white" Grid.Row="1"/>
+                                <materialDesign:PackIcon Kind="Counter" Margin="451 12 0 0" Foreground="white" Grid.Row="2"/>
                                 <ComboBox x:Name="cmbEstadoCivil"
-                                          Grid.Row="2"
+                                          Grid.Row="3"
                                           FontFamily="montserrat"
                                           FontSize="12"
                                           Height="23"
@@ -200,12 +279,12 @@
 
                                 </ComboBox>
 
-                                <TextBox x:Name="txtCelular" Tag="Celular" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="2"
+                                <TextBox x:Name="txtCelular" Tag="Celular" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="3"
                                          Width="230" Margin="240,0 ,0, 0" properties:TextBoxProperties.Icon="cellphone"/>
-                                <materialDesign:PackIcon Kind="Account" Margin="451 12 0 0" Foreground="white" Grid.Row="2"/>
+                                <materialDesign:PackIcon Kind="Cellphone" Margin="451 12 0 0" Foreground="white" Grid.Row="3"/>
 
                                 <ComboBox x:Name="cmbNacionalidad"
-                                          Grid.Row="3"
+                                          Grid.Row="4"
                                           FontFamily="montserrat"
                                           FontSize="12"
                                           Height="23"
@@ -214,43 +293,66 @@
                                           BorderBrush="{StaticResource color4}" VerticalAlignment="Top"
                                           KeyDown="cmbNacionalidad_KeyDown">
                                 </ComboBox>
-                                <TextBox x:Name="txtTelefono" Tag="Telefono" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="3"
+                                <TextBox x:Name="txtTelefono" Tag="Telefono" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="4"
                                          Width="230" Margin="240,0,0,0" />
-                                <materialDesign:PackIcon Kind="Account" Margin="451 12 0 0" Foreground="white" Grid.Row="3"/>
+                                <materialDesign:PackIcon Kind="Phone" Margin="451 12 0 0" Foreground="white" Grid.Row="4"/>
 
-                                <TextBox x:Name="txtCorreo1" Tag="Correo Principal" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="4"
-                                Width="470" Margin="00,0,0,0" properties:TextBoxProperties.Icon="phone" />
-                                <materialDesign:PackIcon Kind="Account" Margin="451 12 0 0" Foreground="white" Grid.Row="4"/>
+                                <TextBox x:Name="txtCorreo1" Tag="Correo Principal" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="5"
+                                Width="470" Margin="0,0,0,0" />
+                                <materialDesign:PackIcon Kind="Mailbox" Margin="451 12 0 0" Foreground="white" Grid.Row="5"/>
 
-                                <TextBox x:Name="txtCorreo2" Tag="Correo Alterno" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="5"
-                                Width="470" Margin="0,0,0,0" properties:TextBoxProperties.Icon="phone"/>
-                                <materialDesign:PackIcon Kind="Account" Margin="451 12 0 0" Foreground="white" Grid.Row="5"/>
+                                <TextBox x:Name="txtCorreo2" Tag="Correo Alterno" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="6"
+                                Width="470" Margin="0,0,0,0"/>
+                                <materialDesign:PackIcon Kind="MailBox" Margin="451 12 0 0" Foreground="white" Grid.Row="6"/>
 
-                                <ComboBox Grid.Row="6"
+                                <ComboBox Grid.Row="7"
                                           FontFamily="montserrat"
                                           FontSize="12"
                                           Height="23"
                                           Width="190"
                                           Margin="0 5 270 0 "
-                                          BorderBrush="{StaticResource color4}" VerticalAlignment="Top">
+                                          BorderBrush="{StaticResource color4}" VerticalAlignment="Top"
+                                          
+                                          >
 
                                 </ComboBox>
 
-                                <TextBox x:Name="txtDireccion" Tag="Direccion" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="6"
+                                <TextBox x:Name="txtDireccion" Tag="Direccion" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="7"
                                          Width="230" Margin="240,0 ,0,0" />
-                                <materialDesign:PackIcon Kind="Account" Margin="451 12 0 0" Foreground="white" Grid.Row="6"/>
+                                <materialDesign:PackIcon Kind="Account" Margin="451 12 0 0" Foreground="white" Grid.Row="7"/>
 
-                                <TextBox x:Name="txtReferencias" Tag="Referencias" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="7"
+                                <!--<TextBox x:Name="txtReferencias" Tag="Referencias" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="7"
  Width="470" Margin="0,0,0,0" properties:TextBoxProperties.Icon="phone" Height="95" TextWrapping="Wrap"
                                          Padding="10 10"/>
-                                <materialDesign:PackIcon Kind="Account" Margin="451 12 0 0" Foreground="white" Grid.Row="7"/>
+                                <materialDesign:PackIcon Kind="Account" Margin="451 12 0 0" Foreground="white" Grid.Row="7"/>-->
+                                <StackPanel   Orientation="Horizontal" Grid.Row="9">
+                                    <Button Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10 20"/>
+                                    <Button Width="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                    <Button Width="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                    <Button Width="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                </StackPanel>
                             </Grid>
-                            <StackPanel  Grid.Row="8" Orientation="Horizontal">
-                                <Button Width="40" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                <Button Width="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                <Button Width="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                <Button Width="20" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" 
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Width="495">
+                            <Grid Height="400">
+                                <TextBox x:Name="txtPorcentajeDiscapacidad" Tag="% Discapacidad" Style="{DynamicResource textBoxStylesNuevo}"
+                                    Width="230" Margin=" -250, 20 ,0,0" Visibility="Hidden"/>
+                                    <ComboBox x:Name="cmbDiscapacidad"
+                                            FontFamily="montserrat"
+                                          FontSize="12"
+                                          Height="23"
+                                          Width="190"
+                                          Margin="0 20 -270 0"
+                                          BorderBrush="{StaticResource color4}"
+                                          Visibility="Hidden">
+                                    </ComboBox>
+                                    <materialDesign:PackIcon x:Name="IconDiscapacidad" Kind="Counter" Margin="210 200 0 0" Foreground="white" Visibility="Hidden"/>
+
+                            </Grid>
+
                         </StackPanel>
                     </Grid>
                 </TabItem>
