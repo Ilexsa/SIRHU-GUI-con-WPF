@@ -48,7 +48,7 @@
                     Grid.Column="0">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
-                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0.1"/>
+                        <GradientStop Color="#B30C1c" Offset="0.1"/>
                         <GradientStop Color="{StaticResource winBorderColor2}" Offset="5.7"/>
                     </LinearGradientBrush>
                 </Border.Background>
@@ -78,7 +78,7 @@
             <!--main section-->
             <Border CornerRadius="0,10,10,0"
                     Grid.Column="1"
-                    Background="#FFE8CD">
+                    Background="#E3E3DB">
                 <Grid>
                     <Grid.RowDefinitions>
                         <!--Control Bar-->

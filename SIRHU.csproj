@@ -136,6 +136,8 @@
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\WorkerRepository.cs" />
     <Compile Include="Validations\ComboBoxUtility.cs" />
+    <Compile Include="Validations\PruebasDeBd.cs" />
+    <Compile Include="Validations\TextBoxValidationsUtilitys.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\ItemMenu.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />

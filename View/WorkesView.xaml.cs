@@ -16,6 +16,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SIRHU.Validations;
+using System.Globalization;
+using System.Data.SqlClient;
+using SIRHU.Repositories;
+using System.Windows.Markup;
+using System.Data;
 
 namespace SIRHU.View
 {
@@ -28,6 +33,10 @@ namespace SIRHU.View
         public HomeView()
         {
             InitializeComponent();
+            cmbEstadoCivil.SelectedIndex = 0;
+            cmbNacionalidad.SelectedIndex = 0;
+            cmbDiscapacidad.SelectedIndex = 0;
+            
         }
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register("Icon", typeof(string), typeof(TextBox), new PropertyMetadata(string.Empty));
@@ -46,49 +55,26 @@ namespace SIRHU.View
 
         private void cmbNacionalidad_KeyDown(object sender, KeyEventArgs e)
         {
-
+            var utilidad = new Validations.ComboBoxUtility();
+            utilidad.abrirCMB(cmbNacionalidad, e);
         }
 
         private void chkDiscpacidad_Checked(object sender, RoutedEventArgs e)
         {
             AnimateControlMargin(contentGrid, new Thickness(0, 0, 0, 0));
             // Ocultar los controles gradualmente
-            DoubleAnimation fadeIn = new DoubleAnimation(1, TimeSpan.FromSeconds(0.5));
-            txtPorcentajeDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeIn);
-            cmbDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeIn);
-            IconDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeIn);
-
-            // Cambiar la visibilidad a Visible cuando la animación haya terminado
-            fadeIn.Completed += (s, _) =>
-            {
-                txtPorcentajeDiscapacidad.Visibility = Visibility.Visible;
-                cmbDiscapacidad.Visibility = Visibility.Visible;
-                IconDiscapacidad.Visibility = Visibility.Visible;
-                txtPorcentajeDiscapacidad.IsEnabled = true;
-                cmbDiscapacidad.IsEnabled = true;
-                IconDiscapacidad.IsEnabled = true;
-            };
+            AnimateVisibility(txtPorcentajeDiscapacidad, Visibility.Visible);
+            AnimateVisibility(cmbDiscapacidad, Visibility.Visible);
 
         }
 
         private void chkDiscpacidad_Unchecked(object sender, RoutedEventArgs e)
         {
             AnimateControlMargin(contentGrid, new Thickness(250, 0, 0, 0));
-            DoubleAnimation fadeOut = new DoubleAnimation(0, TimeSpan.FromSeconds(0.5));
-            txtPorcentajeDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeOut);
-            cmbDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeOut);
-            IconDiscapacidad.BeginAnimation(UIElement.OpacityProperty, fadeOut);
 
-            // Cambiar la visibilidad a Hidden cuando la animación haya terminado
-            fadeOut.Completed += (s, _) =>
-            {
-                txtPorcentajeDiscapacidad.Visibility = Visibility.Hidden;
-                cmbDiscapacidad.Visibility = Visibility.Hidden;
-                IconDiscapacidad.Visibility = Visibility.Hidden;
-                txtPorcentajeDiscapacidad.IsEnabled = false;
-                cmbDiscapacidad.IsEnabled = false;
-                IconDiscapacidad.IsEnabled = false;
-            };
+
+            AnimateVisibility(txtPorcentajeDiscapacidad, Visibility.Hidden);
+            AnimateVisibility(cmbDiscapacidad, Visibility.Hidden);
         }
         private void AnimateControlMargin(Grid grid, Thickness targetMargin)
         {
@@ -103,24 +89,257 @@ namespace SIRHU.View
             // Asigna la animación a la propiedad Margin del Grid
             grid.BeginAnimation(Grid.MarginProperty, animation);
         }
-        
-        
-        //private void mapView_Loaded(object sender, RoutedEventArgs e)
-        //{
-        //    GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
-        //    // choose your provider here
-        //    mapView.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
-        //    mapView.MinZoom = 2;
-        //    mapView.MaxZoom = 17;
-        //    mapView.Position = new GMap.NET.PointLatLng(-2.138212840521418, -79.899110000004884);
-        //    // whole world zoom
-        //    mapView.Zoom = 50;
-        //    // lets the map use the mousewheel to zoom
-        //    mapView.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-        //    // lets the user drag the map
-        //    mapView.CanDragMap = true;
-        //    // lets the user drag the map with the left mouse button
-        //    mapView.DragButton = MouseButton.Left;
-        //}
+
+        private void AnimateVisibility(UIElement element, Visibility visibility)
+        {
+            DoubleAnimation animation = new DoubleAnimation
+            {
+                To = (visibility == Visibility.Visible) ? 1 : 0,
+                Duration = TimeSpan.FromSeconds(1)
+            };
+
+            element.Visibility = visibility;
+            element.BeginAnimation(UIElement.OpacityProperty, animation);
+        }
+
+        private void txtNombres_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var utilidad = new Validations.TextBoxValidationsUtilitys();
+            utilidad.mayusAutos(txtNombres);
+        }
+
+        private void txtApellidos_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var utilidad = new Validations.TextBoxValidationsUtilitys();
+            utilidad.mayusAutos(txtApellidos);
+        }
+
+        private void txtCelular_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var utilidad = new Validations.TextBoxValidationsUtilitys();
+            utilidad.mayusAutos(txtCelular);
+        }
+
+        private void txtTelefono_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var utilidad = new Validations.TextBoxValidationsUtilitys();
+            
+        }
+
+        private void txtCorreo1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var utilidad = new Validations.TextBoxValidationsUtilitys();
+            utilidad.minusAutos(txtCorreo1);
+        }
+
+        private void txtCorreo2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var utilidad = new Validations.TextBoxValidationsUtilitys();
+            utilidad.minusAutos(txtCorreo2);
+        }
+
+        private void txtCorreo1_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var utilidad = new Validations.TextBoxValidationsUtilitys();
+            if (utilidad.validarCorreo(txtCorreo1.Text) == false)
+            {
+                MessageBox.Show("Por favor ingrese un correo electronico valido", "Error");
+            }
+
+        }
+
+        private void txtCorreo2_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var utilidad = new Validations.TextBoxValidationsUtilitys();
+            if (utilidad.validarCorreo(txtCorreo2.Text) == false)
+            {
+                MessageBox.Show("Por favor ingrese un correo electronico valido", "Error");
+            }
+        }
+
+        private void dtpFechaNacimiento_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dtpFechaNacimiento.SelectedDate.HasValue)
+            {
+                DateTime selectedDate = dtpFechaNacimiento.SelectedDate.Value;
+                string formattedDate = selectedDate.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+                dtpFechaNacimiento.Text = formattedDate;
+            }
+
+            DateTime nacimiento = dtpFechaNacimiento.SelectedDate.Value; //Fecha de nacimiento
+
+            if (nacimiento < DateTime.Now)
+            {
+                int edad = DateTime.Today.AddTicks(-nacimiento.Ticks).Year - 1;
+                txtEdad.Text = edad.ToString();
+            }
+        }
+
+        private void agregarValidaciones()
+        {
+        }
+
+        private void mapView_Loaded(object sender, RoutedEventArgs e)
+        {
+            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
+            // choose your provider here
+            mapView.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
+            mapView.MinZoom = 2;
+            mapView.MaxZoom = 17;
+            mapView.Position = new GMap.NET.PointLatLng(-2.138212840521418, -79.899110000004884);
+            // whole world zoom
+            mapView.Zoom = 50;
+            // lets the map use the mousewheel to zoom
+            mapView.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            // lets the user drag the map
+            mapView.CanDragMap = true;
+            // lets the user drag the map with the left mouse button
+            mapView.DragButton = MouseButton.Left;
+        }
+
+
+        private void ValidarNumero(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            // Solo permitir números y punto decimal
+            if (!char.IsDigit(e.Text, 0) && e.Text != ".")
+            {
+                e.Handled = true;
+            }
+
+            // Validar solo un punto decimal
+            if (e.Text == "." && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ValidarTexto(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            // Validar que solo se ingresen letras y admitir espacio
+            if (!char.IsLetter(e.Text, 0) && e.Text != " " && !char.IsControl(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ValidarSoloNumeroYpunto(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            // Solo permitir números y punto decimal
+            if (!char.IsDigit(e.Text, 0) && e.Text != ".")
+            {
+                e.Handled = true;
+            }
+
+            // Validar solo un punto decimal
+            if (e.Text == "." && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombres_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsLetter(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
+        }
+
+        private void txtApellidos_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsLetter(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
+        }
+
+        private void txtCedula_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
+        }
+
+        private void txtCelular_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
+        }
+
+        private void txtTelefono_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                AgregarTrabajadorDB();
+                MessageBox.Show("Datos iniciales guardados con exito", "Success");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Hubo un error al Guardar/Modificar Trabajador");
+            }
+
+
+        }
+
+        private void AgregarTrabajadorDB()
+        {
+            using (SqlConnection cone = new SqlConnection("Data Source = 10.0.0.206; Initial Catalog = ROLES; User ID = sa; Password ="))
+            {
+                cone.Open();
+                using (SqlCommand cmd = new SqlCommand("InsertOrUpdateTrabajador", cone))
+                {
+                    int edad = Convert.ToInt32(txtEdad.Text);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CEDULA", txtCedula.Text);
+                    cmd.Parameters.AddWithValue("@NOMBRES", txtNombres.Text);
+                    cmd.Parameters.AddWithValue("@APELLIDOS", txtApellidos.Text);
+                    cmd.Parameters.AddWithValue("@DISCAPACIDAD", chkDiscpacidad.IsChecked == true ? 1 : 0);
+                    cmd.Parameters.AddWithValue("@PORCENTAJE_DISCAPACIDAD", edad);
+                    cmd.Parameters.AddWithValue("@TIPO_DISCAPACIDAD", (cmbDiscapacidad.SelectedItem as ComboBoxItem)?.Content.ToString());
+                    cmd.Parameters.AddWithValue("@FECHA_NACIMIENTO", Convert.ToDateTime(dtpFechaNacimiento.SelectedDate));
+                    cmd.Parameters.AddWithValue("@EDAD", edad);
+                    cmd.Parameters.AddWithValue("@NACIONALIDAD", (cmbNacionalidad.SelectedItem as ComboBoxItem)?.Content.ToString());
+                    cmd.Parameters.AddWithValue("@CELULAR", txtCelular.Text);
+                    cmd.Parameters.AddWithValue("@TELEFONO", txtTelefono.Text);
+                    cmd.Parameters.AddWithValue("@CORREO1", txtCorreo1.Text);
+                    cmd.Parameters.AddWithValue("@CORREO2", txtCorreo2.Text);
+                    cmd.Parameters.AddWithValue("@ESTADO_CIVIL", (cmbEstadoCivil.SelectedItem as ComboBoxItem)?.Content.ToString());
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
     }
 }
