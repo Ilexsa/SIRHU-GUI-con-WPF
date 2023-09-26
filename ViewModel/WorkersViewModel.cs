@@ -14,42 +14,19 @@ namespace SIRHU.ViewModel
     {
         //Fields
         private string _cedula;
-        private int _idLocalidad;
-        private int _idDepartamento;
         private string _nombres;
-        private DateTime _fechaIngreso;
-        private string _cargo;
-        private float _sueldoBase;
-        private bool _perDiscapacidad;
-        private string _correo;
-        private float _hE25;
-        private float _hE50;
-        private float _hE100;
-        private bool _estado;
-        private DateTime _fechaInactivo;
-        private DateTime _fechaReingreso;
-        private float _dT;
+        private string _apellidos;
+        private bool _discapacidad;
         private int _porcentajeDiscapacidad;
         private string _tipoDiscapacidad;
         private DateTime _fechaNacimiento;
-        private string _numCelular;
-        private string _direccion;
-        private string _referenciaDireccion;
-        private string _latitudD;
-        private string _longitudD;
-        private string _telefonoConvencional;
-        private string _telefonoCelular;
+        private int _edad;
+        private string _nacionalidad;
+        private string _celular;
+        private string _telefono;
+        private string _correo1;
         private string _correo2;
         private string _estadoCivil;
-        private string _tipoRelacionLaboral;
-        private string _novedadIngreso;
-        private byte[] _pdfIngreso;
-        private int _idContrato;
-        private int _idSectorial;
-        private int _idCargas;
-        private byte[] _foto;
-        private string _nacionalidad;
-        private string _cargoFundasen;
 
         private IWorkerRepository workerRepository;
 
@@ -64,25 +41,6 @@ namespace SIRHU.ViewModel
             }
         }
 
-        public int IdLocalidad
-        {
-            get { return _idLocalidad; }
-            set
-            {
-                _idLocalidad = value;
-                OnPropertyChanged(nameof(IdLocalidad));
-            }
-        }
-
-        public int IdDepartamento
-        {
-            get { return _idDepartamento; }
-            set
-            {
-                _idDepartamento = value;
-                OnPropertyChanged(nameof(IdDepartamento));
-            }
-        }
 
         public string Nombres
         {
@@ -94,123 +52,23 @@ namespace SIRHU.ViewModel
             }
         }
 
-        public DateTime FechaIngreso
+        public string Apellidos
         {
-            get { return _fechaIngreso; }
+            get { return _apellidos; }
             set
             {
-                _fechaIngreso = value;
-                OnPropertyChanged(nameof(FechaIngreso));
+                _apellidos = value;
+                OnPropertyChanged(nameof(Apellidos));
             }
         }
 
-        public string Cargo
+        public bool Discapacidad 
         {
-            get { return _cargo; }
+            get {return _discapacidad;}
             set
             {
-                _cargo = value;
-                OnPropertyChanged(nameof(Cargo));
-            }
-        }
-
-        public float SueldoBase
-        {
-            get { return _sueldoBase; }
-            set
-            {
-                _sueldoBase = value;
-                OnPropertyChanged(nameof(SueldoBase));
-            }
-        }
-
-        public bool PerDiscapacidad
-        {
-            get { return _perDiscapacidad; }
-            set
-            {
-                _perDiscapacidad = value;
-                OnPropertyChanged(nameof(PerDiscapacidad));
-            }
-        }
-
-        public string Correo
-        {
-            get { return _correo; }
-            set
-            {
-                _correo = value;
-                OnPropertyChanged(nameof(Correo));
-            }
-        }
-
-        public float HE25
-        {
-            get { return _hE25; }
-            set
-            {
-                _hE25 = value;
-                OnPropertyChanged(nameof(HE25));
-            }
-        }
-
-        public float HE50
-        {
-            get { return _hE50; }
-            set
-            {
-                _hE50 = value;
-                OnPropertyChanged(nameof(HE50));
-            }
-        }
-
-        public float HE100
-        {
-            get { return _hE100; }
-            set
-            {
-                _hE100 = value;
-                OnPropertyChanged(nameof(HE100));
-            }
-        }
-
-        public bool Estado
-        {
-            get { return _estado; }
-            set
-            {
-                _estado = value;
-                OnPropertyChanged(nameof(Estado));
-            }
-        }
-
-        public DateTime FechaInactivo
-        {
-            get { return _fechaInactivo; }
-            set
-            {
-                _fechaInactivo = value;
-                OnPropertyChanged(nameof(FechaInactivo));
-            }
-        }
-
-        public DateTime FechaReingreso
-        {
-            get { return _fechaReingreso; }
-            set
-            {
-                _fechaReingreso = value;
-                OnPropertyChanged(nameof(FechaReingreso));
-            }
-        }
-
-        public float DT
-        {
-            get { return _dT; }
-            set
-            {
-                _dT = value;
-                OnPropertyChanged(nameof(DT));
+                _discapacidad = value;
+                OnPropertyChanged(nameof(Discapacidad));
             }
         }
 
@@ -245,73 +103,53 @@ namespace SIRHU.ViewModel
             }
         }
 
-        public string NumCelular
+        public int Edad
         {
-            get { return _numCelular; }
+            get { return _edad; }
             set
             {
-                _numCelular = value;
-                OnPropertyChanged(nameof(NumCelular));
+                _edad = value;
+                OnPropertyChanged(nameof(Edad));
             }
         }
 
-        public string Direccion
+        public string Nacionalidad
         {
-            get { return _direccion; }
+            get { return _nacionalidad; }
             set
             {
-                _direccion = value;
-                OnPropertyChanged(nameof(Direccion));
+                _nacionalidad = value;
+                OnPropertyChanged(nameof(Nacionalidad));
+            }
+        }
+        
+        public string Celular
+        {
+            get { return _celular; }
+            set
+            {
+                _celular = value;
+                OnPropertyChanged(nameof(Celular));
             }
         }
 
-        public string ReferenciaDireccion
+        public string Telefono
         {
-            get { return _referenciaDireccion; }
+            get { return _telefono; }
             set
             {
-                _referenciaDireccion = value;
-                OnPropertyChanged(nameof(ReferenciaDireccion));
+                _telefono = value;
+                OnPropertyChanged(nameof(Telefono));
             }
         }
 
-        public string LatitudD
+        public string Correo1
         {
-            get { return _latitudD; }
+            get { return _correo1; }
             set
             {
-                _latitudD = value;
-                OnPropertyChanged(nameof(LatitudD));
-            }
-        }
-
-        public string LongitudD
-        {
-            get { return _longitudD; }
-            set
-            {
-                _longitudD = value;
-                OnPropertyChanged(nameof(LongitudD));
-            }
-        }
-
-        public string TelefonoConvencional
-        {
-            get { return _telefonoConvencional; }
-            set
-            {
-                _telefonoConvencional = value;
-                OnPropertyChanged(nameof(TelefonoConvencional));
-            }
-        }
-
-        public string TelefonoCelular
-        {
-            get { return _telefonoCelular; }
-            set
-            {
-                _telefonoCelular = value;
-                OnPropertyChanged(nameof(TelefonoCelular));
+                _correo1 = value;
+                OnPropertyChanged(nameof(Correo1));
             }
         }
 
@@ -335,95 +173,7 @@ namespace SIRHU.ViewModel
             }
         }
 
-        public string TipoRelacionLaboral
-        {
-            get { return _tipoRelacionLaboral; }
-            set
-            {
-                _tipoRelacionLaboral = value;
-                OnPropertyChanged(nameof(TipoRelacionLaboral));
-            }
-        }
 
-        public string NovedadIngreso
-        {
-            get { return _novedadIngreso; }
-            set
-            {
-                _novedadIngreso = value;
-                OnPropertyChanged(nameof(NovedadIngreso));
-            }
-        }
-
-        public byte[] PdfIngreso
-        {
-            get { return _pdfIngreso; }
-            set
-            {
-                _pdfIngreso = value;
-                OnPropertyChanged(nameof(PdfIngreso));
-            }
-        }
-
-        public int IdContrato
-        {
-            get { return _idContrato; }
-            set
-            {
-                _idContrato = value;
-                OnPropertyChanged(nameof(IdContrato));
-            }
-        }
-
-        public int IdSectorial
-        {
-            get { return _idSectorial; }
-            set
-            {
-                _idSectorial = value;
-                OnPropertyChanged(nameof(IdSectorial));
-            }
-        }
-
-        public int IdCargas
-        {
-            get { return _idCargas; }
-            set
-            {
-                _idCargas = value;
-                OnPropertyChanged(nameof(IdCargas));
-            }
-        }
-
-        public byte[] Foto
-        {
-            get { return _foto; }
-            set
-            {
-                _foto = value;
-                OnPropertyChanged(nameof(Foto));
-            }
-        }
-
-        public string Nacionalidad
-        {
-            get { return _nacionalidad; }
-            set
-            {
-                _nacionalidad = value;
-                OnPropertyChanged(nameof(Nacionalidad));
-            }
-        }
-
-        public string CargoFundasen
-        {
-            get { return _cargoFundasen; }
-            set
-            {
-                _cargoFundasen = value;
-                OnPropertyChanged(nameof(CargoFundasen));
-            }
-        }
 
         // Commands
 
@@ -456,7 +206,7 @@ namespace SIRHU.ViewModel
 
         private void ExecuteAddWorker(object obj)
         {
-            workerRepository.Add(new WorkerModel()); ;
+            workerRepository.Add(Cedula); ;
         }
 
         private bool CanExecuteAddWorker(object obj)
