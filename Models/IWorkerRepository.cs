@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,12 @@ namespace SIRHU.Models
         void Add(WorkerModel workerModel);
         void Edit(WorkerModel workerModel);
         void Remove(string cedula);
+        ObservableCollection<WorkerModel> Get(WorkerModel workerModel);
 
         WorkerModel GetById(string cedula);
         WorkerModel GetByName(string name);
+
+
 
         IEnumerable<WorkerModel> GetByAll();
     }

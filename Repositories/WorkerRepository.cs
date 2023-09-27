@@ -45,6 +45,45 @@ namespace SIRHU.Repositories
             throw new NotImplementedException();
         }
 
+        public ObservableCollection<WorkerModel> Get(WorkerModel workerModel)
+        {
+            ObservableCollection<WorkerModel> listResult = new ObservableCollection<WorkerModel>();
+            string query = "SELECT * FROM TRABAJADOR";
+            using (var connection = GetConnection())
+            {
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = query;
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        listResult.Add(new WorkerModel()
+                        {
+                            Cedula = (string)reader["CEDULA"],
+                            Nombres = (string)reader["NOMBRES"],
+                            Apellidos = (string)reader["APELLIDOS"],
+                            Discapacidad = (bool)reader["DISCAPACIDA"],
+                            PorcentajeDiscapacidad = (int)reader["PORCENTAJE_DISCAPACIDAD"],
+                            TipoDiscapacidad = (string)reader["TIPO_DISCAPACIDAD"],
+                            FechaNacimiento = (DateTime)reader["FECHA_NACIMIENTO"],
+                            Edad = (int)reader["EDAD"],
+                            Nacionalidad = (string)reader["NACIONALIDAD"],
+                            Celular = (string)reader["CELULAR"],
+                            Telefono = (string)reader["TELEFONO"],
+                            Correo1 = (string)reader["CORREO1"],
+                            Correo2 = (string)reader["CORREO2"],
+                            EstadoCivil = (string)reader["ESTADO_CIVIL"]
+                        });
+                    }
+                    reader.Close();
+                    connection.Close();
+                }
+                return listResult;
+            }
+        }
+
         public IEnumerable<WorkerModel> GetByAll()
         {
             throw new NotImplementedException();
@@ -72,7 +111,7 @@ namespace SIRHU.Repositories
             }
         }
 
-        internal ObservableCollection <WorkerModel> Get()
+        internal ObservableCollection<WorkerModel> Get()
         {
             ObservableCollection<WorkerModel> listResult = new ObservableCollection<WorkerModel>();
             string query = "SELECT * FROM TRABAJADOR";

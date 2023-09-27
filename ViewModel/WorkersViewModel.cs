@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using SIRHU.Models;
 using MaterialDesignThemes.Wpf;
+using System.Collections.ObjectModel;
 
 namespace SIRHU.ViewModel
 {
@@ -27,10 +28,42 @@ namespace SIRHU.ViewModel
         private string _correo1;
         private string _correo2;
         private string _estadoCivil;
+        private string _errorMessageAddWorker;
+        private string _succesMessageAddWorker;
+
+
+
+        private WorkerModel workerModel;
+
+        private WorkerRepository _workerRepository;
+
+        private ObservableCollection<WorkerModel> _trabajadoresRegistrados;
 
         private IWorkerRepository workerRepository;
 
         //properties
+        public string ErrorMessageAddWorker
+        {
+            get { return _errorMessageAddWorker; } 
+            set
+            {
+                _errorMessageAddWorker = value;
+                OnPropertyChanged(nameof(ErrorMessageAddWorker));
+            }
+            
+        }
+
+        public string SuccesMessageAddWorker
+        {
+            get { return _succesMessageAddWorker; }
+            set
+            {
+                _succesMessageAddWorker = value;
+                OnPropertyChanged(nameof(SuccesMessageAddWorker));
+            }
+
+        }
+
         public string Cedula
         {
             get { return _cedula; }
@@ -173,7 +206,18 @@ namespace SIRHU.ViewModel
             }
         }
 
-
+        public ObservableCollection<WorkerModel> TrabajadoresRegistrados
+        {
+            get => _trabajadoresRegistrados;
+            set
+            {
+                if(_trabajadoresRegistrados != value)
+                {
+                    _trabajadoresRegistrados = value;
+                    OnPropertyChanged(nameof(TrabajadoresRegistrados));
+                }
+            }
+        }
 
         // Commands
 
@@ -206,7 +250,15 @@ namespace SIRHU.ViewModel
 
         private void ExecuteAddWorker(object obj)
         {
-            workerRepository.Add(Cedula); ;
+            try 
+            { 
+            workerRepository.Add(workerModel);
+            TrabajadoresRegistrados = _workerRepository.Get();
+            SuccesMessageAddWorker = "Trabajador grabado/modificado exitosamente";
+            }catch (Exception ex)
+            {
+                ErrorMessageAddWorker = ex.Message;
+            }
         }
 
         private bool CanExecuteAddWorker(object obj)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GMap.NET.ObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace SIRHU.Models
         private string _correo1;
         private string _correo2;
         private string _estadoCivil;
+        
 
         public string Cedula 
         { 
@@ -83,9 +85,9 @@ namespace SIRHU.Models
             get => _tipoDiscapacidad;
             set
             {
-                if (_nombres != value)
+                if (_tipoDiscapacidad != value)
                 {
-                    _nombres = value;
+                    _tipoDiscapacidad = value;
                 }
             }
         }
