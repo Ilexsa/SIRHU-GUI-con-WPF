@@ -14,8 +14,9 @@ namespace SIRHU.Repositories
 {
     public class WorkerRepository : Repositories.RepositoryBase, IWorkerRepository
     {
-        public void Add(WorkerModel workerModel)
+        public void Add(WorkerModel worker)
         {
+
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
@@ -23,24 +24,24 @@ namespace SIRHU.Repositories
                 command.Connection = connection;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.CommandText = "InsertOrUpdateTrabajador";
-                command.Parameters.Add("@CEDULA", System.Data.SqlDbType.VarChar).Value = workerModel.Cedula;
-                command.Parameters.Add("@NOMBRES", System.Data.SqlDbType.NVarChar).Value = workerModel.Nombres;
-                command.Parameters.Add("@NOMBRES", System.Data.SqlDbType.NVarChar).Value = workerModel.Apellidos;
-                command.Parameters.Add("@DISCAPACIDAD", System.Data.SqlDbType.Bit).Value = workerModel.Discapacidad;
-                command.Parameters.Add("@PORCENTAJE_DISCAPACIDAD", System.Data.SqlDbType.Int).Value = workerModel.PorcentajeDiscapacidad;
-                command.Parameters.Add("@TIPO_DISCAPACIDAD", System.Data.SqlDbType.NVarChar).Value = workerModel.TipoDiscapacidad;
-                command.Parameters.Add("@EDAD", System.Data.SqlDbType.Int).Value = workerModel.Edad;
-                command.Parameters.Add("@NACIONALIDAD", System.Data.SqlDbType.NVarChar).Value = workerModel.Nacionalidad;
-                command.Parameters.Add("@CELULAR", System.Data.SqlDbType.VarChar).Value = workerModel.Celular;
-                command.Parameters.Add("@TELEFONO", System.Data.SqlDbType.VarChar).Value = workerModel.Telefono;
-                command.Parameters.Add("@CORREO1", System.Data.SqlDbType.NVarChar).Value = workerModel.Correo1;
-                command.Parameters.Add("@CORREO2", System.Data.SqlDbType.NVarChar).Value = workerModel.Correo2;
-                command.Parameters.Add("@ESTADO_CIVIL", System.Data.SqlDbType.NVarChar).Value = workerModel.EstadoCivil;
+                command.Parameters.Add("@CEDULA", System.Data.SqlDbType.VarChar).Value = worker.Cedula;
+                command.Parameters.Add("@NOMBRES", System.Data.SqlDbType.NVarChar).Value = worker.Nombres;
+                command.Parameters.Add("@NOMBRES", System.Data.SqlDbType.NVarChar).Value = worker.Apellidos;
+                command.Parameters.Add("@DISCAPACIDAD", System.Data.SqlDbType.Bit).Value = worker.Discapacidad;
+                command.Parameters.Add("@PORCENTAJE_DISCAPACIDAD", System.Data.SqlDbType.Int).Value = worker.PorcentajeDiscapacidad;
+                command.Parameters.Add("@TIPO_DISCAPACIDAD", System.Data.SqlDbType.NVarChar).Value = worker.TipoDiscapacidad;
+                command.Parameters.Add("@EDAD", System.Data.SqlDbType.Int).Value = worker.Edad;
+                command.Parameters.Add("@NACIONALIDAD", System.Data.SqlDbType.NVarChar).Value = worker.Nacionalidad;
+                command.Parameters.Add("@CELULAR", System.Data.SqlDbType.VarChar).Value = worker.Celular;
+                command.Parameters.Add("@TELEFONO", System.Data.SqlDbType.VarChar).Value = worker.Telefono;
+                command.Parameters.Add("@CORREO1", System.Data.SqlDbType.NVarChar).Value = worker.Correo1;
+                command.Parameters.Add("@CORREO2", System.Data.SqlDbType.NVarChar).Value = worker.Correo2;
+                command.Parameters.Add("@ESTADO_CIVIL", System.Data.SqlDbType.NVarChar).Value = worker.EstadoCivil;
                 command.ExecuteNonQuery();
             }
         }
 
-        public void Edit(WorkerModel workerModel)
+        public void Edit(WorkersViewModel workerModel)
         {
             throw new NotImplementedException();
         }

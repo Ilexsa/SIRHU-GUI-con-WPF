@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SIRHU.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace SIRHU.Models
 {
     internal interface IWorkerRepository
     {
-        void Add(WorkerModel workerModel);
-        void Edit(WorkerModel workerModel);
+        void Add(WorkerModel worker);
+        void Edit(WorkersViewModel workerModel);
         void Remove(string cedula);
         ObservableCollection<WorkerModel> Get(WorkerModel workerModel);
 

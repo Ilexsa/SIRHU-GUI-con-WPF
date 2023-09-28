@@ -187,6 +187,8 @@
                                       Grid.Row="0"
                                       Checked="chkDiscpacidad_Checked"
                                       Unchecked="chkDiscpacidad_Unchecked"
+                                      IsChecked="{Binding Worker.Discapacidad, UpdateSourceTrigger=PropertyChanged}"
+                                      
                                       >
                                 </CheckBox>
                                 <Label Content="¿Personal posee alguna discapacidad?"
@@ -200,7 +202,7 @@
                                 <TextBox x:Name="txtNombres"
                                          Tag="Nombres"
                                          properties:TextBoxProperties.Icon="account"
-                                         Text="{Binding Nombres, UpdateSourceTrigger=PropertyChanged}"
+                                         Text="{Binding Worker.Nombres, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
                                          Style="{DynamicResource textBoxStylesNuevo}"
@@ -215,7 +217,7 @@
                                 <TextBox x:Name="txtApellidos"
                                          Tag="Apellidos"
                                          properties:TextBoxProperties.Icon="account"
-                                         Text=""
+                                         Text="{Binding Worker.Apellidos, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
                                          Style="{DynamicResource textBoxStylesNuevo}"
@@ -228,7 +230,8 @@
                                 </TextBox>
                                 <materialDesign:PackIcon Kind="Account" Margin="315 53 0 0" Foreground="white" Grid.Row="1"/>
                                 <TextBox x:Name="txtCedula" Tag="Cedula" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="1" HorizontalAlignment="Left"
-                                         VerticalAlignment="Top" Width="330" Margin="10 85 0 0" PreviewTextInput="txtCedula_PreviewTextInput" MaxLength="20"/>
+                                         VerticalAlignment="Top" Width="330" Margin="10 85 0 0" PreviewTextInput="txtCedula_PreviewTextInput" MaxLength="20"
+                                         Text="{Binding Worker.Cedula, UpdateSourceTrigger=PropertyChanged}"/>
                                 <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 93 0 0" Foreground="white" Grid.Row="1"/>
 
                                 <StackPanel Grid.Row="1" Grid.Column="0"
@@ -259,10 +262,11 @@
                                             Grid.Row="2"
                                             FontFamily="Montserrat"
                                             FontSize="12"
-                                            Foreground="{StaticResource color1}"
+                                            Foreground="#1E5887"
                                             Height="22"
                                             Width="190"
                                             Margin="0,0,270,0"
+                                            Text="{Binding Worker.FechaNacimiento, UpdateSourceTrigger=PropertyChanged}"
                                             BorderBrush="{StaticResource color4}"
                                             Style="{StaticResource MaterialDesignDatePicker}"
                                             SelectedDateFormat="Short"
@@ -270,9 +274,10 @@
                                             >
                                 </DatePicker>
                                 <TextBox x:Name="txtEdad" Tag="Edad" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="2"
-                                         Width="230" Margin="240,0 ,0,0" IsEnabled="False"/>
+                                         Width="230" Margin="240,0 ,0,0" IsEnabled="False"  Text="{Binding Edad, UpdateSourceTrigger=PropertyChanged}"/>
                                 <materialDesign:PackIcon Kind="Counter" Margin="451 12 0 0" Foreground="white" Grid.Row="2"/>
                                 <ComboBox x:Name="cmbEstadoCivil"
+                                          SelectedValue="{Binding Worker.EstadoCivil, UpdateSourceTrigger=PropertyChanged}"
                                           Grid.Row="3"
                                           FontFamily="montserrat"
                                           FontSize="12"
@@ -290,10 +295,12 @@
                                 </ComboBox>
 
                                 <TextBox x:Name="txtCelular" Tag="Celular" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="3"
-                                         Width="230" Margin="240,0 ,0, 0" properties:TextBoxProperties.Icon="cellphone" TextChanged="txtCelular_TextChanged" PreviewTextInput="txtCelular_PreviewTextInput"/>
+                                         Width="230" Margin="240,0 ,0, 0" properties:TextBoxProperties.Icon="cellphone" TextChanged="txtCelular_TextChanged" PreviewTextInput="txtCelular_PreviewTextInput"
+                                         Text="{Binding Worker.Celular, UpdateSourceTrigger=PropertyChanged}"/>
                                 <materialDesign:PackIcon Kind="Cellphone" Margin="451 12 0 0" Foreground="white" Grid.Row="3"/>
 
                                 <ComboBox x:Name="cmbNacionalidad"
+                                          SelectedValue="{Binding Worker.Nacionalidad, UpdateSourceTrigger=PropertyChanged}"
                                           Grid.Row="4"
                                           FontFamily="montserrat"
                                           FontSize="12"
@@ -309,15 +316,16 @@
                                     <ComboBoxItem Content="PERUANA"/>
                                 </ComboBox>
                                 <TextBox x:Name="txtTelefono" Tag="Telefono" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="4"
-                                         Width="230" Margin="240,0,0,0" TextChanged="txtTelefono_TextChanged" PreviewTextInput="txtTelefono_PreviewTextInput"/>
+                                         Width="230" Margin="240,0,0,0" TextChanged="txtTelefono_TextChanged" PreviewTextInput="txtTelefono_PreviewTextInput"
+                                         Text="{Binding Worker.Telefono, UpdateSourceTrigger=PropertyChanged}" />
                                 <materialDesign:PackIcon Kind="Phone" Margin="451 12 0 0" Foreground="white" Grid.Row="4"/>
 
                                 <TextBox x:Name="txtCorreo1" Tag="Correo Principal" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="5"
-                                Width="470" Margin="0,0,0,0" TextChanged="txtCorreo1_TextChanged" LostFocus="txtCorreo1_LostFocus"/>
+                                Width="470" Margin="0,0,0,0" TextChanged="txtCorreo1_TextChanged" LostFocus="txtCorreo1_LostFocus" Text="{Binding Worker.Correo1, UpdateSourceTrigger=PropertyChanged}"/>
                                 <materialDesign:PackIcon Kind="Mailbox" Margin="451 12 0 0" Foreground="white" Grid.Row="5"/>
 
                                 <TextBox x:Name="txtCorreo2" Tag="Correo Alterno" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="6"
-                                Width="470" Margin="0,0,0,0" TextChanged="txtCorreo2_TextChanged" LostFocus="txtCorreo2_LostFocus"/>
+                                Width="470" Margin="0,0,0,0" TextChanged="txtCorreo2_TextChanged" LostFocus="txtCorreo2_LostFocus" Text="{Binding Worker.Correo2, UpdateSourceTrigger=PropertyChanged}"/>
                                 <materialDesign:PackIcon Kind="MailBox" Margin="451 12 0 0" Foreground="white" Grid.Row="6"/>
 
                                 <ComboBox Grid.Row="7"
@@ -344,7 +352,7 @@
                                               HorizontalAlignment="Center"
                                               VerticalAlignment="Center">
                                     <Button Width="90" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10 20"
-                                            Content="Guardar" Click="Button_Click"/>
+                                            Content="Guardar" Click="Button_Click" Command="{Binding AddWorker}"/>
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
@@ -354,7 +362,7 @@
                                     Width="495">
                             <Grid Height="400">
                                 <TextBox x:Name="txtPorcentajeDiscapacidad" Tag="% Discapacidad" Style="{DynamicResource textBoxStylesNuevo}"
-                                    Width="230" Margin=" -250, 20 ,0,0" Opacity="0" Visibility="Hidden">
+                                    Width="230" Margin=" -250, 20 ,0,0" Opacity="0" Visibility="Hidden" Text="{Binding Worker.PorcentajeDiscapacidad, UpdateSourceTrigger=PropertyChanged}">
                                     <TextBox.Triggers>
                                         <EventTrigger RoutedEvent="Loaded">
                                             <BeginStoryboard>
@@ -372,6 +380,7 @@
                                           Width="190"
                                           Margin="0 20 -270 0"
                                           BorderBrush="{StaticResource color4}"
+                                          SelectedValue="{Binding Worker.TipoDiscapacidad, UpdateSourceTrigger=PropertyChanged}"
                                           Opacity="0"
                                           Visibility="Hidden">
                                     <ComboBox.Triggers>

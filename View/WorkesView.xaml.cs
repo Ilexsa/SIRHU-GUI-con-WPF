@@ -72,7 +72,7 @@ namespace SIRHU.View
         {
             AnimateControlMargin(contentGrid, new Thickness(250, 0, 0, 0));
 
-
+            
             AnimateVisibility(txtPorcentajeDiscapacidad, Visibility.Hidden);
             AnimateVisibility(cmbDiscapacidad, Visibility.Hidden);
         }
@@ -299,15 +299,15 @@ namespace SIRHU.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                AgregarTrabajadorDB();
-                MessageBox.Show("Datos iniciales guardados con exito", "Success");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Hubo un error al Guardar/Modificar Trabajador");
-            }
+            //try
+            //{
+            //    AgregarTrabajadorDB();
+            //    MessageBox.Show("Datos iniciales guardados con exito", "Success");
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Hubo un error al Guardar/Modificar Trabajador");
+            //}
 
 
         }
