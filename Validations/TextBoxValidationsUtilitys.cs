@@ -76,5 +76,39 @@ namespace SIRHU.Validations
                 e.Handled = true;
             }
         }
+
+        public bool P_Valida_Cedula(string cedula)
+        {
+            int numero = 0;
+            int suma = 0;
+            int resultado = 0;
+            for (int i = 0; i < cedula.Length; i++)
+            {
+                numero = int.Parse(cedula[i].ToString());
+                if (i % 2 == 0)
+                {
+                    numero = numero * 2;
+                    if (numero > 9)
+                    {
+                        numero = numero - 9;
+                    }
+                }
+                suma = suma + numero;
+            }
+            if (suma % 10 != 0)
+            {
+                resultado = 10 - (suma % 10);
+                if (resultado == numero)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            else
+            {
+                return (true);
+            }
+
+        }
     }
 }

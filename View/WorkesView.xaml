@@ -161,7 +161,10 @@
                              FontFamily="Montserrat"
                              Margin="10"
                              >
-                    <Grid x:Name="contentGrid" VerticalAlignment="Top" Margin="250 0 0 0">
+
+
+                    <Grid x:Name="contentGrid" VerticalAlignment="Center" Margin="250 0 0 0"
+                          Height="500">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="495"/>
                             <ColumnDefinition Width="495"/>
@@ -180,6 +183,19 @@
                                     <RowDefinition Height="180"/>
 
                                 </Grid.RowDefinitions>
+                                <CheckBox x:Name="chkPasaporte"
+                                          Style="{DynamicResource ToggleButtomStyle}"
+                                          Margin="-300 0 0 0"
+                                          VerticalAlignment="Center"
+                                          Grid.Row="0"
+                                          >
+                                </CheckBox>
+                                <Label Content="¿Pasaporte?"
+                                       Margin="-5 0 424 0"
+                                       Foreground="#131313"
+                                       FontFamily="Montserrat"
+                                       FontSize="13"
+                                       VerticalAlignment="Center"/>
                                 <CheckBox x:Name="chkDiscpacidad"
                                       Style="{DynamicResource ToggleButtomStyle}"
                                       Margin="440 0 0 0"
@@ -190,6 +206,7 @@
                                       IsChecked="{Binding Worker.Discapacidad, UpdateSourceTrigger=PropertyChanged}"
                                       
                                       >
+                                    
                                 </CheckBox>
                                 <Label Content="¿Personal posee alguna discapacidad?"
                                        Margin="215 0 50 0"
@@ -231,7 +248,7 @@
                                 <materialDesign:PackIcon Kind="Account" Margin="315 53 0 0" Foreground="white" Grid.Row="1"/>
                                 <TextBox x:Name="txtCedula" Tag="Cedula" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="1" HorizontalAlignment="Left"
                                          VerticalAlignment="Top" Width="330" Margin="10 85 0 0" PreviewTextInput="txtCedula_PreviewTextInput" MaxLength="20"
-                                         Text="{Binding Worker.Cedula, UpdateSourceTrigger=PropertyChanged}"/>
+                                         Text="{Binding Worker.Cedula, UpdateSourceTrigger=PropertyChanged}"  LostFocus="txtCedula_LostFocus"/>
                                 <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 93 0 0" Foreground="white" Grid.Row="1"/>
 
                                 <StackPanel Grid.Row="1" Grid.Column="0"
@@ -409,6 +426,22 @@
                 </TabItem>
                 <TabItem Header="Direccion Domiciliar" Style="{StaticResource MaterialDesignTabItem}"
                              FontFamily="montserrat">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup Name="TabStates1">
+                            <VisualState Name="Normal1">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="tabContent1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" To="-500" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </VisualState>
+                            <VisualState Name="Selected1">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="tabContent1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" To="0" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+
+
                     <StackPanel HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Height="520"
@@ -429,29 +462,99 @@ Width="470" Margin="0,-20,0,0"/>
 Width="470" Margin="0,-20,0,0" TextWrapping="WrapWithOverflow" Height="60"/>
                         <materialDesign:PackIcon Kind="Mailbox" Margin="451 12 0 0" Foreground="white" Grid.Row="5"/>
 
+                        
+
+
+
                         <Button x:Name="btnGuardarDomicilio"
                                 Width="85"
-                                Content="Guardar">
+                                Content="Guardar"
+                                Click="btnGuardarDomicilio_Click">
                             
                         </Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Datos Institucionales" Style="{StaticResource MaterialDesignTabItem}"
                              FontFamily="montserrat">
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup Name="TabStates2">
+                            <VisualState Name="Normal2">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="tabContent1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" To="-500" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </VisualState>
+                            <VisualState Name="Selected2">
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="tabContent1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" To="0" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+
                     <StackPanel HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Height="520"
                                 Width="950">
-                        <TextBox x:Name="txtCargo" Tag="Enlace Google" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="5"
+                        <StackPanel HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Margin="0,60,0,0">
+                        <TextBox x:Name="txtCargo" Tag="Cargo" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="5"
                             Width="470" Margin="0,0,0,0" />
-                        <materialDesign:PackIcon Kind="Mailbox" Margin="451 12 0 0" Foreground="white" Grid.Row="5"/>
+                        <materialDesign:PackIcon Kind="Mailbox" Margin="445 -25 0 0" Foreground="white" Grid.Row="5"/>
+
+                        <TextBox x:Name="txtSextorial" Tag="Sectorial" Style="{DynamicResource textBoxStylesNuevo}" Width="470" Margin="0,10,0,0" />
+                            <materialDesign:PackIcon Kind="Mailbox" Margin="445 -25 0 0" Foreground="white" Grid.Row="5"/>
+
+                        <TextBox x:Name="txtCargoFundasen" Tag="Cargo en la Empresa" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="5"
+    Width="470" Margin="0,10,0,0" />
+                            <materialDesign:PackIcon Kind="Mailbox" Margin="445 -25 0 0" Foreground="white" Grid.Row="5"/>
+
+                        <TextBox x:Name="txtSueldo" Tag="Sueldo" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="5"
+    Width="235" Margin="0,10,0,0" HorizontalAlignment="Left"/> 
+                            <materialDesign:PackIcon Kind="Mailbox" Margin="210 -25 0 0" Foreground="white" Grid.Row="5"/>
+
+                            <ComboBox x:Name="cmbTipoRelacionLaboral"
+                                      FontFamily="montserrat"
+                                      FontSize="12"
+                                      Height="23"
+                                      Width="190"
+                                      Margin="-20 -30 -270 0"
+                                      BorderBrush="{StaticResource color4}"
+                                      SelectedValue="{Binding Worker.TipoDiscapacidad, UpdateSourceTrigger=PropertyChanged}"
+                                      Opacity="0"
+                                      Visibility="Visible">      
+                                <ComboBox.Triggers>
+                                    <EventTrigger RoutedEvent="Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:1"/>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </ComboBox.Triggers>
+                                <ComboBoxItem Content="TIPO DE DISCAPACIDAD"/>
+                                <ComboBoxItem Content="ECUATORIANA"/>
+                                <ComboBoxItem Content="VENEZOLANA"/>
+                                <ComboBoxItem Content="COLOMBIANA"/>
+                                <ComboBoxItem Content="PERUANA"/>
+                            </ComboBox>
+
+
+                            <TextBox x:Name="txtNovedadIngreso" Tag="Novedad de Ingreso" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="5"
+Width="470" Margin="0,10,0,0" TextWrapping="WrapWithOverflow" Height="60"/>
+                            <materialDesign:PackIcon Kind="Mailbox" Margin="445 -35 0 0" Foreground="white" Grid.Row="5"/>
 
                         <Button x:Name="btnGuardarDatosFundasen"
                                 Width="85"
-                                Content="Guardar"/>
-
+                                Content="Guardar"
+                                Margin="0 30 0 0"/>
+                        </StackPanel>
                     </StackPanel>
 
+                </TabItem>
+                <TabItem Header="Archivos Cargados">
+                    
                 </TabItem>
             </TabControl>
         </Grid>

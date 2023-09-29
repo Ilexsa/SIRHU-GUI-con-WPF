@@ -9,95 +9,237 @@
              xmlns:local="clr-namespace:SIRHU.View"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="800">
-    <Border CornerRadius="12"
-            BorderThickness="5"
-            BorderBrush="{StaticResource color1}">
-        <TabControl Style="{StaticResource MaterialDesignTabControl}"
+    <UserControl.Resources>
+        <Style x:Key="textBoxStylesNuevo" TargetType="TextBox">
+            <Setter Property="Background" Value="#4CA1F5"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="{StaticResource color3}"/>
+            <Setter Property="Padding" Value="8 4"/>
+            <Setter Property="Cursor" Value="IBeam"/>
+            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="330"/>
+            <Setter Property="AllowDrop" Value="True"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Foreground" Value="#131313"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="txtBorder"
+                                 Background="{TemplateBinding Background}"
+                                 CornerRadius="5"
+                                 BorderThickness="{TemplateBinding BorderThickness}"
+                                 BorderBrush="{TemplateBinding BorderBrush}"
+                                 SnapsToDevicePixels="True">
+                            <Grid Margin="{TemplateBinding Padding}">
+                                <ScrollViewer x:Name="PART_ContentHost"
+                                   Focusable="False"
+                                   HorizontalScrollBarVisibility="Hidden"
+                                   VerticalScrollBarVisibility="Hidden"
+                                   Margin="-0 2"/>
+                                <Label x:Name="WaterMarkerLabel"
+                            Content="{TemplateBinding Tag}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                            Visibility="Collapsed"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="{TemplateBinding FontSize}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Padding="{TemplateBinding Padding}">
+                                </Label>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" TargetName="txtBorder" Value="#a87b05"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" TargetName="txtBorder" Value="#a87b05"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility"
+                             TargetName="WaterMarkerLabel"
+                             Value="Visible"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ToggleButtomStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Background" Value="#FFFFFC"/>
+            <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="MaxHeight" Value="20"/>
+            <Setter Property="MaxWidth" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Grid>
+
+                            <Border x:Name="Border"
+                     Background="{TemplateBinding Background}"
+                     CornerRadius="7"
+                     Height="14"
+                     Width="35"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"/>
+                            <Ellipse x:Name="Ellipse"
+                      Height="20"
+                      Width="20"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Center"
+                      Fill="White"
+                      Stroke="{TemplateBinding BorderBrush}"
+                      StrokeThickness="3"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!--EventTrigger Checked-->
+                            <EventTrigger RoutedEvent="Checked">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border"
+                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                         To="#2196F3" Duration="0:0:0.2"/>
+                                        <ThicknessAnimation Storyboard.TargetName="Ellipse"
+                                             Storyboard.TargetProperty="Margin"
+                                             To="15 0 0 0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <!--EventTrigger UnChecked-->
+                            <EventTrigger RoutedEvent="Unchecked">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="Border"
+                  Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                  To="#FFFFFC" Duration="0:0:0.2"/>
+                                        <ThicknessAnimation Storyboard.TargetName="Ellipse"
+                      Storyboard.TargetProperty="Margin"
+                      To="0 0 0 0" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <TabControl Style="{StaticResource MaterialDesignTabControl}"
                     
                     >
-            <TabItem Header="Empresa"
+        <TabItem Header="Empresa"
                      Style="{StaticResource MaterialDesignTabItem}"
                      FontSize="10"
                      FontFamily="Montserrat"
                      Margin="10">
-                <Grid Margin="100, 25"
+            <Grid Margin="100, 25"
       Background="Transparent"
       >
-                    <StackPanel>
-                        <materialDesign:PackIcon Kind="Domain" Margin="0,10,0,0" Height="50" Width="67" HorizontalAlignment="Center"/>
-                        <customControls:CustomTextBox Caption="Nombre de la Empresa" Hint="Fundasen"/>
+                <StackPanel>
+
+                    <materialDesign:PackIcon Kind="Domain" Margin="0,10,0,0" Height="50" Width="67" HorizontalAlignment="Center"/>
+
+                    <TextBox x:Name="txtRuc" Tag="Ruc de la empresa" Style="{DynamicResource textBoxStylesNuevo}" 
+                                         VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
+                                         Text="" />
+                    <TextBox x:Name="txtDirEmpresa" Tag="Direccion de la empresa" Style="{DynamicResource textBoxStylesNuevo}" 
+                                         VerticalAlignment="Top" Width="330"  MaxLength="20" Margin="0 10 0 0 "
+                                         Text=""  />
+                    <TextBox x:Name="txtEmail" Tag="Direccion de correo de la empresa" Style="{DynamicResource textBoxStylesNuevo}" 
+                                         VerticalAlignment="Top" Width="330"   MaxLength="20" Margin="0 10 0 0 "
+                                         Text=""  />
+                    <TextBox x:Name="txtRazonComercial" Tag="Razón comercial de la empresa" Style="{DynamicResource textBoxStylesNuevo}" 
+                                         VerticalAlignment="Top" Width="330"   MaxLength="20" Margin="0 10 0 0 "
+                                         Text=""  />
+                    <TextBox x:Name="txtPaginaWeb" Tag="Página Web de la empresa" Style="{DynamicResource textBoxStylesNuevo}" 
+                                         VerticalAlignment="Top" Width="330"   MaxLength="20" Margin="0 10 0 0 "
+                                         Text=""  />
+                    <TextBox x:Name="txtRepresentateLegal" Tag="Nombre del representate legal" Style="{DynamicResource textBoxStylesNuevo}"
+                                         VerticalAlignment="Top" Width="330"   MaxLength="20" Margin="0 10 0 0 "
+                                         Text="" />
+                    <!--<customControls:CustomTextBox Caption="Nombre de la Empresa" Hint="Fundasen"/>
                         <customControls:CustomTextBox Caption="Ruc de la empresa" Hint="Introduzca el n° de Ruc"/>
                         <customControls:CustomTextBox Caption="Direccion de la empresa" Hint="Introduzca la direccion de la matriz"/>
                         <customControls:CustomTextBox Caption="Email de la empresa" Hint="Introduza el Email de la empresa"/>
                         <customControls:CustomTextBox Caption="Razón comercial" Hint="Introduzca la razón comercial"/>
                         <customControls:CustomTextBox Caption="Pagina web" Hint="Introduzca el enlace de la pagina web"/>
-                        <customControls:CustomTextBox Caption="Nombre del representante legal" Hint="Introduzca el nombre del representante legal"/>
-                        <StackPanel Margin="18">
-                            <Button Content="Guardar">
-                                
-                            </Button>
-                        </StackPanel>
+                        <customControls:CustomTextBox Caption="Nombre del representante legal" Hint="Introduzca el nombre del representante legal"/>-->
+                    <StackPanel Margin="18">
+                        <Button Content="Guardar">
+
+                        </Button>
                     </StackPanel>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Sucursales"
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Sucursales"
                      Style="{StaticResource MaterialDesignTabItem}"
                      FontSize="10"
                      FontFamily="Montserrat"
                      Margin="10">
-            </TabItem>
-            <TabItem Header="Departamentos"
+        </TabItem>
+        <TabItem Header="Departamentos"
                      Style="{StaticResource MaterialDesignTabItem}"
                      FontSize="10"
                      FontFamily="Montserrat"
                      Margin="10">
 
-                <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}">
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
-                        <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
-                                            <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                        </Border>
+            <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="membersDataGrid" Style="{DynamicResource DataGridStyle1}">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
+                    <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding BgColor}">
+                                        <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                    </Border>
 
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Email Address" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Phone Number" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
-                        <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource gridEditButton}">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                        <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
-                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Position" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Email Address" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="Phone Number" Binding="{Binding Phone}" IsReadOnly="True" Width="*"/>
+                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource gridEditButton}">
+                                        <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                    </Button>
+                                    <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
+                                        <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
 
-        </TabControl>
-        
-    </Border>
-
+    </TabControl>
 </UserControl>

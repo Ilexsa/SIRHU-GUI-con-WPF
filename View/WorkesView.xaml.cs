@@ -21,6 +21,10 @@ using System.Data.SqlClient;
 using SIRHU.Repositories;
 using System.Windows.Markup;
 using System.Data;
+using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.WindowsPresentation;
+using Org.BouncyCastle.Crmf;
 
 namespace SIRHU.View
 {
@@ -29,6 +33,10 @@ namespace SIRHU.View
     /// </summary>
     public partial class HomeView : UserControl
     {
+        //GMapMarker marker = new GMapMarker(new PointLatLng(##, ##));
+        //marker.Shape = new PinControl();
+        //gmap.Markers.Add(marker);
+
 
         public HomeView()
         {
@@ -175,12 +183,11 @@ namespace SIRHU.View
             }
         }
 
-        private void agregarValidaciones()
-        {
-        }
 
         private void mapView_Loaded(object sender, RoutedEventArgs e)
         {
+            //double Latinicial = -2.138212840521418;
+            //double Lnginicial = -79.899110000004884;
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
             // choose your provider here
             mapView.MapProvider = GMap.NET.MapProviders.GoogleMapProvider.Instance;
@@ -194,7 +201,14 @@ namespace SIRHU.View
             // lets the user drag the map
             mapView.CanDragMap = true;
             // lets the user drag the map with the left mouse button
-            mapView.DragButton = MouseButton.Left;
+            //mapView.DragButton = MouseButton.Left;
+            //markerOverlay = new GMapOverlay("Marcador");
+            //marker = new GMarkerGoogle(new PointLatLng(Latinicial, Lnginicial), GMarkerGoogleType.green);
+            //markerOverlay.Markers.Add(marker);
+
+            //marker.ToolTipMode = MarkerTooltipMode.Always;
+            //marker.ToolTipText = string.Format("Ubicacion: \n Latitud:{0} \n Longitud:{1}", Latinicial, Lnginicial);
+
         }
 
 
@@ -312,6 +326,25 @@ namespace SIRHU.View
 
         }
 
+        private void txtCedula_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var validacion = new Validations.TextBoxValidationsUtilitys();
+
+            bool resultado = validacion.P_Valida_Cedula(txtCedula.Text);
+                
+            if ( chkPasaporte.IsChecked == false) { 
+                if (resultado == false )
+                {
+                    MessageBox.Show("Error", "Cedula no valida");
+                }
+                else
+                {
+                    MessageBox.Show("Success", "Cedula valida");
+                }
+            } 
+        }
+       
+        
         private void AgregarTrabajadorDB()
         {
             using (SqlConnection cone = new SqlConnection("Data Source = 10.0.0.206; Initial Catalog = ROLES; User ID = sa; Password ="))
@@ -339,6 +372,38 @@ namespace SIRHU.View
                     cmd.ExecuteNonQuery();
                 }
             }
+
+        }
+
+        private void AgregarDomicilioDB()
+        {
+            using (SqlConnection cone = new SqlConnection("Data Source = 10.0.0.206; Initial Catalog = ROLES; User ID = sa; Password ="))
+            {
+                cone.Open();
+                using (SqlCommand cmd = new SqlCommand("InsertOrUpdateDomicilio", cone))
+                {
+                    int edad = Convert.ToInt32(txtEdad.Text);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@CEDULA", txtCedula.Text);
+                    cmd.Parameters.AddWithValue("@DIRECCION", txtDireccion.Text);
+                    cmd.Parameters.AddWithValue("@REFERENCIAS", txtReferencias.Text);
+                    cmd.Parameters.AddWithValue("@LATITUD", chkDiscpacidad.IsChecked == true ? 1 : 0);
+                    cmd.Parameters.AddWithValue("@LONGITUD", edad);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+        }
+
+        private void mapView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            
+
+        }
+
+        private void btnGuardarDomicilio_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
