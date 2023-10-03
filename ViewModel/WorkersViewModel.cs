@@ -8,6 +8,7 @@ using System.Windows.Input;
 using SIRHU.Models;
 using MaterialDesignThemes.Wpf;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace SIRHU.ViewModel
 {
@@ -33,8 +34,6 @@ namespace SIRHU.ViewModel
 
         private WorkerModel _worker;
 
-
-        private WorkerRepository _workerRepository;
 
         private ObservableCollection<WorkerModel> _trabajadoresRegistrados;
 
@@ -267,6 +266,7 @@ namespace SIRHU.ViewModel
             }catch (Exception ex)
             {
                 ErrorMessageAddWorker = ex.Message;
+                MessageBox.Show(ex.Message, "Error");
             }
         }
 

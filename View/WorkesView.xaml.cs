@@ -44,6 +44,7 @@ namespace SIRHU.View
             cmbEstadoCivil.SelectedIndex = 0;
             cmbNacionalidad.SelectedIndex = 0;
             cmbDiscapacidad.SelectedIndex = 0;
+            //txtCedula.Text = string.Empty;
             
         }
         public static readonly DependencyProperty IconProperty =
@@ -176,10 +177,11 @@ namespace SIRHU.View
 
             DateTime nacimiento = dtpFechaNacimiento.SelectedDate.Value; //Fecha de nacimiento
 
-            if (nacimiento < DateTime.Now)
+            if (nacimiento <= DateTime.Now)
             {
                 int edad = DateTime.Today.AddTicks(-nacimiento.Ticks).Year - 1;
-                txtEdad.Text = edad.ToString();
+                string edadcadena = edad.ToString();
+                txtCelular.Text = edadcadena;
             }
         }
 

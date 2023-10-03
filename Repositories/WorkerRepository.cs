@@ -26,10 +26,11 @@ namespace SIRHU.Repositories
                 command.CommandText = "InsertOrUpdateTrabajador";
                 command.Parameters.Add("@CEDULA", System.Data.SqlDbType.VarChar).Value = worker.Cedula;
                 command.Parameters.Add("@NOMBRES", System.Data.SqlDbType.NVarChar).Value = worker.Nombres;
-                command.Parameters.Add("@NOMBRES", System.Data.SqlDbType.NVarChar).Value = worker.Apellidos;
+                command.Parameters.Add("@APELLIDOS", System.Data.SqlDbType.NVarChar).Value = worker.Apellidos;
                 command.Parameters.Add("@DISCAPACIDAD", System.Data.SqlDbType.Bit).Value = worker.Discapacidad;
                 command.Parameters.Add("@PORCENTAJE_DISCAPACIDAD", System.Data.SqlDbType.Int).Value = worker.PorcentajeDiscapacidad;
                 command.Parameters.Add("@TIPO_DISCAPACIDAD", System.Data.SqlDbType.NVarChar).Value = worker.TipoDiscapacidad;
+                command.Parameters.Add("@FECHA_NACIMIENTO", System.Data.SqlDbType.Date).Value = worker.FechaNacimiento;
                 command.Parameters.Add("@EDAD", System.Data.SqlDbType.Int).Value = worker.Edad;
                 command.Parameters.Add("@NACIONALIDAD", System.Data.SqlDbType.NVarChar).Value = worker.Nacionalidad;
                 command.Parameters.Add("@CELULAR", System.Data.SqlDbType.VarChar).Value = worker.Celular;
