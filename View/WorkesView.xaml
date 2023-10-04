@@ -290,8 +290,12 @@
                                             SelectedDateChanged="dtpFechaNacimiento_SelectedDateChanged"
                                             >
                                 </DatePicker>
+                                <!--<TextBox x:Name="txtCedula" Tag="Cedula" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="1" HorizontalAlignment="Left"
+         VerticalAlignment="Top" Width="330" Margin="10 85 0 0" PreviewTextInput="txtCedula_PreviewTextInput" MaxLength="20"
+         Text="{Binding Worker.Cedula, UpdateSourceTrigger=PropertyChanged}"  LostFocus="txtCedula_LostFocus"/>-->
                                 <TextBox x:Name="txtEdad" Tag="Edad" Style="{DynamicResource textBoxStylesNuevo}" Grid.Row="2"
-                                         Width="230" Margin="240,0 ,0,0" IsEnabled="False"  Text="{Binding Worker.Edad, UpdateSourceTrigger=PropertyChanged}" Cursor="IBeam"/>
+                                         Width="230" Margin="240,0 ,0,0" PreviewTextInput="txtEdad_PreviewTextInput" 
+                                         Text="{Binding Worker.Edad, UpdateSourceTrigger=PropertyChanged}" />
                                 <materialDesign:PackIcon Kind="Counter" Margin="451 12 0 0" Foreground="white" Grid.Row="2"/>
                                 <ComboBox x:Name="cmbEstadoCivil"
                                           SelectedValue="{Binding Worker.EstadoCivil, UpdateSourceTrigger=PropertyChanged}"

@@ -15,8 +15,8 @@ namespace SIRHU.Models
         private bool _discapacidad;
         private int _porcentajeDiscapacidad;
         private string _tipoDiscapacidad;
-        private DateTime _fechaNacimiento = DateTime.Now;
-        private int _edad = 0;
+        private DateTime _fechaNacimiento;
+        private int _edad;
         private string _nacionalidad;
         private string _celular;
         private string _telefono;

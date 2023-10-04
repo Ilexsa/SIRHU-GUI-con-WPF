@@ -166,6 +166,18 @@ namespace SIRHU.View
             }
         }
 
+        private void txtEdad_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true;
+                    break;
+                }
+            }
+        }
+
         private void dtpFechaNacimiento_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dtpFechaNacimiento.SelectedDate.HasValue)
@@ -181,10 +193,9 @@ namespace SIRHU.View
             {
                 int edad = DateTime.Today.AddTicks(-nacimiento.Ticks).Year - 1;
                 string edadcadena = edad.ToString();
-                txtCelular.Text = edadcadena;
+                txtCedula.Text = edadcadena;
             }
         }
-
 
         private void mapView_Loaded(object sender, RoutedEventArgs e)
         {
@@ -315,17 +326,6 @@ namespace SIRHU.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    AgregarTrabajadorDB();
-            //    MessageBox.Show("Datos iniciales guardados con exito", "Success");
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Hubo un error al Guardar/Modificar Trabajador");
-            //}
-
-
         }
 
         private void txtCedula_LostFocus(object sender, RoutedEventArgs e)
