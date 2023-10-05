@@ -80,8 +80,6 @@ namespace SIRHU.View
         private void chkDiscpacidad_Unchecked(object sender, RoutedEventArgs e)
         {
             AnimateControlMargin(contentGrid, new Thickness(250, 0, 0, 0));
-
-            
             AnimateVisibility(txtPorcentajeDiscapacidad, Visibility.Hidden);
             AnimateVisibility(cmbDiscapacidad, Visibility.Hidden);
         }
@@ -193,7 +191,7 @@ namespace SIRHU.View
             {
                 int edad = DateTime.Today.AddTicks(-nacimiento.Ticks).Year - 1;
                 string edadcadena = edad.ToString();
-                txtCedula.Text = edadcadena;
+                txtEdad.Text = edadcadena;
             }
         }
 

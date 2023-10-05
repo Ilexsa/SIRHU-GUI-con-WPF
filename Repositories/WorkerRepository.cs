@@ -44,7 +44,7 @@ namespace SIRHU.Repositories
 
         public void Edit(WorkersViewModel workerModel)
         {
-            throw new NotImplementedException();
+
         }
 
         public ObservableCollection<WorkerModel> Get(WorkerModel workerModel)
@@ -101,7 +101,7 @@ namespace SIRHU.Repositories
             throw new NotImplementedException();
         }
 
-        public void Remove(string cedula)
+        public void Remove(WorkerModel worker)
         {
             using (var connection = GetConnection())
             using (var command = new SqlCommand())
@@ -109,9 +109,11 @@ namespace SIRHU.Repositories
                 connection.Open();
                 command.Connection = connection;
                 command.CommandText = "DELETE FROM TRABAJADOR WHERE CEDULA = @CEDULA";
-                command.Parameters.Add("@CEDULA", System.Data.SqlDbType.VarChar).Value = cedula;
+                command.Parameters.Add("@CEDULA", System.Data.SqlDbType.VarChar).Value = worker.Cedula;
+                command.ExecuteNonQuery();
             }
         }
+
 
         internal ObservableCollection<WorkerModel> Get()
         {

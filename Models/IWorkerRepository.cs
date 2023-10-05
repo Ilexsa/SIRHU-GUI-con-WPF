@@ -12,7 +12,8 @@ namespace SIRHU.Models
     {
         void Add(WorkerModel worker);
         void Edit(WorkersViewModel workerModel);
-        void Remove(string cedula);
+        void Remove(WorkerModel worker);
+        
         ObservableCollection<WorkerModel> Get(WorkerModel workerModel);
 
         WorkerModel GetById(string cedula);
