@@ -9,6 +9,8 @@ namespace SIRHU.Models
 {
     public class WorkerModel
     {
+
+        //fields Worker
         private string _cedula;
         private string _nombres;
         private string _apellidos;
@@ -23,7 +25,27 @@ namespace SIRHU.Models
         private string _correo1;
         private string _correo2;
         private string _estadoCivil;
-            
+
+
+        //fields Domicilio
+        private string _direccion;
+        private string _referencias;
+        private string _latitud;
+        private string _longitud;
+
+        //fields Data Fundasen
+        private string _cargo;
+        private string _cargoFundasen;
+        private int _sectorial;
+        private decimal _sueldo;
+        private decimal _horaExtra25;
+        private decimal _horaExtra50;
+        private decimal _horaExtra100;
+        private string _tipoRelacionLaboral;
+        private string _novedadIngreso;
+
+
+
 
         public string Cedula 
         { 
@@ -178,5 +200,22 @@ namespace SIRHU.Models
                 }
             }
         }
+        //Domicilio
+        public string Direccion { get => _direccion; set => _direccion = value; }
+        public string Referencias { get => _referencias; set => _referencias = value; }
+        public string Latitud { get => _latitud; set => _latitud = value; }
+        public string Longitud { get => _longitud; set => _longitud = value; }
+
+        //DataFundasen
+
+        public string Cargo { get => _cargo; set => _cargo = value; }
+        public string CargoFundasen { get => _cargoFundasen; set => _cargoFundasen = value; }
+        public int Sectorial { get => _sectorial; set => _sectorial = value; }
+        public decimal Sueldo { get => _sueldo; set => _sueldo = value; }
+        public decimal HoraExtra25 { get => _horaExtra25; set => _horaExtra25 = value; }
+        public decimal HoraExtra50 { get => _horaExtra50; set => _horaExtra50 = value; }
+        public decimal HoraExtra100 { get => _horaExtra100; set => _horaExtra100 = value; }
+        public string TipoRelacionLaboral { get => _tipoRelacionLaboral; set => _tipoRelacionLaboral = value; }
+        public string NovedadIngreso { get => _novedadIngreso; set => _novedadIngreso = value; }
     }
 }

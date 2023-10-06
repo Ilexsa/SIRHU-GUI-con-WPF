@@ -300,6 +300,7 @@
                                 <materialDesign:PackIcon Kind="Counter" Margin="451 138 0 0" Foreground="white" Grid.Row="1"/>
                                 <ComboBox x:Name="cmbEstadoCivil"
                                           SelectedValue="{Binding Worker.EstadoCivil, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValuePath="Content"
                                           Grid.Row="2"
                                           FontFamily="montserrat"
                                           FontSize="12"
@@ -323,6 +324,7 @@
 
                                 <ComboBox x:Name="cmbNacionalidad"
                                           SelectedValue="{Binding Worker.Nacionalidad, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValuePath="Content"
                                           Grid.Row="3"
                                           FontFamily="montserrat"
                                           FontSize="12"
@@ -405,6 +407,7 @@
                                           Margin="0 20 -270 0"
                                           BorderBrush="{StaticResource color4}"
                                           SelectedValue="{Binding Worker.TipoDiscapacidad, UpdateSourceTrigger=PropertyChanged}"
+                                          SelectedValuePath="Content"
                                           Opacity="0"
                                           Visibility="Hidden">
                                     <ComboBox.Triggers>
