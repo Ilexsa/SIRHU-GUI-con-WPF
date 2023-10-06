@@ -9,6 +9,7 @@ namespace SIRHU.Models
 {
     public interface IUserRepository
     {
+        bool NoRepeatNickname(UserModel userModel);
         bool AuthentificateUser(NetworkCredential credential);
         void Add(UserModel userModel);
         void Edit(UserModel userModel);

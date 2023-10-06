@@ -10,6 +10,7 @@ using SIRHU.Repositories;
 using System.Net;
 using System.Threading;
 using System.Security.Principal;
+using System.Windows;
 
 namespace SIRHU.ViewModel
 {
@@ -21,9 +22,23 @@ namespace SIRHU.ViewModel
         private string _errorMessage;
         private bool _isViewVisible = true;
 
+        private UserModel _user;
+
         private IUserRepository userRepository;
 
         //Properties
+        public UserModel User
+        {
+            get
+            {
+                return _user;
+            }
+            set
+            {
+                _user = value;
+                OnPropertyChanged(nameof(User));
+            }
+        }
         public string Username
         {
             get
@@ -82,6 +97,7 @@ namespace SIRHU.ViewModel
         public ICommand RecoverPasswordCommand { get; }
         public ICommand ShowPasswordCommand { get; }
         public ICommand RememberPasswordCommand { get; }
+        public ICommand AddUsserCommand { get; }
 
         //Constructors
 
@@ -90,8 +106,28 @@ namespace SIRHU.ViewModel
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("",""));
+            AddUsserCommand = new ViewModelCommand(ExecuteAddUserCommand, CanExecuteAddUserCommand);
         }
 
+        private bool CanExecuteAddUserCommand(object obj)
+        {
+            bool validUser = userRepository.NoRepeatNickname(User);
+            return validUser;
+        }
+
+        private void ExecuteAddUserCommand(object obj)
+        {
+            try
+            {
+                userRepository.Add(User);
+                MessageBox.Show("Usuario Agregado");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
 
         private bool CanExecuteLoginCommand(object obj)
         {

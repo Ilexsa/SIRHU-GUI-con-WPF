@@ -34,7 +34,7 @@ namespace SIRHU.View
             //Primer Submenu e Items
             var menuManteGeneral = new List<SubItem>();
             menuManteGeneral.Add(new SubItem("Empresa, establecimientos y sucursales", new CompanyView()));
-            menuManteGeneral.Add(new SubItem("Usuarios"));
+            menuManteGeneral.Add(new SubItem("Usuarios", new AddUsersView()));
             menuManteGeneral.Add(new SubItem("Perfiles"));
             menuManteGeneral.Add(new SubItem("Asignar perfiles"));
             var item0 = new ItemMenu("Matenimiento General", menuManteGeneral, PackIconKind.Tools);

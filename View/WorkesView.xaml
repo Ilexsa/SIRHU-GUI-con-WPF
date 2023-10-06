@@ -13,6 +13,8 @@
         <viewModel:WorkersViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
+        
+        
         <Style x:Key="textBoxStylesNuevo" TargetType="TextBox">
             <Setter Property="Background" Value="#4CA1F5"/>
             <Setter Property="BorderThickness" Value="2"/>
