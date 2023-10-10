@@ -15,73 +15,6 @@
         <viewModel:LoginViewModel/>
     </UserControl.DataContext>
     <UserControl.Resources>
-
-        <converter:SecureStringToString x:Key="SecureStringToString" />
-
-        <Style x:Key="passwordBoxStyles" TargetType="PasswordBox">
-            <Setter Property="Background" Value="#4CA1F5"/>
-            <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="BorderBrush" Value="{StaticResource color3}"/>
-            <Setter Property="Padding" Value="8 4"/>
-            <Setter Property="Cursor" Value="IBeam"/>
-            <Setter Property="FontFamily" Value="poppins black"/>
-            <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Width" Value="330"/>
-            <Setter Property="AllowDrop" Value="True"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
-            <Setter Property="Foreground" Value="#131313"/>
-            <Setter Property="HorizontalContentAlignment" Value="Left"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Height" Value="35"/>
-            <EventSetter Event="PasswordChanged" Handler="OnPasswordChanged"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type PasswordBox}">
-                        <Border x:Name="txtBorder"
-                             Background="{TemplateBinding Background}"
-                             CornerRadius="5"
-                             BorderThickness="{TemplateBinding BorderThickness}"
-                             BorderBrush="{TemplateBinding BorderBrush}"
-                             SnapsToDevicePixels="True">
-                            <Grid Margin="{TemplateBinding Padding}">
-                                <ScrollViewer x:Name="PART_ContentHost"
-                               Focusable="False"
-                               HorizontalScrollBarVisibility="Hidden"
-                               VerticalScrollBarVisibility="Hidden"
-                               Margin="-0 2"/>
-                                <Label x:Name="WaterMarkerLabel"
-                        Content="{TemplateBinding Tag}"
-                        FontWeight="{TemplateBinding FontWeight}"
-                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                        Visibility="Hidden"
-                        FontFamily="{TemplateBinding FontFamily}"
-                        FontSize="{TemplateBinding FontSize}"
-                        Foreground="{TemplateBinding Foreground}"
-                        Padding="{TemplateBinding Padding}">
-                                </Label>
-                            </Grid>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" TargetName="txtBorder" Value="#a87b05"/>
-                            </Trigger>
-                            <Trigger Property="IsFocused" Value="True">
-                                <Setter Property="BorderBrush" TargetName="txtBorder" Value="#a87b05"/>
-                            </Trigger>
-                            <DataTrigger Binding="{Binding Password}" Value="{x:Null}">
-                                <Setter Property="Visibility" TargetName="WaterMarkerLabel" Value="Visible"/>
-                            </DataTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-
-
         <Style x:Key="textBoxStylesNuevo" TargetType="TextBox">
             <Setter Property="Background" Value="#4CA1F5"/>
             <Setter Property="BorderThickness" Value="2"/>
@@ -227,7 +160,7 @@
                     Width="350"
                     Height="280"
                     Grid.Row="1"
-                    Orientation="Vertical">
+                    Orientation="Vertical" Cursor="">
             <TextBox x:Name="txtFirstName" Tag="Nombre" Style="{DynamicResource textBoxStylesNuevo}" 
                      VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
                      Text="{Binding User.Name, UpdateSourceTrigger=PropertyChanged}" />
@@ -238,19 +171,25 @@
             <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
             <TextBox x:Name="txtUserName" Tag="Nombre de Usuario" Style="{DynamicResource textBoxStylesNuevo}" 
                      VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
-                     Text="{Binding User.nickname, UpdateSourceTrigger=PropertyChanged}" />
+                     Text="{Binding User.Nickname, UpdateSourceTrigger=PropertyChanged}" />
             <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
 
             <!--<TextBox x:Name="txtContraseña" Tag="Contraseña" Style="{DynamicResource textBoxStylesNuevo}" 
                      VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
                      Text="" />-->
-            <PasswordBox x:Name="pbPassword" Style="{DynamicResource passwordBoxStyles}" Tag=""
+            <!--<PasswordBox Style="{DynamicResource passwordBoxStyles}" 
                          VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
-                         Password="{Binding User.Password, UpdateSourceTrigger=PropertyChanged, Converter={DynamicResource SecureStringToString}}"/>
+                         Password="{Binding User.Password, UpdateSourceTrigger=PropertyChanged}"/>-->
+            <customControls:BindablePasswordBox1 x:Name="pbPassword" VerticalAlignment="Top" Width="330"  Margin="0 10 0 0"
+                            Password="{Binding User.Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                
+            </customControls:BindablePasswordBox1>
+            
+
             <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
 
-            <TextBlock x:Name="waterMark" IsHitTestVisible="False" FontSize="13" Text="Contraseña" VerticalAlignment="Top"
-                       Foreground="Black" FontWeight="Medium" Margin="28 -27.6 240 0" FontFamily="poppins black"/>
+            <!--<TextBlock x:Name="waterMark" IsHitTestVisible="False" FontSize="13" Text="Contraseña" VerticalAlignment="Top"
+                       Foreground="Black" FontWeight="Medium" Margin="28 -27.6 240 0" FontFamily="poppins black"/>-->
 
             <TextBox x:Name="txtEmail" Tag="Correo Institucional" Style="{DynamicResource textBoxStylesNuevo}" 
                      VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
@@ -267,9 +206,10 @@
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center"
                     HorizontalAlignment="Center">
             <Button Width="99"  Margin="10 20"
-                    Content="GUARDAR" Command="{Binding AddUsserCommand}"/>
+                    Content="GUARDAR"
+                    Command="{Binding AddUsserCommand}"/>
             <Button Width="99" 
-                    Content="BORRAR" Command="{Binding }"/>
+                    Content="BORRAR" Command="{Binding DeleteUserCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>

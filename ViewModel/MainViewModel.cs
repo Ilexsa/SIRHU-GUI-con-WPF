@@ -109,7 +109,7 @@ namespace SIRHU.ViewModel
             var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
             if (user != null)
             {
-                    CurrentUserAccount.Nickname = user.nickname;
+                    CurrentUserAccount.Nickname = user.Nickname;
                     CurrentUserAccount.DisplayName = $"{user.Name} {user.LastName}";
                     CurrentUserAccount.ProfilePicture = null;     
             }

@@ -10,10 +10,11 @@ namespace SIRHU.Models
     public interface IUserRepository
     {
         bool NoRepeatNickname(UserModel userModel);
+        bool RepeatNickname(UserModel userModel);
         bool AuthentificateUser(NetworkCredential credential);
         void Add(UserModel userModel);
         void Edit(UserModel userModel);
-        void Remove(int id);
+        void Remove(UserModel userModel);
 
         UserModel GetById(int id);
         UserModel GetByUsername(string nickname);

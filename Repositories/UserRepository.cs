@@ -16,18 +16,18 @@ namespace SIRHU.Repositories
         public void Add(UserModel userModel)
         {
             using (var connection = GetConnection())
-                using (var command = new SqlCommand())
+            using (var command = new SqlCommand())
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "INSERT INTO Users (nickname, Password, Name, LastName, Position, Email) values (@nickname, @Password, @Name, @LastName, @Position, @Email)";
-                command.Parameters.AddWithValue("@nickname", System.Data.SqlDbType.NVarChar).Value = userModel.nickname;
-                command.Parameters.AddWithValue("@Password", System.Data.SqlDbType.NVarChar).Value = userModel.nickname;
-                command.Parameters.AddWithValue("@Name", System.Data.SqlDbType.NVarChar).Value = userModel.nickname;
-                command.Parameters.AddWithValue("@LastName", System.Data.SqlDbType.NVarChar).Value = userModel.nickname;
-                command.Parameters.AddWithValue("@Position", System.Data.SqlDbType.NVarChar).Value = userModel.nickname;
-                command.Parameters.AddWithValue("@Email", System.Data.SqlDbType.NVarChar).Value = userModel.nickname;
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "InsertOrUpdateUser";
+                command.Parameters.AddWithValue("@nickname", System.Data.SqlDbType.NVarChar).Value = userModel.Nickname;
+                command.Parameters.AddWithValue("@Password", System.Data.SqlDbType.NVarChar).Value = userModel.Password;
+                command.Parameters.AddWithValue("@Name", System.Data.SqlDbType.NVarChar).Value = userModel.Name;
+                command.Parameters.AddWithValue("@LastName", System.Data.SqlDbType.NVarChar).Value = userModel.LastName;
+                command.Parameters.AddWithValue("@Position", System.Data.SqlDbType.NVarChar).Value = userModel.Position;
+                command.Parameters.AddWithValue("@Email", System.Data.SqlDbType.NVarChar).Value = userModel.Email;
                 command.ExecuteNonQuery();
                 }
             
@@ -81,8 +81,8 @@ namespace SIRHU.Repositories
                         user = new UserModel()
                         {
                             Id = reader[0].ToString(),
-                            nickname = reader[1].ToString(),
-                            //Password = .Empty,
+                            Nickname = reader[1].ToString(),
+                            Password = string.Empty,
                             Name = reader[3].ToString(),
                             LastName = reader[4].ToString(),
                             Email = reader[5].ToString(),
@@ -96,30 +96,67 @@ namespace SIRHU.Repositories
         public bool NoRepeatNickname(UserModel userModel)
         {
             using (var connection = GetConnection())
-            using (var command = new SqlCommand()) {
-                connection.Open();
-            command.Connection = connection;
-            command.CommandText = "select * from [Users] where nickname = @nickname";
-            command.Parameters.Add("@nickname", System.Data.SqlDbType.NVarChar).Value = userModel.nickname;
-            using (var reader = command.ExecuteReader())
+            using (var command = new SqlCommand())
             {
-                if (reader.HasRows)
+                connection.Open();
+                command.Connection = connection;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "selectAllUsers";
+                command.Parameters.Add("@nickname", System.Data.SqlDbType.NVarChar).Value = userModel.Nickname;
+                using (var reader = command.ExecuteReader())
                 {
-                    // El lector tiene filas, por lo que retornamos false.
-                    return false;
+                    if (reader.HasRows)
+                    {
+                        // El lector tiene filas, por lo que retornamos false.
+                        return false;
+                    }
+                    else
+                    {
+                        // El lector no tiene filas, por lo que retornamos true.
+                        return true;
+                    }
                 }
-                else
-                {
-                    // El lector no tiene filas, por lo que retornamos true.
-                    return true;
-                }
-            }
             }
         }
 
-        public void Remove(int id)
+        public void Remove(UserModel userModel)
         {
-            throw new NotImplementedException();
+            using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection= connection;
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText="delete from Users where nickname=@nickname";
+                command.Parameters.Add("@nickname", System.Data.SqlDbType.NVarChar).Value = userModel.Nickname;
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public bool RepeatNickname(UserModel userModel)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "selectAllUsers";
+                command.Parameters.Add("@nickname", System.Data.SqlDbType.NVarChar).Value = userModel.Nickname;
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        
+                        return true;
+                    }
+                    else
+                    {
+                        
+                        return false;
+                    }
+                }
+            }
         }
     }
 }

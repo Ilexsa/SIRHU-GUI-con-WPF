@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SIRHU.CustomControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,21 +21,22 @@ namespace SIRHU.View
     /// </summary>
     public partial class AddUsersView : UserControl
     {
+
         public AddUsersView()
         {
             InitializeComponent();
         }
-        
-           private void OnPasswordChanged (object sender, RoutedEventArgs e)
-            {
-                if (pbPassword.Password.Length > 0)
-                {
-                    waterMark.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    waterMark.Visibility = Visibility.Visible;
-                }
-            }
+
+        //private void HandlePasswordChanged(object sender, EventArgs e)
+        //{
+        //    if (pbPassword.Password.Length > 0)
+        //    {
+        //        waterMark.Visibility = Visibility.Hidden;
+        //    }
+        //    else
+        //    {
+        //        waterMark.Visibility = Visibility.Visible;
+        //    }
+        //}
     }
 }

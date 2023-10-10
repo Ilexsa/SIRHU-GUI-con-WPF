@@ -98,15 +98,37 @@ namespace SIRHU.ViewModel
         public ICommand ShowPasswordCommand { get; }
         public ICommand RememberPasswordCommand { get; }
         public ICommand AddUsserCommand { get; }
+        public ICommand DeleteUserCommand { get; }
 
         //Constructors
 
         public LoginViewModel()
         {
+            _user = new UserModel();
             userRepository = new UserRepository();
+            AddUsserCommand = new ViewModelCommand(ExecuteAddUserCommand, CanExecuteAddUserCommand);
+            DeleteUserCommand = new ViewModelCommand(ExecuteDeleteUserCommand,CanExecuteDeleteCommand);
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("",""));
-            AddUsserCommand = new ViewModelCommand(ExecuteAddUserCommand, CanExecuteAddUserCommand);
+        }
+
+        private bool CanExecuteDeleteCommand(object obj)
+        {
+            bool validUser = userRepository.RepeatNickname(User);
+            return validUser;
+        }
+
+        private void ExecuteDeleteUserCommand(object obj)
+        {
+            try
+            {
+                userRepository.Remove(User);
+                MessageBox.Show("Usuario Eliminado");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private bool CanExecuteAddUserCommand(object obj)
