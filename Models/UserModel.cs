@@ -55,7 +55,7 @@ namespace SIRHU.Models
             get => _name;
             set
             {
-                if(_password != value)
+                if(_name != value)
                 {
                     _name = value;
                 }

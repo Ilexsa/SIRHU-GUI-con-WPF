@@ -131,11 +131,14 @@
       <DependentUpon>CustomTextBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomProperties\TextBoxProperties.cs" />
+    <Compile Include="Models\CompanyModel.cs" />
+    <Compile Include="Models\ICompanyRepository.cs" />
     <Compile Include="Models\IUserRepository.cs" />
     <Compile Include="Models\IWorkerRepository.cs" />
     <Compile Include="Models\UserAccountModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WorkerModel.cs" />
+    <Compile Include="Repositories\CompanyRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\WorkerRepository.cs" />

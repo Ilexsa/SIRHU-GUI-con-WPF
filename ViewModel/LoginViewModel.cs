@@ -133,7 +133,9 @@ namespace SIRHU.ViewModel
 
         private bool CanExecuteAddUserCommand(object obj)
         {
-            bool validUser = userRepository.NoRepeatNickname(User);
+            bool validUser; /*= userRepository.NoRepeatNickname(User);*/
+            if(string.IsNullOrEmpty(User.Nickname) || User.Nickname.Length < 4 || userRepository.NoRepeatNickname(User) == false)
+                validUser = false; else validUser = true;
             return validUser;
         }
 
