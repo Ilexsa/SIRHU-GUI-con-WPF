@@ -2,6 +2,7 @@
 using SIRHU.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -52,6 +53,39 @@ namespace SIRHU.Repositories
         public void Edit(UserModel userModel)
         {
             throw new NotImplementedException();
+        }
+
+        public ObservableCollection<UserModel> Get()
+        {
+            ObservableCollection<UserModel> listResult = new ObservableCollection<UserModel>();
+            string query = "SELECT * FROM Users";
+            using (var connection = GetConnection())
+            {
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = query;
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        listResult.Add(new UserModel()
+                        {
+                            Id = ((Guid)reader["Id"]).ToString(),
+                            Name = (string)reader["Name"],
+                            LastName = (string)reader["LastName"],
+                            Nickname = (string)reader["nickname"],
+                            Password= (string)reader["Password"],
+                            Email = (string)reader["Email"],
+                            Position = (string)reader["Position"],
+                            
+                        });
+                    }
+                    reader.Close();
+                    connection.Close();
+                }
+                return listResult;
+            }
         }
 
         public IEnumerable<UserModel> GetByAll()

@@ -11,6 +11,7 @@ using System.Net;
 using System.Threading;
 using System.Security.Principal;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace SIRHU.ViewModel
 {
@@ -21,12 +22,25 @@ namespace SIRHU.ViewModel
         private SecureString _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
+        private ObservableCollection<UserModel> _usersRegister;
 
         private UserModel _user;
 
         private IUserRepository userRepository;
 
         //Properties
+        public ObservableCollection<UserModel> UsersRegister
+        {
+            get 
+            { 
+                return _usersRegister; 
+            }
+            set 
+            { 
+                _usersRegister = value;
+                OnPropertyChanged(nameof(UsersRegister));
+            }
+        }
         public UserModel User
         {
             get
@@ -110,6 +124,7 @@ namespace SIRHU.ViewModel
             DeleteUserCommand = new ViewModelCommand(ExecuteDeleteUserCommand,CanExecuteDeleteCommand);
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("",""));
+            UsersRegister = userRepository.Get();
         }
 
         private bool CanExecuteDeleteCommand(object obj)
@@ -123,6 +138,7 @@ namespace SIRHU.ViewModel
             try
             {
                 userRepository.Remove(User);
+                UsersRegister = userRepository.Get();
                 MessageBox.Show("Usuario Eliminado");
             }
             catch (Exception ex)
@@ -144,6 +160,7 @@ namespace SIRHU.ViewModel
             try
             {
                 userRepository.Add(User);
+                UsersRegister = userRepository.Get();
                 MessageBox.Show("Usuario Agregado");
             }
             catch (Exception ex)
