@@ -37,7 +37,20 @@ namespace SIRHU.View
 
         private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            _context.SwitchScreen(((SubItem)((ListView)sender).SelectedItem).Screen);
+            //_context.SwitchScreen(((SubItem)((ListView)sender).SelectedItem).Screen);
+            var listView = (ListView)sender;
+            var selectedSubItem = (SubItem)listView.SelectedItem;
+            
+
+            if (selectedSubItem != null)
+            {
+                // Aquí realizas la acción deseada al seleccionar un elemento,
+                // por ejemplo, cambiar la vista principal.
+                _context.SwitchScreen(selectedSubItem.Screen);
+
+                // Deseleccionar el elemento
+                listView.SelectedItem = null;
+            }
         }
     }
 }

@@ -223,7 +223,48 @@
                             VerticalAlignment="Center">
                     <DataGrid ItemsSource="{Binding UsersRegister, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                Width="450"
-                              Height="280" />
+                              Height="280" >
+                        <!--<DataGrid.Columns>
+                            <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                                <DataGridCheckBoxColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
+                                    </DataTemplate>
+                                </DataGridCheckBoxColumn.HeaderTemplate>
+                            </DataGridCheckBoxColumn>-->
+                            <!--<DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" />
+                            <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" >
+                                                <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                            </Border>
+
+                                            <TextBlock  VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>-->
+                            <!--<DataGridTextColumn Header="Sucursal"  IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Email Address"  IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Phone Number"  IsReadOnly="True" Width="*"/>
+                            <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Style="{StaticResource gridEditButton}">
+                                                <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                            </Button>
+                                            <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
+                                                <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>-->
+                    </DataGrid>
 
                 </StackPanel>
             </Grid>

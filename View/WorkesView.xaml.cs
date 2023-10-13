@@ -178,21 +178,19 @@ namespace SIRHU.View
 
         private void dtpFechaNacimiento_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dtpFechaNacimiento.SelectedDate.HasValue)
-            {
-                DateTime selectedDate = dtpFechaNacimiento.SelectedDate.Value;
-                string formattedDate = selectedDate.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
-                dtpFechaNacimiento.Text = formattedDate;
-            }
 
             DateTime nacimiento = dtpFechaNacimiento.SelectedDate.Value; //Fecha de nacimiento
 
-            if (nacimiento <= DateTime.Now)
+            if (dtpFechaNacimiento.SelectedDate.Value < DateTime.Now)
             {
                 int edad = DateTime.Today.AddTicks(-nacimiento.Ticks).Year - 1;
                 string edadcadena = edad.ToString();
                 txtEdad.Text = edadcadena;
+            } if (dtpFechaNacimiento.SelectedDate.Value == DateTime.Now)
+            {
+                txtEdad.Text = string.Empty;
             }
+            
         }
 
         private void mapView_Loaded(object sender, RoutedEventArgs e)
@@ -344,57 +342,6 @@ namespace SIRHU.View
             } 
         }
        
-        
-        private void AgregarTrabajadorDB()
-        {
-            using (SqlConnection cone = new SqlConnection("Data Source = 10.0.0.206; Initial Catalog = ROLES; User ID = sa; Password ="))
-            {
-                cone.Open();
-                using (SqlCommand cmd = new SqlCommand("InsertOrUpdateTrabajador", cone))
-                {
-                    int edad = Convert.ToInt32(txtEdad.Text);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@CEDULA", txtCedula.Text);
-                    cmd.Parameters.AddWithValue("@NOMBRES", txtNombres.Text);
-                    cmd.Parameters.AddWithValue("@APELLIDOS", txtApellidos.Text);
-                    cmd.Parameters.AddWithValue("@DISCAPACIDAD", chkDiscpacidad.IsChecked == true ? 1 : 0);
-                    cmd.Parameters.AddWithValue("@PORCENTAJE_DISCAPACIDAD", edad);
-                    cmd.Parameters.AddWithValue("@TIPO_DISCAPACIDAD", (cmbDiscapacidad.SelectedItem as ComboBoxItem)?.Content.ToString());
-                    cmd.Parameters.AddWithValue("@FECHA_NACIMIENTO", Convert.ToDateTime(dtpFechaNacimiento.SelectedDate));
-                    cmd.Parameters.AddWithValue("@EDAD", edad);
-                    cmd.Parameters.AddWithValue("@NACIONALIDAD", (cmbNacionalidad.SelectedItem as ComboBoxItem)?.Content.ToString());
-                    cmd.Parameters.AddWithValue("@CELULAR", txtCelular.Text);
-                    cmd.Parameters.AddWithValue("@TELEFONO", txtTelefono.Text);
-                    cmd.Parameters.AddWithValue("@CORREO1", txtCorreo1.Text);
-                    cmd.Parameters.AddWithValue("@CORREO2", txtCorreo2.Text);
-                    cmd.Parameters.AddWithValue("@ESTADO_CIVIL", (cmbEstadoCivil.SelectedItem as ComboBoxItem)?.Content.ToString());
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-        }
-
-        private void AgregarDomicilioDB()
-        {
-            using (SqlConnection cone = new SqlConnection("Data Source = 10.0.0.206; Initial Catalog = ROLES; User ID = sa; Password ="))
-            {
-                cone.Open();
-                using (SqlCommand cmd = new SqlCommand("InsertOrUpdateDomicilio", cone))
-                {
-                    int edad = Convert.ToInt32(txtEdad.Text);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@CEDULA", txtCedula.Text);
-                    cmd.Parameters.AddWithValue("@DIRECCION", txtDireccion.Text);
-                    cmd.Parameters.AddWithValue("@REFERENCIAS", txtReferencias.Text);
-                    cmd.Parameters.AddWithValue("@LATITUD", chkDiscpacidad.IsChecked == true ? 1 : 0);
-                    cmd.Parameters.AddWithValue("@LONGITUD", edad);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-        }
 
         private void mapView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
