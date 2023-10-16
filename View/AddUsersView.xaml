@@ -164,91 +164,38 @@
             <Grid Height="490">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+
                 </Grid.ColumnDefinitions>
-
-                
-                
-                <StackPanel 
-                    Width="350"
-                    Height="280"
-                    Grid.Column="0"
-                    Grid.Row="1"
-                    Orientation="Vertical">
-                    <TextBox x:Name="txtFirstName" Tag="Nombre" Style="{DynamicResource textBoxStylesNuevo}" 
-                     Width="330" MaxLength="20" Margin="0 10 0 0 "
-                     Text="{Binding User.Name, UpdateSourceTrigger=PropertyChanged}" />
-                    <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
-                    <TextBox x:Name="txtLastName" Tag="Apellido" Style="{DynamicResource textBoxStylesNuevo}" 
-                     Width="330" MaxLength="20" Margin="0 10 0 0 "
-                     Text="{Binding User.LastName, UpdateSourceTrigger=PropertyChanged}" />
-                    <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
-                    <TextBox x:Name="txtUserName" Tag="Nombre de Usuario" Style="{DynamicResource textBoxStylesNuevo}" 
-                     Width="330" MaxLength="20" Margin="0 10 0 0 "
-                     Text="{Binding User.Nickname, UpdateSourceTrigger=PropertyChanged}" />
-                    <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
-
-                    <!--<TextBox x:Name="txtContraseña" Tag="Contraseña" Style="{DynamicResource textBoxStylesNuevo}" 
-                     VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
-                     Text="" />-->
-
-                    <!--<PasswordBox Style="{DynamicResource passwordBoxStyles}" 
-                         VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
-                         Password="{Binding User.Password, UpdateSourceTrigger=PropertyChanged}"/>-->
-                    <customControls:BindablePasswordBox1 x:Name="pbPassword" Width="330"  Margin="0 10 0 0"
-                            Password="{Binding User.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-
-                    <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
-
-                    <!--<TextBlock x:Name="waterMark" IsHitTestVisible="False" FontSize="13" Text="Contraseña" VerticalAlignment="Top"
-                       Foreground="Black" FontWeight="Medium" Margin="28 -27.6 240 0" FontFamily="poppins black"/>-->
-
-                    <TextBox x:Name="txtEmail" Tag="Correo Institucional" Style="{DynamicResource textBoxStylesNuevo}" 
-                     Width="330" MaxLength="20" Margin="0 10 0 0 "
-                     Text="{Binding User.Email, UpdateSourceTrigger=PropertyChanged}" />
-                    <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
-
-                    <TextBox x:Name="txtPosition" Tag="Rol" Style="{DynamicResource textBoxStylesNuevo}" 
-                    Width="330" MaxLength="20" Margin="0 10 0 0 "
-                    Text="{Binding User.Position, UpdateSourceTrigger=PropertyChanged}" />
-                    <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
-                </StackPanel>
 
                 <StackPanel Grid.Row="1"
                             Grid.Column="1"
-                            Width="450"
-                            Height="280"
+
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-                    <DataGrid ItemsSource="{Binding UsersRegister, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                               Width="450"
-                              Height="280" >
-                        <!--<DataGrid.Columns>
+                            VerticalAlignment="Bottom">
+                    <TextBox Style="{DynamicResource textBoxStylesNuevo}"
+                             HorizontalAlignment="Left"
+                             Tag="BUSCAR..."
+                             >
+                        
+                    </TextBox>
+                    <materialDesign:PackIcon Kind="Search" Margin="300 -25 0 0" Foreground="white"/>
+                    
+                    <DataGrid ItemsSource="{Binding UsersRegister}"
+                               Width="950"
+                              Height="400" RowStyle="{DynamicResource DataGridRowStyle1}"  CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" >
+                        <DataGrid.Columns>
                             <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                                 <DataGridCheckBoxColumn.HeaderTemplate>
                                     <DataTemplate>
                                         <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
                                     </DataTemplate>
                                 </DataGridCheckBoxColumn.HeaderTemplate>
-                            </DataGridCheckBoxColumn>-->
-                            <!--<DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" />
-                            <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" >
-                                                <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                            </Border>
-
-                                            <TextBlock  VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>-->
-                            <!--<DataGridTextColumn Header="Sucursal"  IsReadOnly="True" Width="*"/>
-                            <DataGridTextColumn Header="Email Address"  IsReadOnly="True" Width="*"/>
-                            <DataGridTextColumn Header="Phone Number"  IsReadOnly="True" Width="*"/>
+                            </DataGridCheckBoxColumn>
+                            <DataGridTextColumn Header="Usuario" Binding="{Binding Nickname}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Apellidos" Binding="{Binding LastName}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Rol" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Correo" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
                             <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -263,7 +210,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                        </DataGrid.Columns>-->
+                        </DataGrid.Columns>
                     </DataGrid>
 
                 </StackPanel>
@@ -282,12 +229,17 @@
             
         </StackPanel>-->
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-            <Button Width="99"  Margin="10 20"
+                    HorizontalAlignment="Right">
+            <!--<Button Width="99"  Margin="10 20"
                     Content="GUARDAR"
                     Command="{Binding AddUsserCommand}"/>
             <Button Width="99" 
-                    Content="BORRAR" Command="{Binding DeleteUserCommand}"/>
+                    Content="BORRAR" Command="{Binding DeleteUserCommand}"/>-->
+            <Button HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="+ AÑADIR USUARIO"
+                    Margin="0 0 60 50 "
+                    />
         </StackPanel>
     </Grid>
 </UserControl>
