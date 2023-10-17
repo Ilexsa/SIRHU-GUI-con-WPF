@@ -152,9 +152,9 @@
         <TextBlock Text="Registro de Usuarios" HorizontalAlignment="Left"
                    FontFamily="poppins black" FontSize="20"
                    Margin="60 45 0 0" Foreground="{StaticResource color10}"/>
-        <materialDesign:PackIcon Kind="AccountMultipleAdd" Height="50" Width="67" HorizontalAlignment="Left"
+        <!--<materialDesign:PackIcon Kind="AccountMultipleAdd" Height="50" Width="67" HorizontalAlignment="Left"
                                  VerticalAlignment="Bottom"
-                                 Margin="280 0 0 0" Foreground="{StaticResource color10}"/>
+                                 Margin="280 0 0 0" Foreground="{StaticResource color10}"/>-->
         
         <StackPanel 
                     Grid.Row="1"
@@ -180,23 +180,24 @@
                     </TextBox>
                     <materialDesign:PackIcon Kind="Search" Margin="300 -25 0 0" Foreground="white"/>
                     
-                    <DataGrid ItemsSource="{Binding UsersRegister}"
+                    <DataGrid ItemsSource="{Binding UsersRegister, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                Width="950"
-                              Height="400" RowStyle="{DynamicResource DataGridRowStyle1}"  CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" >
+                              Height="400"  
+                              VerticalScrollBarVisibility="Auto" RowStyle="{DynamicResource DataGridRowStyle1}"  CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}">
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                            <DataGridCheckBoxColumn Header="" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                                 <DataGridCheckBoxColumn.HeaderTemplate>
                                     <DataTemplate>
                                         <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
                                     </DataTemplate>
                                 </DataGridCheckBoxColumn.HeaderTemplate>
                             </DataGridCheckBoxColumn>
-                            <DataGridTextColumn Header="Usuario" Binding="{Binding Nickname}" IsReadOnly="True" Width="*"/>
-                            <DataGridTextColumn Header="Nombre" Binding="{Binding Name}" IsReadOnly="True" Width="*"/>
-                            <DataGridTextColumn Header="Apellidos" Binding="{Binding LastName}" IsReadOnly="True" Width="*"/>
-                            <DataGridTextColumn Header="Rol" Binding="{Binding Position}" IsReadOnly="True" Width="*"/>
-                            <DataGridTextColumn Header="Correo" Binding="{Binding Email}" IsReadOnly="True" Width="*"/>
-                            <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                            <DataGridTextColumn Header="Usuario" Binding="{Binding Nickname, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Apellidos" Binding="{Binding LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Rol" Binding="{Binding Position, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*"/>
+                            <DataGridTextColumn Header="Correo" Binding="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*"/>
+                            <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -236,9 +237,11 @@
             <Button Width="99" 
                     Content="BORRAR" Command="{Binding DeleteUserCommand}"/>-->
             <Button HorizontalAlignment="Center"
+                    x:Name="btnAdd"
                     VerticalAlignment="Center"
                     Content="+ AÑADIR USUARIO"
                     Margin="0 0 60 50 "
+                    Click="btnAdd_Click"
                     />
         </StackPanel>
     </Grid>

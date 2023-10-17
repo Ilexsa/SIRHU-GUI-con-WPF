@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SIRHU.View;
 
 namespace SIRHU.View
 {
@@ -25,6 +26,12 @@ namespace SIRHU.View
         public AddUsersView()
         {
             InitializeComponent();
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var addView = new AddUserMiniView();
+            addView.ShowDialog();
         }
 
         //private void HandlePasswordChanged(object sender, EventArgs e)

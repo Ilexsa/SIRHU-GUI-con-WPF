@@ -155,6 +155,9 @@
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\ViewModelCommand.cs" />
     <Compile Include="ViewModel\WorkersViewModel.cs" />
+    <Compile Include="View\AddUserMiniView.xaml.cs">
+      <DependentUpon>AddUserMiniView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddUsersView.xaml.cs">
       <DependentUpon>AddUsersView.xaml</DependentUpon>
     </Compile>
@@ -217,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\UIColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddUserMiniView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
