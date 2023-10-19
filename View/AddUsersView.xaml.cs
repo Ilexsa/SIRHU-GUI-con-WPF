@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SIRHU.View;
+using SIRHU.ViewModel;
+using System.ComponentModel;
 
 namespace SIRHU.View
 {
@@ -22,10 +24,26 @@ namespace SIRHU.View
     /// </summary>
     public partial class AddUsersView : UserControl
     {
+        private LoginViewModel _loginViewModel;
+
 
         public AddUsersView()
         {
+            _loginViewModel = new LoginViewModel();
+
+            _loginViewModel.PropertyChanged += OnPropertyChanged;
+
             InitializeComponent();
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            // Actualiza el datagrid
+            if (e.PropertyName == nameof(_loginViewModel.UsersRegister))
+            {
+                // Actualiza el nombre en el datagrid
+                dgUsers.ItemsSource = _loginViewModel.UsersRegister;
+            }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)

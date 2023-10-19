@@ -180,7 +180,7 @@
                     </TextBox>
                     <materialDesign:PackIcon Kind="Search" Margin="300 -25 0 0" Foreground="white"/>
                     
-                    <DataGrid ItemsSource="{Binding UsersRegister, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    <DataGrid x:Name="dgUsers" ItemsSource="{Binding UsersRegister, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                Width="950"
                               Height="400"  
                               VerticalScrollBarVisibility="Auto" RowStyle="{DynamicResource DataGridRowStyle1}"  CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}">
