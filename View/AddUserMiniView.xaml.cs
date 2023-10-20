@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SIRHU.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,12 @@ namespace SIRHU.View
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        {
+            LoginViewModel loginViewModel = new LoginViewModel();
+            AddUsersView.dataGrid.ItemsSource = loginViewModel.UsersRegister;
         }
     }
 }

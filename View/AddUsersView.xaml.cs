@@ -17,6 +17,7 @@ using SIRHU.View;
 using SIRHU.ViewModel;
 using System.ComponentModel;
 
+
 namespace SIRHU.View
 {
     /// <summary>
@@ -24,32 +25,24 @@ namespace SIRHU.View
     /// </summary>
     public partial class AddUsersView : UserControl
     {
-        private LoginViewModel _loginViewModel;
-
+        public static System.Windows.Controls.DataGrid dataGrid;
 
         public AddUsersView()
         {
-            _loginViewModel = new LoginViewModel();
-
-            _loginViewModel.PropertyChanged += OnPropertyChanged;
 
             InitializeComponent();
+            LoadData();
         }
 
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        public void LoadData()
         {
-            // Actualiza el datagrid
-            if (e.PropertyName == nameof(_loginViewModel.UsersRegister))
-            {
-                // Actualiza el nombre en el datagrid
-                dgUsers.ItemsSource = _loginViewModel.UsersRegister;
-            }
+            dataGrid = dgUsers;
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             var addView = new AddUserMiniView();
-            addView.ShowDialog();
+            addView.Show(); // Reemplaza MainGrid con el nombre de tu contenedor
         }
 
         //private void HandlePasswordChanged(object sender, EventArgs e)

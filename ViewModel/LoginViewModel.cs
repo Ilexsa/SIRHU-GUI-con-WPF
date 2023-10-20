@@ -161,6 +161,8 @@ namespace SIRHU.ViewModel
             {
                 userRepository.Add(User);
                 UsersRegister = userRepository.Get();
+                _usersRegister = userRepository.Get();
+                
                 MessageBox.Show("Usuario Agregado");
             }
             catch (Exception ex)

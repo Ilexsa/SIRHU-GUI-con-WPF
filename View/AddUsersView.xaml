@@ -80,67 +80,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style x:Key="ToggleButtomStyle" TargetType="{x:Type ToggleButton}">
-            <Setter Property="Background" Value="#FFFFFC"/>
-            <Setter Property="BorderBrush" Value="{StaticResource color8}"/>
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="Width" Value="35"/>
-            <Setter Property="MaxHeight" Value="20"/>
-            <Setter Property="MaxWidth" Value="35"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <Grid>
-
-                            <Border x:Name="Border"
-                 Background="{TemplateBinding Background}"
-                 CornerRadius="7"
-                 Height="14"
-                 Width="35"
-                 VerticalAlignment="Center"
-                 HorizontalAlignment="Center"/>
-                            <Ellipse x:Name="Ellipse"
-                  Height="20"
-                  Width="20"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Center"
-                  Fill="White"
-                  Stroke="{TemplateBinding BorderBrush}"
-                  StrokeThickness="3"/>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <!--EventTrigger Checked-->
-                            <EventTrigger RoutedEvent="Checked">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="Border"
-                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                     To="#2196F3" Duration="0:0:0.2"/>
-                                        <ThicknessAnimation Storyboard.TargetName="Ellipse"
-                                         Storyboard.TargetProperty="Margin"
-                                         To="15 0 0 0" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                            <!--EventTrigger UnChecked-->
-                            <EventTrigger RoutedEvent="Unchecked">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="Border"
-              Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-              To="#FFFFFC" Duration="0:0:0.2"/>
-                                        <ThicknessAnimation Storyboard.TargetName="Ellipse"
-                  Storyboard.TargetProperty="Margin"
-                  To="0 0 0 0" Duration="0:0:0.2"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </UserControl.Resources>
     
     <Grid>
@@ -155,7 +94,7 @@
         <!--<materialDesign:PackIcon Kind="AccountMultipleAdd" Height="50" Width="67" HorizontalAlignment="Left"
                                  VerticalAlignment="Bottom"
                                  Margin="280 0 0 0" Foreground="{StaticResource color10}"/>-->
-        
+
         <StackPanel 
                     Grid.Row="1"
                     Height="490"
@@ -176,10 +115,10 @@
                              HorizontalAlignment="Left"
                              Tag="BUSCAR..."
                              >
-                        
+
                     </TextBox>
                     <materialDesign:PackIcon Kind="Search" Margin="300 -25 0 0" Foreground="white"/>
-                    
+
                     <DataGrid x:Name="dgUsers" ItemsSource="{Binding UsersRegister, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                Width="950"
                               Height="400"  
@@ -218,24 +157,8 @@
             </Grid>
 
         </StackPanel>
-        <!--<StackPanel Grid.Row="1"
-                    Orientation="Vertical"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Width="350"
-                    Height="280"
-                    >
-            <DataGrid>
-                
-            </DataGrid>
-            
-        </StackPanel>-->
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center"
                     HorizontalAlignment="Right">
-            <!--<Button Width="99"  Margin="10 20"
-                    Content="GUARDAR"
-                    Command="{Binding AddUsserCommand}"/>
-            <Button Width="99" 
-                    Content="BORRAR" Command="{Binding DeleteUserCommand}"/>-->
             <Button HorizontalAlignment="Center"
                     x:Name="btnAdd"
                     VerticalAlignment="Center"

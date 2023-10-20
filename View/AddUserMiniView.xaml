@@ -251,13 +251,15 @@
                  Text="{Binding User.Position, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
                 </StackPanel>
-                <Button HorizontalAlignment="Center"
+                <Button x:Name="btnGuardar"
+                        HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         Grid.Row="1"
                         Margin="30"
                         Content="Guardar"
-                        Command="{Binding AddUsserCommand}">
-                    
+                        Command="{Binding AddUsserCommand}"
+                        Click="btnGuardar_Click">
+                        
                 </Button>
             </Grid>
         </Border>
