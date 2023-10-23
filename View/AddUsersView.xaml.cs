@@ -25,7 +25,7 @@ namespace SIRHU.View
     /// </summary>
     public partial class AddUsersView : UserControl
     {
-        public static System.Windows.Controls.DataGrid dataGrid;
+        public static DataGrid dataGrid;
 
         public AddUsersView()
         {
@@ -36,13 +36,15 @@ namespace SIRHU.View
 
         public void LoadData()
         {
+            LoginViewModel loginViewModel = new LoginViewModel();
+            dgUsers.ItemsSource = loginViewModel.UsersRegister;
             dataGrid = dgUsers;
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             var addView = new AddUserMiniView();
-            addView.Show(); // Reemplaza MainGrid con el nombre de tu contenedor
+            addView.ShowDialog(); // Reemplaza MainGrid con el nombre de tu contenedor
         }
 
         //private void HandlePasswordChanged(object sender, EventArgs e)

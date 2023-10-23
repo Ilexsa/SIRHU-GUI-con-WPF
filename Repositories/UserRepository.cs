@@ -52,7 +52,21 @@ namespace SIRHU.Repositories
 
         public void Edit(UserModel userModel)
         {
-            throw new NotImplementedException();
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.CommandText = "InsertOrUpdateUser";
+                command.Parameters.AddWithValue("@nickname", System.Data.SqlDbType.NVarChar).Value = userModel.Nickname;
+                command.Parameters.AddWithValue("@Password", System.Data.SqlDbType.NVarChar).Value = userModel.Password;
+                command.Parameters.AddWithValue("@Name", System.Data.SqlDbType.NVarChar).Value = userModel.Name;
+                command.Parameters.AddWithValue("@LastName", System.Data.SqlDbType.NVarChar).Value = userModel.LastName;
+                command.Parameters.AddWithValue("@Position", System.Data.SqlDbType.NVarChar).Value = userModel.Position;
+                command.Parameters.AddWithValue("@Email", System.Data.SqlDbType.NVarChar).Value = userModel.Email;
+                command.ExecuteNonQuery();
+            }
         }
 
         public ObservableCollection<UserModel> Get()
@@ -93,7 +107,7 @@ namespace SIRHU.Repositories
             throw new NotImplementedException();
         }
 
-        public UserModel GetById(int id)
+        public UserModel GetById(string id)
         {
             throw new NotImplementedException();
         }

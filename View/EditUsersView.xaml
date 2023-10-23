@@ -1,23 +1,22 @@
-﻿<Window x:Class="SIRHU.View.AddUserMiniView"
+﻿<Window x:Class="SIRHU.View.EditUsersView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SIRHU.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:customControls="clr-namespace:SIRHU.CustomControls"
         xmlns:converter="clr-namespace:SIRHU.Validations"
         xmlns:viewModel="clr-namespace:SIRHU.ViewModel"
-        xmlns:local="clr-namespace:SIRHU.View"
         mc:Ignorable="d"
-        Title="AddUserMiniView" Height="450" Width="400"
+        Title="EditUsersView" Height="450" Width="400"
         Background="Transparent"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"
         AllowsTransparency="True"
-        MouseDown="Window_MouseDown"
-        >
+        MouseDown="Window_MouseDown">
     <Window.DataContext>
         <viewModel:LoginViewModel/>
     </Window.DataContext>
@@ -44,27 +43,27 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
                         <Border x:Name="txtBorder"
-                         Background="{TemplateBinding Background}"
-                         CornerRadius="5"
-                         BorderThickness="{TemplateBinding BorderThickness}"
-                         BorderBrush="{TemplateBinding BorderBrush}"
-                         SnapsToDevicePixels="True">
+                      Background="{TemplateBinding Background}"
+                      CornerRadius="5"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      SnapsToDevicePixels="True">
                             <Grid Margin="{TemplateBinding Padding}">
                                 <ScrollViewer x:Name="PART_ContentHost"
-                           Focusable="False"
-                           HorizontalScrollBarVisibility="Hidden"
-                           VerticalScrollBarVisibility="Hidden"
-                           Margin="-0 2"/>
+                        Focusable="False"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden"
+                        Margin="-0 2"/>
                                 <Label x:Name="WaterMarkerLabel"
-                    Content="{TemplateBinding Tag}"
-                    FontWeight="{TemplateBinding FontWeight}"
-                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                    Visibility="Collapsed"
-                    FontFamily="{TemplateBinding FontFamily}"
-                    FontSize="{TemplateBinding FontSize}"
-                    Foreground="{TemplateBinding Foreground}"
-                    Padding="{TemplateBinding Padding}">
+                 Content="{TemplateBinding Tag}"
+                 FontWeight="{TemplateBinding FontWeight}"
+                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                 HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                 Visibility="Collapsed"
+                 FontFamily="{TemplateBinding FontFamily}"
+                 FontSize="{TemplateBinding FontSize}"
+                 Foreground="{TemplateBinding Foreground}"
+                 Padding="{TemplateBinding Padding}">
                                 </Label>
                             </Grid>
                         </Border>
@@ -80,8 +79,8 @@
                                     <Condition Property="Text" Value=""/>
                                 </MultiTrigger.Conditions>
                                 <Setter Property="Visibility"
-                     TargetName="WaterMarkerLabel"
-                     Value="Visible"/>
+                  TargetName="WaterMarkerLabel"
+                  Value="Visible"/>
                             </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -102,20 +101,20 @@
                         <Grid>
 
                             <Border x:Name="Border"
-             Background="{TemplateBinding Background}"
-             CornerRadius="7"
-             Height="14"
-             Width="35"
-             VerticalAlignment="Center"
-             HorizontalAlignment="Center"/>
+          Background="{TemplateBinding Background}"
+          CornerRadius="7"
+          Height="14"
+          Width="35"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center"/>
                             <Ellipse x:Name="Ellipse"
-              Height="20"
-              Width="20"
-              HorizontalAlignment="Left"
-              VerticalAlignment="Center"
-              Fill="White"
-              Stroke="{TemplateBinding BorderBrush}"
-              StrokeThickness="3"/>
+           Height="20"
+           Width="20"
+           HorizontalAlignment="Left"
+           VerticalAlignment="Center"
+           Fill="White"
+           Stroke="{TemplateBinding BorderBrush}"
+           StrokeThickness="3"/>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <!--EventTrigger Checked-->
@@ -123,11 +122,11 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="Border"
-                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                 To="#2196F3" Duration="0:0:0.2"/>
+                              Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                              To="#2196F3" Duration="0:0:0.2"/>
                                         <ThicknessAnimation Storyboard.TargetName="Ellipse"
-                                     Storyboard.TargetProperty="Margin"
-                                     To="15 0 0 0" Duration="0:0:0.2"/>
+                                  Storyboard.TargetProperty="Margin"
+                                  To="15 0 0 0" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -136,11 +135,11 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="Border"
-          Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-          To="#FFFFFC" Duration="0:0:0.2"/>
+       Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+       To="#FFFFFC" Duration="0:0:0.2"/>
                                         <ThicknessAnimation Storyboard.TargetName="Ellipse"
-              Storyboard.TargetProperty="Margin"
-              To="0 0 0 0" Duration="0:0:0.2"/>
+           Storyboard.TargetProperty="Margin"
+           To="0 0 0 0" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -153,11 +152,11 @@
     <Border CornerRadius="12">
         <Border.Background>
             <ImageBrush ImageSource="/Images/Recurso 2.png"
-                        Stretch="None"/>
+                     Stretch="None"/>
         </Border.Background>
         <Border CornerRadius="10"
-        Background="Transparent"
-        BorderThickness="5">
+     Background="Transparent"
+     BorderThickness="5">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                     <GradientStop Color="#930001" Offset="0.0"/>
@@ -171,14 +170,14 @@
                     <RowDefinition Height="420"/>
                 </Grid.RowDefinitions>
                 <Button x:Name="btnClose"
-                            BorderThickness="0"
-                            Content="X"
-                            Foreground="White"
-                            FontSize="16"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            HorizontalAlignment="Right"
-                            Click="btnClose_Click">
+                         BorderThickness="0"
+                         Content="X"
+                         Foreground="White"
+                         FontSize="16"
+                         FontFamily="Montserrat"
+                         Cursor="Hand"
+                         HorizontalAlignment="Right"
+                         Click="btnClose_Click">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="#414142"/>
@@ -192,77 +191,77 @@
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Width="25" Height="25"
-                                        CornerRadius="10"
-                                        Background="{TemplateBinding Background}">
+                                     CornerRadius="10"
+                                     Background="{TemplateBinding Background}">
                                 <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
+                                                   HorizontalAlignment="Center"/>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
 
-                <TextBlock Grid.Row="1" Text="Añadir Usuario"
-                           Foreground="{StaticResource color10}"
-                           HorizontalAlignment="Center" VerticalAlignment="Top"
-                           Margin="20"
-                           FontSize="30"
-                           FontFamily="poppins black">
-                    
+                <TextBlock Grid.Row="1" Text="Editar Usuario"
+                        Foreground="{StaticResource color10}"
+                        HorizontalAlignment="Center" VerticalAlignment="Top"
+                        Margin="20"
+                        FontSize="30"
+                        FontFamily="poppins black">
+
                 </TextBlock>
                 <StackPanel 
-                 Width="350"
-                 Height="280"
-                 Grid.Column="0"
-                 Grid.Row="1"
-                 Orientation="Vertical">
+              Width="350"
+              Height="280"
+              Grid.Column="0"
+              Grid.Row="1"
+              Orientation="Vertical">
                     <TextBox x:Name="txtFirstName" Tag="Nombre" Style="{DynamicResource textBoxStylesNuevo}" 
-                  Width="330" MaxLength="20" Margin="0 10 0 0 "
-                  Text="{Binding User.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+               Width="330" MaxLength="20" Margin="0 10 0 0 "
+               Text="{Binding User.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
                     <TextBox x:Name="txtLastName" Tag="Apellido" Style="{DynamicResource textBoxStylesNuevo}" 
-                  Width="330" MaxLength="20" Margin="0 10 0 0 "
-                  Text="{Binding User.LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+               Width="330" MaxLength="20" Margin="0 10 0 0 "
+               Text="{Binding User.LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
                     <TextBox x:Name="txtUserName" Tag="Nombre de Usuario" Style="{DynamicResource textBoxStylesNuevo}" 
-                  Width="330" MaxLength="20" Margin="0 10 0 0 "
-                  Text="{Binding User.Nickname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+               Width="330" MaxLength="20" Margin="0 10 0 0 "
+               Text="{Binding User.Nickname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
 
                     <!--<TextBox x:Name="txtContraseña" Tag="Contraseña" Style="{DynamicResource textBoxStylesNuevo}" 
-                  VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
-                  Text="" />-->
+               VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
+               Text="" />-->
 
                     <!--<PasswordBox Style="{DynamicResource passwordBoxStyles}" 
-                      VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
-                      Password="{Binding User.Password, UpdateSourceTrigger=PropertyChanged}"/>-->
+                   VerticalAlignment="Top" Width="330" MaxLength="20" Margin="0 10 0 0 "
+                   Password="{Binding User.Password, UpdateSourceTrigger=PropertyChanged}"/>-->
                     <customControls:BindablePasswordBox1 x:Name="pbPassword" Width="330"  Margin="0 10 0 0"
-                         Password="{Binding User.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                      Password="{Binding User.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
 
                     <!--<TextBlock x:Name="waterMark" IsHitTestVisible="False" FontSize="13" Text="Contraseña" VerticalAlignment="Top"
-                    Foreground="Black" FontWeight="Medium" Margin="28 -27.6 240 0" FontFamily="poppins black"/>-->
+                 Foreground="Black" FontWeight="Medium" Margin="28 -27.6 240 0" FontFamily="poppins black"/>-->
 
                     <TextBox x:Name="txtEmail" Tag="Correo Institucional" Style="{DynamicResource textBoxStylesNuevo}" 
-                  Width="330" MaxLength="20" Margin="0 10 0 0 "
-                  Text="{Binding User.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+               Width="330" MaxLength="20" Margin="0 10 0 0 "
+               Text="{Binding User.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
 
                     <TextBox x:Name="txtPosition" Tag="Rol" Style="{DynamicResource textBoxStylesNuevo}" 
-                 Width="330" MaxLength="20" Margin="0 10 0 0 "
-                 Text="{Binding User.Position, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+              Width="330" MaxLength="20" Margin="0 10 0 0 "
+              Text="{Binding User.Position, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
                 </StackPanel>
                 <Button x:Name="btnGuardar"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Bottom"
-                        Grid.Row="1"
-                        Margin="30"
-                        Content="Guardar"
-                        Command="{Binding AddUsserCommand}"
-                        Click="btnGuardar_Click">
-                        
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Bottom"
+                     Grid.Row="1"
+                     Margin="30"
+                     Content="Guardar"
+                     Command="{Binding EditCommand}"
+                     >
+
                 </Button>
             </Grid>
         </Border>

@@ -164,6 +164,9 @@
     <Compile Include="View\CompanyView.xaml.cs">
       <DependentUpon>CompanyView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditUsersView.xaml.cs">
+      <DependentUpon>EditUsersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\frmLoginView.xaml.cs">
       <DependentUpon>frmLoginView.xaml</DependentUpon>
     </Compile>
@@ -232,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CompanyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditUsersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -12,6 +12,7 @@ using System.Threading;
 using System.Security.Principal;
 using System.Windows;
 using System.Collections.ObjectModel;
+using SIRHU.View;
 
 namespace SIRHU.ViewModel
 {
@@ -106,7 +107,7 @@ namespace SIRHU.ViewModel
         }
 
         // -> Commands
-
+        public ICommand EditCommand { get; }
         public ICommand LoginCommand { get; }
         public ICommand RecoverPasswordCommand { get; }
         public ICommand ShowPasswordCommand { get; }
@@ -159,9 +160,11 @@ namespace SIRHU.ViewModel
         {
             try
             {
+                
                 userRepository.Add(User);
                 UsersRegister = userRepository.Get();
                 _usersRegister = userRepository.Get();
+                AddUsersView.dataGrid.ItemsSource = UsersRegister;
                 
                 MessageBox.Show("Usuario Agregado");
             }

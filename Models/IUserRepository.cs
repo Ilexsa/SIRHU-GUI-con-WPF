@@ -18,7 +18,7 @@ namespace SIRHU.Models
         void Remove(UserModel userModel);
         ObservableCollection<UserModel> Get();
 
-        UserModel GetById(int id);
+        UserModel GetById(string id);
         UserModel GetByUsername(string nickname);
 
         IEnumerable<UserModel> GetByAll();

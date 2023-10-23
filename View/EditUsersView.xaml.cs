@@ -1,5 +1,4 @@
-﻿using SIRHU.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,24 +15,18 @@ using System.Windows.Shapes;
 namespace SIRHU.View
 {
     /// <summary>
-    /// Lógica de interacción para AddUserMiniView.xaml
+    /// Lógica de interacción para EditUsersView.xaml
     /// </summary>
-    public partial class AddUserMiniView : Window
+    public partial class EditUsersView : Window
     {
-        public AddUserMiniView()
+        public string nickname;
+        public EditUsersView()
         {
             InitializeComponent();
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-        }
-
-        private void btnGuardar_Click(object sender, RoutedEventArgs e)
-        {
-            LoginViewModel loginViewModel = new LoginViewModel();
-            //AddUsersView.dataGrid.ItemsSource = loginViewModel.UsersRegister;
             this.Close();
         }
 

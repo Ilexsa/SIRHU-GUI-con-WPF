@@ -122,20 +122,20 @@
                     <DataGrid x:Name="dgUsers" ItemsSource="{Binding UsersRegister, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                Width="950"
                               Height="400"  
-                              VerticalScrollBarVisibility="Auto" RowStyle="{DynamicResource DataGridRowStyle1}"  CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}">
+                              VerticalScrollBarVisibility="Auto" RowStyle="{DynamicResource DataGridRowStyle1}"  CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" CanUserAddRows="False" CanUserResizeColumns="False">
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Header="" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                            <!--<DataGridCheckBoxColumn Header="" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                                 <DataGridCheckBoxColumn.HeaderTemplate>
                                     <DataTemplate>
                                         <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
                                     </DataTemplate>
                                 </DataGridCheckBoxColumn.HeaderTemplate>
-                            </DataGridCheckBoxColumn>
-                            <DataGridTextColumn Header="Usuario" Binding="{Binding Nickname, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" Width="*"/>
-                            <DataGridTextColumn Header="Nombre" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*"/>
-                            <DataGridTextColumn Header="Apellidos" Binding="{Binding LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*"/>
-                            <DataGridTextColumn Header="Rol" Binding="{Binding Position, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*"/>
-                            <DataGridTextColumn Header="Correo" Binding="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*"/>
+                            </DataGridCheckBoxColumn>-->
+                            <DataGridTextColumn Header="Usuario" Binding="{Binding Nickname, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsReadOnly="True" CanUserResize="False" Width="*"/>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*" CanUserResize="False"/>
+                            <DataGridTextColumn Header="Apellidos" Binding="{Binding LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*" CanUserResize="False"/>
+                            <DataGridTextColumn Header="Rol" Binding="{Binding Position, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*" CanUserResize="False"/>
+                            <DataGridTextColumn Header="Correo" Binding="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True" Width="*" CanUserResize="False"/>
                             <DataGridTemplateColumn Header="Acciones" IsReadOnly="True" Width="auto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
