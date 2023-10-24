@@ -216,15 +216,15 @@
                  Grid.Row="1"
                  Orientation="Vertical">
                     <TextBox x:Name="txtFirstName" Tag="Nombre" Style="{DynamicResource textBoxStylesNuevo}" 
-                  Width="330" MaxLength="20" Margin="0 10 0 0 "
+                  Width="330" MaxLength="40" Margin="0 10 0 0 "
                   Text="{Binding User.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
                     <TextBox x:Name="txtLastName" Tag="Apellido" Style="{DynamicResource textBoxStylesNuevo}" 
-                  Width="330" MaxLength="20" Margin="0 10 0 0 "
+                  Width="330" MaxLength="40" Margin="0 10 0 0 "
                   Text="{Binding User.LastName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
                     <TextBox x:Name="txtUserName" Tag="Nombre de Usuario" Style="{DynamicResource textBoxStylesNuevo}" 
-                  Width="330" MaxLength="20" Margin="0 10 0 0 "
+                  Width="330" MaxLength="40" Margin="0 10 0 0 "
                   Text="{Binding User.Nickname, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
 
@@ -245,12 +245,12 @@
                     Foreground="Black" FontWeight="Medium" Margin="28 -27.6 240 0" FontFamily="poppins black"/>-->
 
                     <TextBox x:Name="txtEmail" Tag="Correo Institucional" Style="{DynamicResource textBoxStylesNuevo}" 
-                  Width="330" MaxLength="20" Margin="0 10 0 0 "
+                  Width="330" MaxLength="40" Margin="0 10 0 0 "
                   Text="{Binding User.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
 
                     <TextBox x:Name="txtPosition" Tag="Rol" Style="{DynamicResource textBoxStylesNuevo}" 
-                 Width="330" MaxLength="20" Margin="0 10 0 0 "
+                 Width="330" MaxLength="40" Margin="0 10 0 0 "
                  Text="{Binding User.Position, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                     <materialDesign:PackIcon Kind="CardAccountDetails" Margin="315 -25 0 0" Foreground="white"/>
                 </StackPanel>

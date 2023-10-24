@@ -3,6 +3,7 @@ using SIRHU.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -58,7 +59,8 @@ namespace SIRHU.Repositories
                 connection.Open();
                 command.Connection = connection;
                 command.CommandType = System.Data.CommandType.StoredProcedure;
-                command.CommandText = "InsertOrUpdateUser";
+                command.CommandText = "UpdateUserxId";
+                command.Parameters.AddWithValue("@Id", System.Data.SqlDbType.UniqueIdentifier).Value = userModel.Id;
                 command.Parameters.AddWithValue("@nickname", System.Data.SqlDbType.NVarChar).Value = userModel.Nickname;
                 command.Parameters.AddWithValue("@Password", System.Data.SqlDbType.NVarChar).Value = userModel.Password;
                 command.Parameters.AddWithValue("@Name", System.Data.SqlDbType.NVarChar).Value = userModel.Name;
@@ -105,6 +107,43 @@ namespace SIRHU.Repositories
         public IEnumerable<UserModel> GetByAll()
         {
             throw new NotImplementedException();
+        }
+
+        public ObservableCollection<UserModel> GetByAll(string cadenaBusqueda)
+        {
+            using (var connection = GetConnection())
+            {
+                using (var command = new SqlCommand("SearchUserxAll", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    // Añade el parámetro @SearchString para la cadena de búsqueda
+                    command.Parameters.Add("@SearchString", SqlDbType.NVarChar, 100).Value = cadenaBusqueda; // Reemplaza "CadenaDeBusqueda" con la cadena que deseas buscar
+
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    ObservableCollection<UserModel> listResult = new ObservableCollection<UserModel>();
+
+                    while (reader.Read())
+                    {
+                        listResult.Add(new UserModel()
+                        {
+                            Id = ((Guid)reader["Id"]).ToString(),
+                            Name = (string)reader["Name"],
+                            LastName = (string)reader["LastName"],
+                            Nickname = (string)reader["nickname"],
+                            Password = (string)reader["Password"],
+                            Email = (string)reader["Email"],
+                            Position = (string)reader["Position"],
+                        });
+                    }
+
+                    reader.Close();
+                    connection.Close();
+                    return listResult;
+                }
+            }
         }
 
         public UserModel GetById(string id)
@@ -167,16 +206,36 @@ namespace SIRHU.Repositories
             }
         }
 
+        public void Read(UserModel userModel)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Remove(UserModel userModel)
         {
             using (var connection = GetConnection())
-                using (var command = new SqlCommand())
+            using (var command = new SqlCommand())
             {
                 connection.Open();
-                command.Connection= connection;
+                command.Connection = connection;
                 command.CommandType = System.Data.CommandType.Text;
-                command.CommandText="delete from Users where nickname=@nickname";
-                command.Parameters.Add("@nickname", System.Data.SqlDbType.NVarChar).Value = userModel.Nickname;
+                command.CommandText = "DELETE FROM Users WHERE Id = @Id";
+
+                // Supongamos que userModel.Id es un string que representa un Guid
+                string idString = userModel.Id;
+                Guid idGuid;
+
+                if (Guid.TryParse(idString, out idGuid))
+                {
+                    // La conversión fue exitosa, ahora puedes asignar idGuid al parámetro
+                    command.Parameters.Add("@Id", System.Data.SqlDbType.UniqueIdentifier).Value = idGuid;
+                }
+                else
+                {
+                    // La conversión falló, puedes manejar este caso como desees, por ejemplo, lanzando una excepción
+                    throw new Exception("El valor de userModel.Id no es un Guid válido.");
+                }
+
                 command.ExecuteNonQuery();
             }
         }

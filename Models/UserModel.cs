@@ -10,7 +10,7 @@ namespace SIRHU.Models
     public class UserModel
     {
         private string _id;
-        private string _nickname ="";
+        private string _nickname ;
         private string _name;
         private string _email;
         private string _password;

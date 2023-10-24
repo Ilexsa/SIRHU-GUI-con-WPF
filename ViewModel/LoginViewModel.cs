@@ -24,12 +24,25 @@ namespace SIRHU.ViewModel
         private string _errorMessage;
         private bool _isViewVisible = true;
         private ObservableCollection<UserModel> _usersRegister;
-
+        private ObservableCollection<UserModel> _searchUsers;
+        private string _searchString;
         private UserModel _user;
 
         private IUserRepository userRepository;
 
         //Properties
+        public string SearchString
+        {
+            get
+            {
+                return _searchString;
+            }
+            set 
+            { 
+                _searchString = value;
+                OnPropertyChanged(nameof(SearchString));
+            }
+        }
         public ObservableCollection<UserModel> UsersRegister
         {
             get 
@@ -42,6 +55,20 @@ namespace SIRHU.ViewModel
                 OnPropertyChanged(nameof(UsersRegister));
             }
         }
+
+        public ObservableCollection<UserModel> SearchUsers
+        {
+            get
+            {
+                return _searchUsers;
+            }
+            set
+            {
+                _searchUsers = value;
+                OnPropertyChanged(nameof(SearchUsers));
+            }
+        }
+
         public UserModel User
         {
             get
@@ -107,13 +134,14 @@ namespace SIRHU.ViewModel
         }
 
         // -> Commands
-        public ICommand EditCommand { get; }
+        public ICommand EditUserCommand { get; }
         public ICommand LoginCommand { get; }
         public ICommand RecoverPasswordCommand { get; }
         public ICommand ShowPasswordCommand { get; }
         public ICommand RememberPasswordCommand { get; }
         public ICommand AddUsserCommand { get; }
         public ICommand DeleteUserCommand { get; }
+        public ICommand SearchByAll { get; }
 
         //Constructors
 
@@ -124,14 +152,57 @@ namespace SIRHU.ViewModel
             AddUsserCommand = new ViewModelCommand(ExecuteAddUserCommand, CanExecuteAddUserCommand);
             DeleteUserCommand = new ViewModelCommand(ExecuteDeleteUserCommand,CanExecuteDeleteCommand);
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+            EditUserCommand = new ViewModelCommand(ExecuteEditCommand, CanExecuteEditCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("",""));
+            SearchByAll = new ViewModelCommand(ExecuteSearchByAllCommand, CanExecuteByAllCommand);
             UsersRegister = userRepository.Get();
+        }
+
+        private bool CanExecuteByAllCommand(object obj)
+        {
+            bool validData;
+            if (string.IsNullOrEmpty(SearchString) || SearchString.Length < 3)
+                validData = false;
+            else
+                validData = true;
+
+            return validData;
+        }
+
+        private void ExecuteSearchByAllCommand(object obj)
+        {
+            SearchUsers = userRepository.GetByAll(SearchString);
+
+        }
+
+        private bool CanExecuteEditCommand(object obj)
+        {
+            //bool validUser = userRepository.RepeatNickname(User);
+            //return validUser;
+            return true;
+        }
+
+        private void ExecuteEditCommand(object obj)
+        {
+            try
+            {
+
+                userRepository.Edit(User);
+                UsersRegister = userRepository.Get();
+                _usersRegister = userRepository.Get();
+                AddUsersView.dataGrid.ItemsSource = UsersRegister;
+
+                MessageBox.Show("Usuario Editado");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private bool CanExecuteDeleteCommand(object obj)
         {
-            bool validUser = userRepository.RepeatNickname(User);
-            return validUser;
+            return true;
         }
 
         private void ExecuteDeleteUserCommand(object obj)
@@ -140,6 +211,7 @@ namespace SIRHU.ViewModel
             {
                 userRepository.Remove(User);
                 UsersRegister = userRepository.Get();
+                AddUsersView.dataGrid.ItemsSource = UsersRegister;
                 MessageBox.Show("Usuario Eliminado");
             }
             catch (Exception ex)

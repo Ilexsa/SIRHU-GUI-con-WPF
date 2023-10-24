@@ -16,7 +16,9 @@ namespace SIRHU.Models
         void Add(UserModel userModel);
         void Edit(UserModel userModel);
         void Remove(UserModel userModel);
+        void Read(UserModel userModel);
         ObservableCollection<UserModel> Get();
+        ObservableCollection<UserModel> GetByAll(string cadenaBusqueda);
 
         UserModel GetById(string id);
         UserModel GetByUsername(string nickname);

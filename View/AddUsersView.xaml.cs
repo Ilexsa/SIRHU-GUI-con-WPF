@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using SIRHU.View;
 using SIRHU.ViewModel;
 using System.ComponentModel;
-
+using SIRHU.Models;
 
 namespace SIRHU.View
 {
@@ -32,6 +32,7 @@ namespace SIRHU.View
 
             InitializeComponent();
             LoadData();
+            DataContext = new LoginViewModel();
         }
 
         public void LoadData()
@@ -45,6 +46,66 @@ namespace SIRHU.View
         {
             var addView = new AddUserMiniView();
             addView.ShowDialog(); // Reemplaza MainGrid con el nombre de tu contenedor
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            LoginViewModel loginViewModel = new LoginViewModel();
+            
+            var selectedItem = dgUsers.SelectedItem as UserModel;
+            if (selectedItem != null)
+            {
+
+                var selectedId = selectedItem.Id;
+
+                var editView = new EditUsersView(selectedId);
+
+                editView.ShowDialog();
+            }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is LoginViewModel loginViewModel)
+            {
+                if (loginViewModel.DeleteUserCommand.CanExecute(null))
+                {
+                    loginViewModel.DeleteUserCommand.Execute(null);
+                }
+            }
+        }
+
+        private void dgUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedItem = dgUsers.SelectedItem as UserModel;
+            if (selectedItem != null)
+            {
+
+                txtId.Text = selectedItem.Id;
+
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(txtSearch.Text.Length > 3)
+            {
+                if (DataContext is LoginViewModel loginViewModel)
+                {
+                    if (loginViewModel.SearchByAll.CanExecute(null))
+                    {
+                        loginViewModel.SearchByAll.Execute(null);
+                        dgUsers.ItemsSource = loginViewModel.SearchUsers;
+                    }
+                    
+                }
+
+            }
+            else
+            {
+              LoadData();
+            }
+
         }
 
         //private void HandlePasswordChanged(object sender, EventArgs e)

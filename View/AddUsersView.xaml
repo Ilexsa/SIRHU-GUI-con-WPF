@@ -108,21 +108,24 @@
 
                 <StackPanel Grid.Row="1"
                             Grid.Column="1"
-
                             HorizontalAlignment="Center"
                             VerticalAlignment="Bottom">
-                    <TextBox Style="{DynamicResource textBoxStylesNuevo}"
+                    <TextBox x:Name="txtSearch" 
+                             Style="{DynamicResource textBoxStylesNuevo}"
                              HorizontalAlignment="Left"
                              Tag="BUSCAR..."
+                             Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                             TextChanged="txtSearch_TextChanged"
                              >
 
                     </TextBox>
                     <materialDesign:PackIcon Kind="Search" Margin="300 -25 0 0" Foreground="white"/>
 
-                    <DataGrid x:Name="dgUsers" ItemsSource="{Binding UsersRegister, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    <DataGrid x:Name="dgUsers"
                                Width="950"
                               Height="400"  
-                              VerticalScrollBarVisibility="Auto" RowStyle="{DynamicResource DataGridRowStyle1}"  CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" CanUserAddRows="False" CanUserResizeColumns="False">
+                              VerticalScrollBarVisibility="Auto" RowStyle="{DynamicResource DataGridRowStyle1}"  CellStyle="{DynamicResource DataGridCellStyle1}" Style="{DynamicResource DataGridStyle1}" CanUserAddRows="False" CanUserResizeColumns="False"
+                              SelectionChanged="dgUsers_SelectionChanged">
                         <DataGrid.Columns>
                             <!--<DataGridCheckBoxColumn Header="" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                                 <DataGridCheckBoxColumn.HeaderTemplate>
@@ -140,10 +143,16 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Style="{StaticResource gridEditButton}">
-                                                <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                            <Button Style="{StaticResource gridEditButton}"
+                                                    x:Name="btnEdit"
+                                                    Click="btnEdit_Click">
+                                                <Icon:PackIconMaterial  Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"
+                                                                       />
                                             </Button>
-                                            <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}">
+                                            <Button Margin="5 0 0 0" Style="{StaticResource gridRemoveButton}"
+                                                    x:Name="btnDelete"
+                                                    Click="btnDelete_Click"
+                                                    >
                                                 <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                             </Button>
                                         </StackPanel>
@@ -152,7 +161,9 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-
+                    <TextBox x:Name="txtId" Tag="Rol" Style="{DynamicResource textBoxStylesNuevo}" 
+              Width="330" MaxLength="20" Margin="0 -35 0 0 " Visibility="Hidden"
+              Text="{Binding User.Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </StackPanel>
             </Grid>
 
@@ -163,7 +174,7 @@
                     x:Name="btnAdd"
                     VerticalAlignment="Center"
                     Content="+ AÑADIR USUARIO"
-                    Margin="0 0 60 50 "
+                    Margin="0 0 60 20 "
                     Click="btnAdd_Click"
                     />
         </StackPanel>
