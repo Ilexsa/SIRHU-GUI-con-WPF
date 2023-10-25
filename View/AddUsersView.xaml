@@ -85,8 +85,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
-            <RowDefinition Height="490"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Registro de Usuarios" HorizontalAlignment="Left"
                    FontFamily="poppins black" FontSize="20"
@@ -97,7 +96,7 @@
 
         <StackPanel 
                     Grid.Row="1"
-                    Height="490"
+                    Height="530"
                     
             >
             <Grid Height="490">
@@ -110,7 +109,9 @@
                             Grid.Column="1"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Bottom">
-                    <TextBox x:Name="txtSearch" 
+                    <StackPanel>
+                        <Grid>
+                        <TextBox x:Name="txtSearch" 
                              Style="{DynamicResource textBoxStylesNuevo}"
                              HorizontalAlignment="Left"
                              Tag="BUSCAR..."
@@ -118,8 +119,20 @@
                              TextChanged="txtSearch_TextChanged"
                              >
 
-                    </TextBox>
-                    <materialDesign:PackIcon Kind="Search" Margin="300 -25 0 0" Foreground="white"/>
+                        </TextBox>
+                    
+                        <materialDesign:PackIcon Kind="Search" Margin="300 10 0 0" Foreground="white"
+                                                 />
+
+                        <Button HorizontalAlignment="Right"
+                        x:Name="btnAdd"
+                        VerticalAlignment="Bottom"
+                        Content="+ AÑADIR USUARIO"
+                        Click="btnAdd_Click"
+                        Margin="0,0,0,0"
+                        />
+                        </Grid>
+                    </StackPanel>
 
                     <DataGrid x:Name="dgUsers"
                                Width="950"
@@ -170,13 +183,7 @@
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center"
                     HorizontalAlignment="Right">
-            <Button HorizontalAlignment="Center"
-                    x:Name="btnAdd"
-                    VerticalAlignment="Center"
-                    Content="+ AÑADIR USUARIO"
-                    Margin="0 0 60 20 "
-                    Click="btnAdd_Click"
-                    />
+
         </StackPanel>
     </Grid>
 </UserControl>
